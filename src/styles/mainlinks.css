@@ -1,0 +1,27 @@
+.index-footer-alt {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  opacity:0.2;
+}
+
+.margin-top{
+  position:relative;
+  transform: translate(0,20%);
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.translate-top{
+  transform: translate(0,50%);
+}

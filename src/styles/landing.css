@@ -1,0 +1,169 @@
+
+.index-footer {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: -10;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.img-fluid-1{
+  width: 100%;
+}
+
+.index-background {
+  position: fixed;
+  z-index: -200;
+  height: 100%;
+  width: 100%;
+  left:0;
+}
+
+.text{
+  font-family: "DINNextLTPro";
+  position: absolute;
+  top: 1rem;
+  right: 46%;
+}
+
+#p5 {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  width: 67%;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
+#p5 {
+  margin-top: 1rem;
+  bottom: 0px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.nav-background {
+  position: absolute;
+  display: block;
+  z-index: -2;
+  left: 0;
+  padding: 0rem;
+}
+
+.navi-list{
+  list-style: none;
+  height: 2.5rem;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  left:0;
+  top: 2rem;
+  padding-left: 0px;
+}
+.nav-items{
+  display: flex;
+  padding-top: 0.4rem;
+  padding-bottom: 0.5rem;
+  display: inline;
+  align-items: center;
+  font-family: "DINNextLTPro";
+  color: rgb(200,200,200);
+  align-self: center;
+
+}
+.nav-items:hover{
+  text-decoration: none;
+  color: rgb(255,125,0);
+  cursor: pointer;
+}
+
+.z-top{
+  z-index: 2000;
+}
+
+.item-1{
+  flex-grow: 4;
+  align-self: center;
+  padding-left: 6rem;
+
+}
+
+.item-rest{
+  flex-grow: 2;
+  justify-content: center;
+}
+
+.item-rest:hover{
+  color: rgb(255,125,0);
+}
+
+.item-7{
+  flex-grow: 4;
+  align-self: center;
+}
+
+
+.tablero-background {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 65%;
+}
+.symbol-background {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  width: 1.5rem;
+  transform: translate(-50%,-50%);
+}
+
+.canvas-false{
+  display:none;
+}
+
+#slogan {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "DINNextLTPro";
+  font-size: 0.7rem;
+  position: absolute;
+  right: 28.5%;
+  top:25%;
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  #slogan {
+    font-size: 0.55rem;
+    right: 16%;
+    top:24%;
+  }
+  .symbol-background{
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 1.5rem;
+  }
+  .tablero-background {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    width: 200%;
+  }
+}

@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 95vh;
+  padding: 0.5rem;
+}
+
+@font-face {
+  font-family: 'DINNextLTPro';
+  src: url('../assets/DINNextLTPro-Medium.ttf') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
