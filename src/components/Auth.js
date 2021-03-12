@@ -89,7 +89,7 @@ const Auth = (props) => {
   const checkLoginUser = () => {
     if(user.data !== null){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid).on(
+      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
@@ -105,7 +105,7 @@ const Auth = (props) => {
   const checkLoginAdmin = () => {
     if(user.data !== null && props.roll === "Gestores"){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid).on(
+      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
@@ -118,7 +118,7 @@ const Auth = (props) => {
   const checkLoginMentor = () => {
     if(user.data !== null && props.roll === "Mentores"){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid).on(
+      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;

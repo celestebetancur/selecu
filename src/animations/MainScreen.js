@@ -25,9 +25,6 @@ class MainScreen extends React.Component {
       let width = 400;
       let height = 400;
       let map;
-      let x = 370;
-      let y = 440;
-      let xDir = 1;
       let gridSpace = 10;
       let elapsedTime = 0;
       let minutes = 0;

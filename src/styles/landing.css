@@ -4,7 +4,7 @@
   position: absolute;
   bottom: 0px;
   left: 0px;
-  z-index: -10;
+  z-index: 0;
   user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -19,7 +19,7 @@
 
 .index-background {
   position: fixed;
-  z-index: -200;
+  z-index: -1000;
   height: 100%;
   width: 100%;
   left:0;
@@ -34,9 +34,9 @@
 
 #p5 {
   position: absolute;
-  top: 43%;
+  top: 48%;
   left: 50%;
-  transform: translate(-50%,-60%);
+  transform: translate(-50%,-50%);
   width: 67%;
   animation-name: fadeIn;
   animation-duration: 2s;
@@ -120,14 +120,14 @@
 
 .tablero-background {
   position: absolute;
-  top: 43%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   width: 65%;
 }
 .symbol-background {
   position: absolute;
-  top: 15%;
+  top: 18%;
   left: 50%;
   width: 1.5rem;
   transform: translate(-50%,-50%);
@@ -138,32 +138,24 @@
 }
 
 #slogan {
+  display: inline;
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-family: "DINNextLTPro";
   font-size: 0.7rem;
   position: absolute;
   right: 28.5%;
-  top:25%;
+  top:30%;
   margin-left: 1rem;
 }
 
-@media only screen and (max-width: 1000px) {
-  #slogan {
-    font-size: 0.55rem;
-    right: 16%;
-    top:24%;
-  }
-  .symbol-background{
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    width: 1.5rem;
-  }
-  .tablero-background {
-    position: absolute;
-    top: 43%;
-    left: 50%;
-    width: 200%;
-  }
+@media (orientation: portrait) {
+    #slogan{
+      display: none;
+    }
+    .tablero-background{
+      transform: scale(2,2.3);
+      left:17%;
+      top:33%;
+    }
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './navbar.js';
 
 import '../../styles/mainlinks.css'
 import '../../styles/landing.css'

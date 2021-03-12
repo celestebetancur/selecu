@@ -9,8 +9,7 @@ import Comunidad from'./Main/comunidad.js'
 
 import '../styles/landing.css'
 
-import background from '../assets/images/Background.png'
-import footer from '../assets/images/Trazado.png'
+import background from '../assets/images/background.png'
 import tablero from '../assets/images/tableroBack.png'
 import symbol from '../assets/images/symbol.png'
 
@@ -19,25 +18,20 @@ const MenuRender = (props) => {
   switch (props.onMenu){
     case 0:
       return(
-        <div className="container" style={{backgroundImage: `url(${background})`}}>
-        <img className="symbol-background z-top" src={symbol} alt="..." />
-        <main>
-          <div id="defaultP5" className="container index-container img-fluid">
-            <img className="tablero-background img-fluid" src={tablero} alt="..." />
-            <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
-            <HomePuzzle
-            />
-          </div>
-        </main>
-        <footer >
-          <div className="container index-container img-fluid" style={{backgroundImage: `url(${footer})`}}>
-          <img className="index-background" src={background} alt="..." />
-            <div className="index-footer">
-               <img className="img-fluid" src={footer} alt="..."/>
+        <React.Fragment>
+          <img className="symbol-background z-top" src={symbol} alt="..." />
+          <main>
+            <div id="defaultP5" className="container">
+              <img className="tablero-background img-fluid" src={tablero} alt="..." />
+              <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
+              <HomePuzzle
+              />
             </div>
+          </main>
+          <div className="container-fluid" >
+            <img className="index-background img-fluid" src={background} alt="..." />
           </div>
-        </footer>
-        </div>
+        </React.Fragment>
       );
     case 1:
       return <SobreNosotros />;
@@ -58,14 +52,14 @@ const Landing = () => {
   }
 
   return (
-    <React.Fragment>
+    <div className="container-fluid">
       <NavBar
         navCallback={toggleMenu}
        />
        <MenuRender
           onMenu={menu}
        />
-    </React.Fragment>
+    </div>
   );
 }
 

@@ -119,6 +119,9 @@ class HomePuzzle extends React.Component {
         hotspots = hotspotsShuffle.splice(0,4);
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
+        if(sketch.deviceOrientation === sketch.PORTRAIT || windowWidth < sketch.windowHeight){
+          stepSize *= 2.8;
+        }
         width = stepSize*wCells;
         height = stepSize*hCells;
         cnv = sketch.createCanvas(width,height);
@@ -207,10 +210,11 @@ class HomePuzzle extends React.Component {
       };
 
       sketch.windowResized = () => {
+        console.log(sketch.deviceOrientation, sketch.LANDSCAPE);
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
-        if(windowWidth < 1000){
-          stepSize *= 1.8;
+        if(sketch.deviceOrientation === sketch.PORTRAIT  || windowWidth < sketch.windowHeight){
+          stepSize *= 2.8;
         }
         width = stepSize*wCells;
         height = stepSize*hCells;

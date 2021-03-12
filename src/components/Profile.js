@@ -22,7 +22,7 @@ const Profile = (props) => {
   const updateFirebase = (entry, value) => {
     let obj = {};
     obj[entry] = value;
-    const ref = db.ref(props.userData.data.uid + '/info/').update(
+    const ref = db.ref("/users/"+props.userData.data.uid.slice(0,10) + '/info/').update(
       obj
     );
   }
@@ -35,7 +35,7 @@ const Profile = (props) => {
   }
 
   useEffect(()=>{
-    db.ref().child("/users/"+props.userData.data.uid).on(
+    db.ref().child("/users/"+props.userData.data.uid.slice(0,10)).on(
       'value',(snapshot) => {
         let snap = snapshot.val();
         let info = snap.info;

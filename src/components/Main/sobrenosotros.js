@@ -1,12 +1,7 @@
 import React from 'react';
-import NavBar from './navbar.js';
 
 import '../../styles/mainlinks.css'
 import '../../styles/landing.css'
-
-import background from '../../assets/images/Background.png'
-import footer from '../../assets/images/Trazado.png'
-import symbol from '../../assets/images/symbol.png'
 
 const SobreNosotros = () => {
 

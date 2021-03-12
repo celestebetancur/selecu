@@ -5,7 +5,7 @@ import { useFirebaseApp, useUser } from 'reactfire'
 import {connect} from 'react-redux'
 import {loadUserData} from '../../actions'
 
-const CreateMentor = (props) => {
+const CreateUser = (props) => {
   const[fullName, setFullName] = useState('');
   const[email, setEmail] = useState('');
   const[password, setPassword] = useState('');
@@ -36,8 +36,8 @@ const CreateMentor = (props) => {
           verification: user.data.uid.slice(0, 4),
           Admin: false,
           Gestores: false,
-          Aprendices: false,
-          Mentores: true,
+          Aprendices: true,
+          Mentores: false,
           UI: user.data.uid
         },
         registry:{
@@ -80,7 +80,7 @@ const CreateMentor = (props) => {
     <div className="card selectCard profileCard" style={{width: "27rem"}}>
       <div className="card-body">
           <h4 className="card-title">ADMIN</h4>
-          <h6 className="card-title">Crear Mentor</h6>
+          <h6 className="card-title">Crear Usuario</h6>
           <br/>
           <form onSubmit={e => e.preventDefault()} ref={inputForm}>
             <hr/>
@@ -89,7 +89,7 @@ const CreateMentor = (props) => {
               <input className="input-card" type="text" required onChange={e => setFullName(e.target.value)}/>
             </div>
             <div className="container">
-              <label className="text-spaced-1">Email</label>
+              <label className="text-spaced-1">Email acudiente</label>
               <input className="input-card" type="email" required onChange={e => setEmail(e.target.value)}/>
             </div>
             <div className="container">
@@ -101,7 +101,7 @@ const CreateMentor = (props) => {
               <input className="input-card" type="text" required onChange={e => setInstitution(e.target.value)}/>
             </div>
             <div className="container">
-              <label className="text-spaced-1">Cargo</label>
+              <label className="text-spaced-1">Año</label>
               <input  className="input-card" type="text" required onChange={e => setYear(e.target.value)}/>
             </div>
             <hr/>
@@ -135,4 +135,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps,{loadUserData})(CreateMentor);
+export default connect(mapStateToProps,{loadUserData})(CreateUser);

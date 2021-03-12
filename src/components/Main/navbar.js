@@ -16,6 +16,7 @@ const NavBar = (props) => {
 
   return (
       <React.Fragment>
+
         <nav className="navbar navbar-expand-sm navbar-dark z-top">
           <div className="container-fluid">
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
