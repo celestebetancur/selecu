@@ -72,7 +72,7 @@ class HomePuzzle extends React.Component {
       let stepSize = width/wCells;
       const maxStepSize = stepSize;
       let activeCube = 1;
-      const sizeConst = 21;
+      const sizeConst = 16;
 
       let positionGrid = [];
       for(let i = 0; i < hCells; i++){
@@ -120,7 +120,7 @@ class HomePuzzle extends React.Component {
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         if(sketch.deviceOrientation === sketch.PORTRAIT || windowWidth < sketch.windowHeight){
-          stepSize *= 2.8;
+          stepSize *= 2;
         }
         width = stepSize*wCells;
         height = stepSize*hCells;
@@ -214,7 +214,7 @@ class HomePuzzle extends React.Component {
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         if(sketch.deviceOrientation === sketch.PORTRAIT  || windowWidth < sketch.windowHeight){
-          stepSize *= 2.8;
+          stepSize *= 2;
         }
         width = stepSize*wCells;
         height = stepSize*hCells;

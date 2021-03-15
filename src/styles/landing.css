@@ -13,10 +13,6 @@
   -ms-user-select: none;
 }
 
-.img-fluid-1{
-  width: 100%;
-}
-
 .index-background {
   position: fixed;
   z-index: -1000;
@@ -25,26 +21,13 @@
   left:0;
 }
 
-.text{
-  font-family: "DINNextLTPro";
-  position: absolute;
-  top: 1rem;
-  right: 46%;
-}
-
 #p5 {
   position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 67%;
+  left: 20%;
+  top:50px;
+  width: 100%;
   animation-name: fadeIn;
   animation-duration: 2s;
-}
-
-#p5 {
-  margin-top: 1rem;
-  bottom: 0px;
 }
 
 @keyframes fadeIn {
@@ -117,14 +100,15 @@
   align-self: center;
 }
 
-
 .tablero-background {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 65%;
+  width:50%;
+  bottom: 40%;
+  top:24%;
+  left: 25%;
+  right: 25%;
 }
+
 .symbol-background {
   position: absolute;
   top: 18%;
@@ -144,18 +128,30 @@
   font-family: "DINNextLTPro";
   font-size: 0.7rem;
   position: absolute;
-  right: 28.5%;
-  top:30%;
+  right:-6%;
   margin-left: 1rem;
+  height: 200px;
 }
 
 @media (orientation: portrait) {
     #slogan{
       display: none;
     }
-    .tablero-background{
-      transform: scale(2,2.3);
-      left:17%;
-      top:33%;
+    .tablero-background {
+      position: absolute;
+      width:92%;
+      bottom: 40%;
+      top:30vh;
+      left: 4%;
+      right: 4%;
+    }
+    #p5 {
+      position: absolute;
+      top: 15vh;
+      left: 50%;
+      transform: translate(-50%,-38%);
+      width: 90%;
+      animation-name: fadeIn;
+      animation-duration: 2s;
     }
 }

@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+#root{
+  margin: 0;
+  padding: 0;
+}
+
 body {
   height: 95vh;
   padding: 0.5rem;

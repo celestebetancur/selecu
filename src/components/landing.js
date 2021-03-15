@@ -20,14 +20,12 @@ const MenuRender = (props) => {
       return(
         <React.Fragment>
           <img className="symbol-background z-top" src={symbol} alt="..." />
-          <main>
-            <div id="defaultP5" className="container">
-              <img className="tablero-background img-fluid" src={tablero} alt="..." />
-              <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
-              <HomePuzzle
-              />
-            </div>
-          </main>
+          <div id="defaultP5" className="container-fluid tablero-background">
+            <img className=" img-fluid" src={tablero} alt="..." />
+            <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
+            <HomePuzzle
+            />
+          </div>
           <div className="container-fluid" >
             <img className="index-background img-fluid" src={background} alt="..." />
           </div>
@@ -52,7 +50,7 @@ const Landing = () => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pos-relative">
       <NavBar
         navCallback={toggleMenu}
        />
