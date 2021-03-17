@@ -19,15 +19,15 @@ const MenuRender = (props) => {
     case 0:
       return(
         <React.Fragment>
-          <img className="symbol-background z-top" src={symbol} alt="..." />
-          <div id="defaultP5" className="container-fluid tablero-background">
+          <img className={`symbol-background z-top  state-${props.elementsActive}`} src={symbol} alt="..." />
+          <div id="defaultP5" className={`container-fluid tablero-background state-${props.elementsActive}`}>
             <img className=" img-fluid" src={tablero} alt="..." />
             <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
             <HomePuzzle
             />
           </div>
           <div className="container-fluid" >
-            <img className="index-background img-fluid" src={background} alt="..." />
+            <img className="index-background img-fluid"  src={background} alt="..." />
           </div>
         </React.Fragment>
       );
@@ -44,18 +44,22 @@ const MenuRender = (props) => {
 
 const Landing = () => {
   const [menu, setMenu] = useState(0);
+  const [elementsActive, setElementsActive] = useState(false);
 
   const toggleMenu = (val) => {
     setMenu(val);
   }
 
+
   return (
     <div className="container-fluid pos-relative">
       <NavBar
         navCallback={toggleMenu}
+        hideElemets={()=> setElementsActive(!elementsActive)}
        />
        <MenuRender
           onMenu={menu}
+          elementsActive={elementsActive}
        />
     </div>
   );

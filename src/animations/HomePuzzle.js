@@ -1,5 +1,6 @@
 import React from 'react';
 import p5 from 'p5';
+import ReactHowler from 'react-howler'
 import {connect} from 'react-redux'
 
 import {loginFirstStage, userRollPass} from '../actions'
@@ -16,16 +17,14 @@ import tierra from '../assets/images/tierra.png'
 import fuego from '../assets/images/fuego.png'
 import aire from '../assets/images/aire.png'
 
-// import brickAudio from '../assets/audio/brick.m4a'
-
-// window.p5 = p5;
-// require( "p5/lib/addons/p5.sound")
+import brickAudio from '../assets/audio/brick.m4a'
 
 let s = undefined;
 
 class HomePuzzle extends React.Component {
 
   state = {
+    play: false,
     passKeys: [
       [3,2,1,0], //Gestores
       [0,1,3,2], //Mentores
@@ -51,7 +50,7 @@ class HomePuzzle extends React.Component {
   componentDidMount(){
     const code = (sketch) => {
 
-      // let brickMove;
+      let brickMove;
 
       let img;
       let baseG;
@@ -93,7 +92,6 @@ class HomePuzzle extends React.Component {
       // let colors = [{red: 255, green:0, blue:0},{red: 0, green:255, blue:0},{red: 0, green:0, blue:255},{red: 255, green:255, blue:0},{red: 255, green:0, blue:0},{red: 0, green:255, blue:0},{red: 0, green:0, blue:255},{red: 255, green:255, blue:0}]
 
       sketch.preload = () => {
-        // brickMove = sketch.loadSound(brickAudio);
 
         img = sketch.loadImage(base);
         baseG = sketch.loadImage(baseGen);
@@ -210,7 +208,6 @@ class HomePuzzle extends React.Component {
       };
 
       sketch.windowResized = () => {
-        console.log(sketch.deviceOrientation, sketch.LANDSCAPE);
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         if(sketch.deviceOrientation === sketch.PORTRAIT  || windowWidth < sketch.windowHeight){
@@ -228,7 +225,7 @@ class HomePuzzle extends React.Component {
             if(wallsGrid[currentPos[activeCube]][1] === 0){
               if(checkPosFree(currentPos[activeCube]+width/stepSize)){
                   currentPos[activeCube] += width/stepSize;
-                  // brickMove.play();
+                  this.setState({play: true});
               }
             }
           }
@@ -238,7 +235,7 @@ class HomePuzzle extends React.Component {
             if((wallsGrid[currentPos[activeCube]-width/stepSize][1] === 0)){
               if(checkPosFree(currentPos[activeCube]-width/stepSize)){
                 currentPos[activeCube] -= width/stepSize;
-                // brickMove.play();
+                this.setState({play: true});
               }
             }
           }
@@ -248,7 +245,7 @@ class HomePuzzle extends React.Component {
             if(wallsGrid[currentPos[activeCube]-1][0] === 0){
               if(checkPosFree(currentPos[activeCube]-1)){
                 currentPos[activeCube] --;
-                // brickMove.play();
+                this.setState({play: true});
               }
             }
           }
@@ -258,7 +255,7 @@ class HomePuzzle extends React.Component {
             if(wallsGrid[currentPos[activeCube]][0] === 0){
               if(checkPosFree(currentPos[activeCube]+1)){
                 currentPos[activeCube] ++;
-                // brickMove.play();
+                this.setState({play: true});
               }
             }
           }
@@ -297,7 +294,7 @@ class HomePuzzle extends React.Component {
                     while(Math.floor(currentPos[activeCube]%wCells)<i){
                       if(currentPos[activeCube]+1){
                         currentPos[activeCube]++;
-                        // brickMove.play();
+                        this.setState({play: true});
                       }
                     }
                   }
@@ -314,7 +311,7 @@ class HomePuzzle extends React.Component {
                   if(sketch.mouseX > stepSize*i && sketch.mouseX < stepSize*(i+1)){
                     while(Math.floor(currentPos[activeCube]%wCells)>i){
                       currentPos[activeCube]--;
-                      // brickMove.play();
+                      this.setState({play: true});
                     }
                   }
                 }
@@ -330,7 +327,7 @@ class HomePuzzle extends React.Component {
                   if(sketch.mouseY > stepSize*i && sketch.mouseY < stepSize*(i+1)){
                     while(Math.floor(currentPos[activeCube]/wCells)<i){
                       currentPos[activeCube]+= width/stepSize;
-                      // brickMove.play();
+                      this.setState({play: true});
                     }
                   }
                 }
@@ -346,7 +343,7 @@ class HomePuzzle extends React.Component {
                   if(sketch.mouseY > stepSize*i && sketch.mouseY < stepSize*(i+1)){
                     while(Math.floor(currentPos[activeCube]/wCells)>i){
                       currentPos[activeCube] -= width/stepSize;
-                      // brickMove.play();
+                      this.setState({play: true});
                     }
                   }
                 }
@@ -437,7 +434,10 @@ class HomePuzzle extends React.Component {
   }
   render(){
     return(
-      <React.Fragment />
+      <ReactHowler
+        src={brickAudio}
+        playing={this.state.play}
+      />
     );
   }
 }

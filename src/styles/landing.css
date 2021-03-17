@@ -23,7 +23,7 @@
 
 #p5 {
   position: absolute;
-  left: 20%;
+  left: 19%;
   top:50px;
   width: 100%;
   animation-name: fadeIn;
@@ -69,11 +69,7 @@
   align-self: center;
 
 }
-.nav-items:hover{
-  text-decoration: none;
-  color: rgb(255,125,0);
-  cursor: pointer;
-}
+
 
 .z-top{
   z-index: 2000;
@@ -111,7 +107,7 @@
 
 .symbol-background {
   position: absolute;
-  top: 18%;
+  top: 16%;
   left: 50%;
   width: 1.5rem;
   transform: translate(-50%,-50%);
@@ -119,6 +115,17 @@
 
 .canvas-false{
   display:none;
+}
+
+.nav-item{
+  margin-right: 80px;
+  font-family: "DINNextLTPro";
+  cursor: pointer;
+}
+.nav-link:hover{
+  text-decoration: none;
+  color: rgb(255,125,0) !important;
+  cursor: pointer;
 }
 
 #slogan {
@@ -137,6 +144,7 @@
     #slogan{
       display: none;
     }
+
     .tablero-background {
       position: absolute;
       width:92%;
@@ -147,11 +155,22 @@
     }
     #p5 {
       position: absolute;
-      top: 15vh;
+      top:77px;
       left: 50%;
       transform: translate(-50%,-38%);
-      width: 90%;
+      width: 88%;
       animation-name: fadeIn;
       animation-duration: 2s;
+    }
+    .index-background {
+      position: fixed;
+      z-index: -1000;
+      height: 100%;
+      width: 100%;
+      transform: scale(2.2,1);
+      left:0;
+    }
+    .state-true{
+      display: none;
     }
 }
