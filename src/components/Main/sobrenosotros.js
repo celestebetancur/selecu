@@ -7,12 +7,10 @@ const SobreNosotros = () => {
 
   return (
     <React.Fragment>
-      <div className="fluid-container">
-      </div>
-        <div className="container">
-          <div className="card margin-top overflow" style={{width: "80%"}}>
-            <div className="card-body">
-              <h5 className="card-title">Sobre Nosotros</h5>
+        <div className="fluid-container">
+          <div class="jumbotron text-center">
+            <h1>Sobre Nosotros</h1>
+          </div>
               <h6 className="card-subtitle mb-2 text-muted">Somos un grupo de idealistas.</h6>
               <p className="card-text">
                 Creemos que nuestra sociedad puede elegir tener un mundo en armonía, y es necesario construirlo desde el presente. Creemos que la educación tiene un gran poder de transformador, y vemos necesario transformarla para que su poder reflorezca. Creemos que los niños y los jóvenes serán quienes construyan un mundo sostenible, nosotros queremos acompañarlos y darles herramientas útiles para ese camino.
@@ -26,8 +24,6 @@ const SobreNosotros = () => {
                 Holss y Comfama nos unimos para crear un espacio para el aprendizaje. Estamos en un proceso de construcción que esperamos nunca termine. En nuestro presente, te invitamos a conocer nuestro curso de comprensión lectora para niños, jóvenes y adultos, y nuestro programa de aprendizaje para nuevas madres y padres.
               </p>
             </div>
-          </div>
-        </div>
       </React.Fragment>
   );
 }

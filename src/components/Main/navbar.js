@@ -14,15 +14,16 @@ const NavBar = (props) => {
     setMenu(val);
     props.navCallback(val);
   }
-  const hideElemets = () => {
+  const hideElemets = (e) => {
     setMenu(!elementsActive);
     props.hideElemets();
+    console.log(e);
   }
 
   return (
       <React.Fragment>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" onClick={()=>hideElemets()}>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" onClick={(e)=>hideElemets(e)}>
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-center bg-dark" id="collapsibleNavbar">
