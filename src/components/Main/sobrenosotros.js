@@ -7,11 +7,11 @@ const SobreNosotros = () => {
 
   return (
     <React.Fragment>
-        <div className="fluid-container">
+        <div className="fluid-container overflow-auto">
           <div class="jumbotron text-center">
             <h1>Sobre Nosotros</h1>
           </div>
-              <h6 className="card-subtitle mb-2 text-muted">Somos un grupo de idealistas.</h6>
+          <h6 className="card-subtitle mb-2 text-muted">Somos un grupo de idealistas.</h6>
               <p className="card-text">
                 Creemos que nuestra sociedad puede elegir tener un mundo en armonía, y es necesario construirlo desde el presente. Creemos que la educación tiene un gran poder de transformador, y vemos necesario transformarla para que su poder reflorezca. Creemos que los niños y los jóvenes serán quienes construyan un mundo sostenible, nosotros queremos acompañarlos y darles herramientas útiles para ese camino.
               </p>
