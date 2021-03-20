@@ -11,6 +11,7 @@ const SignOut = (props) => {
   const firebase = useFirebaseApp();
 
   const signOutFB = async () =>{
+    window.alert("Estás por salir de SELECU");
     await firebase.auth().signOut().then(
       () => {
         setSignOutCompleted(true);

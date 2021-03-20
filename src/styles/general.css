@@ -23,7 +23,17 @@
 
 .input-card {
   position: absolute;
-  right: 1.5rem;
+  right: 0rem;
+  border: none;
+  width: 80%;
+  display: inline;
+  height: 1.8rem;
+  padding-left: 0rem;
+  background-color: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0);
+}
+.input-card:focus {
+  outline: none;
 }
 
 #togglePassword{
@@ -31,4 +41,44 @@
   width: 1.5rem;
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+.input-password{
+  display: block;
+  border: 1px groove #bbb;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  height: 2rem;
+  background-color: rgba(255,255,255,0);
+}
+
+.buttonSubmit{
+  margin-left: 16%;
+}
+
+.backgroundContainer{
+    width: 35.2%;
+    padding-left: 0px;
+    margin-left: 0px;
+    transform-origin: center;
+    transform: translate(100%,50%);
+    z-index: 1000;
+}
+
+.background-opacity-0{
+  background-color: rgba(255,255,255,0);
+}
+.background-opacity-0.5{
+  background-color: rgba(255,255,255,0.5);
+}
+
+body{
+  background-color: fff;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+.rounded {
+  border-radius: 1rem;
 }

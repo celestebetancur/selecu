@@ -5,24 +5,26 @@ import App from './App';
 import { BrowserRouter, Switch, Route  } from "react-router-dom"
 
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import reducers from './reducers'
+import thunk from 'redux-thunk'
 
 import config from './config/configDB'
-import { FirebaseAppProvider,useUser } from 'reactfire'
+import { FirebaseAppProvider } from 'reactfire'
+
+const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <React.StrictMode>
-    <FirebaseAppProvider firebaseConfig={config}>
-      <Provider store={createStore(reducers)}>
+  <FirebaseAppProvider firebaseConfig={config}>
+    <React.StrictMode>
+      <Provider store={store}>
         <BrowserRouter>
           <Switch>
             <Route path ="/" component={App} exact />
           </Switch>
         </BrowserRouter>
       </Provider>
-    </FirebaseAppProvider>
-  </React.StrictMode>,
-
+    </React.StrictMode>
+  </FirebaseAppProvider>,
   document.getElementById('root')
 );

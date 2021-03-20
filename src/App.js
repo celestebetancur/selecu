@@ -11,12 +11,6 @@ import {loadUserData,loginFirstStage} from './actions'
 
 import './styles/app.css'
 
-//------------------------------------------------------------------------------
-
-import Gestores from './components/Gestores'
-
-//------------------------------------------------------------------------------
-
 const App = (props) => {
 
   const [logged, setLogged] = useState(false);

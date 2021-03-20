@@ -33,13 +33,13 @@ const Login = (props) => {
     }
   },[]);
 
-    return (
-      <div>
-        <Auth
-          roll={grades[props.userRoll]}
-         />
-      </div>
-    );
+  return (
+    <React.Fragment>
+      <Auth
+        roll={grades[props.userRoll]}
+       />
+    </React.Fragment>
+  );
 }
 
 const mapStateToProps = (state) => {
