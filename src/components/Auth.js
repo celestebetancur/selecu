@@ -14,7 +14,9 @@ import {loadUserData} from '../actions'
 import icon from '../assets/images/eye.png'
 import background from '../assets/images/background.png'
 
-import LoginAnim from '../animations/loginAnim'
+import Shader from '../animations/Shader'
+import vert from '../animations/shader.vert'
+import frag from '../animations/shader.frag'
 
 import '../styles/general.css'
 
@@ -157,67 +159,37 @@ const Auth = (props) => {
 
   if(props.roll === 'Gestores' && !adminAccess){
     return(
-      <div className="container">
-        <div className="card selectCard" style={{width: "25rem"}}>
-          <div className="card-body">
-            <h6 className="card-title text-spaced-2">
-              <p>Hola Gestor, realiza tu login para poder ingresar a la plataforma</p>
-            </h6>
-            <div style={{display:"block"}}>
-              <label className="text-spaced-3">Email</label>
-              <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
-              <p><strong>{emailNotFound}</strong></p>
-            </div>
-            <div className="input-password">
-              <label className="text-spaced-1">Password</label>
-              <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
-              <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()} alt="show password"/>
-            </div>
-            {!authUser &&
-              <button onClick={loginAdmin} className="buttonSubmit btn btn-warning">Autorizar</button>
-            }
-            {authUser &&
-              <button onClick={loginAdmin} className="buttonSubmit btn btn-success">Entrar</button>
-            }
-            <SignOut
-              text="Regresar"
-             />
-          </div>
-        </div>
-      </div>
+      <React.Fragment>
+        <LoginCard
+          loginUser={loginAdmin}
+          roll={props.roll}
+          authUser={authUser}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          seePassIcon={seePassIcon}
+          emailNotFound={emailNotFound}
+          seePass={seePass}
+          welcomeText={`¡Hola! Accediste a: ${props.roll}`}
+        />
+      </React.Fragment>
     );
   }
 
   if(props.roll === 'Mentores' && !mentorAccess){
     return(
-      <div className="container">
-        <div className="card selectCard" style={{width: "25rem"}}>
-          <div className="card-body">
-            <h6 className="card-title text-spaced-2">
-              <p>Hola Mentor, realiza tu login para poder ingresar a la plataforma</p>
-            </h6>
-            <div style={{display:"block"}}>
-              <label className="text-spaced-3">Email</label>
-              <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
-              <p><strong>{emailNotFound}</strong></p>
-            </div>
-            <div className="input-password">
-              <label className="text-spaced-1">Password</label>
-              <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
-              <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()} alt="show password"/>
-            </div>
-            {!authUser &&
-              <button onClick={loginMentor} className="buttonSubmit btn btn-warning">Autorizar</button>
-            }
-            {authUser &&
-              <button onClick={loginMentor} className="buttonSubmit btn btn-success">Entrar</button>
-            }
-            <SignOut
-              text="regresar"
-            />
-          </div>
-        </div>
-      </div>
+      <React.Fragment>
+        <LoginCard
+          loginUser={loginMentor}
+          roll={props.roll}
+          authUser={authUser}
+          setEmail={setEmail}
+          setPassword={setPassword}
+          seePassIcon={seePassIcon}
+          emailNotFound={emailNotFound}
+          seePass={seePass}
+          welcomeText={`¡Hola! Accediste a: ${props.roll}`}
+        />
+      </React.Fragment>
     );
   }
 
@@ -235,7 +207,6 @@ const Auth = (props) => {
           seePass={seePass}
           welcomeText={`¡Hola! Accediste a: ${props.roll}`}
         />
-        <LoginAnim />
       </React.Fragment>
     );
   }
@@ -245,7 +216,7 @@ const LoginCard = (props) => {
   return(
     <div className="container-fluid backgroundContainer background-opacity-0">
       <div className="container background-opacity-0">
-        <div className="card selectCard" style={{width: "23rem",backgroundColor:'rgba(255,255,255,0.4)',borderRadius:'1rem'}}>
+        <div className="card selectCard" style={{width: "23rem",backgroundColor:'rgba(255,255,255,0.3)',borderRadius:'1rem'}}>
           <div className="card-body background-opacity-0">
             <h4>{props.welcomeText}</h4>
             <div className="container background-opacity-0">
@@ -274,6 +245,10 @@ const LoginCard = (props) => {
           </div>
         </div>
       </div>
+      <Shader
+        vert={vert}
+        frag={frag}
+      />
     </div>
   );
 }

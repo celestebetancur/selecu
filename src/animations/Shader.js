@@ -1,26 +1,22 @@
 import React from 'react';
 import p5 from 'p5';
-import vert from './shader.vert'
-import frag from './shader.frag'
 
 let s = undefined;
 
-class LoginAnim extends React.Component {
+class Shader extends React.Component {
 
   componentDidMount(){
 
-
     const code = (sketch) => {
 
-      let mandel;
+      let shader;
       let w;
       let h;
 
       sketch.preload = () => {
         w = sketch.windowWidth;
         h = sketch.windowHeight;
-        mandel = sketch.loadShader(vert, frag);
-        console.log(mandel);
+        shader = sketch.loadShader(this.props.vert, this.props.frag);
       }
       sketch.setup = () => {
         let cnv = sketch.createCanvas(w,h,sketch.WEBGL);
@@ -29,9 +25,9 @@ class LoginAnim extends React.Component {
         cnv.style('z-index','-1000');
       }
       sketch.draw = () => {
-        mandel.setUniform('u_resolution', [w, h]);
-        mandel.setUniform('iTime',sketch.millis()/1000);
-        sketch.shader(mandel);
+        shader.setUniform('u_resolution', [w, h]);
+        shader.setUniform('iTime',sketch.millis()/1000);
+        sketch.shader(shader);
         sketch.rect(0,0,w, h);
       }
       sketch.onWindowResized = () => {
@@ -52,4 +48,4 @@ class LoginAnim extends React.Component {
   }
 }
 
-export default LoginAnim;
+export default Shader;

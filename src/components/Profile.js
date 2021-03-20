@@ -55,7 +55,7 @@ const Profile = (props) => {
 
 
   return(
-    <div className="card selectCard profileCard" style={{width: "33rem"}}>
+    <div className="card profileCard" style={{width: "33rem"}}>
       <div className="card-body">
         <h5 className="card-title">Mi perfil</h5>
         <hr />
@@ -65,35 +65,35 @@ const Profile = (props) => {
         <form>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Cómo me gusta que me digan</label>
-            <input type="text" className="input-card" value={nickname} required onChange={e => setNickName(e.target.value)}/>
+            <input type="text" className="input" value={nickname} required onChange={e => setNickName(e.target.value)}/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Mi nombre completo</label>
-            <input type="text" className="input-card" value={username} disabled/>
+            <input type="text" className="input" value={username} disabled/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Correo de mi responsable</label>
-            <input type="text" className="input-card" value={parentsEmail} disabled/>
+            <input type="text" className="input" value={parentsEmail} disabled/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Mi grado</label>
-            <input type="text" className="input-card" value={level} disabled/>
+            <input type="text" className="input" value={level} disabled/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Mi colegio</label>
-            <input type="text" className="input-card" value={school} disabled/>
+            <input type="text" className="input" value={school} disabled/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Día favorito</label>
-            <input type="text" className="input-card" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
+            <input type="text" className="input" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">El animal que más me gusta</label>
-            <input type="text" className="input-card" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
+            <input type="text" className="input" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
           </div>
           <div style={{display:"block"}}>
             <label className="text-spaced-1">Color que más me gusta</label>
-            <input type="text" className="input-card"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
+            <input type="text" className="input"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
           </div>
         </form>
         {props.update === true &&
