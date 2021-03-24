@@ -1,30 +1,3 @@
-// #ifdef GL_ES
-// precision mediump float;
-// #endif
-//
-// uniform vec2 u_resolution;
-// uniform float iiTime;
-//
-// vec2 r = u_resolution.xy;
-// float t = iiTime;
-//
-// void main(){
-	// vec3 c;
-	// float l,z=t;
-	// for(int i=0;i<3;i++) {
-	// 	vec2 uv,p=gl_FragCoord.xy/r;
-	// 	uv=p;
-	// 	p-=.5;
-	// 	p.x*=r.x/r.y;
-	// 	z+=.07;
-	// 	l=length(p);
-	// 	uv+=p/l*(sin(z)+1.)*abs(sin(l*9.-z*2.));
-	// 	c[i]=.01/length(abs(mod(uv,1.)-.5));
-	// }
-	// vec3 canvas = vec3(c.x+0.2,c.y,c.z);
-// 	gl_FragColor=vec4(canvas/l,t);
-// }
-
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -68,5 +41,5 @@ vec2 kaleid(vec2 _st, float nSides) {
 		vec3 canvas = vec3(c.x,c.y,c.z);
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
 		vec4 hydra = osc(kaleid(st, 3.), 4., 0.4, 8.);
-    gl_FragColor = vec4(canvas.x*hydra.x,canvas.y*hydra.y,hydra.z*canvas.z,1.);
+    gl_FragColor = vec4(canvas.x*hydra.x,canvas.y*hydra.y,hydra.z*canvas.z,.9);
   }

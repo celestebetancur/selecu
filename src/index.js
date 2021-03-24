@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import MilecuFirst from './animations/MilecuFirst'
 
 import { BrowserRouter, Switch, Route  } from "react-router-dom"
 
@@ -21,6 +22,7 @@ ReactDOM.render(
         <BrowserRouter>
           <Switch>
             <Route path ="/" component={App} exact />
+            <Route path ="/app" component={MilecuFirst} exact />
           </Switch>
         </BrowserRouter>
       </Provider>

@@ -53,7 +53,6 @@ const Profile = (props) => {
     );
   },[]);
 
-
   return(
     <div className="card profileCard" style={{width: "33rem"}}>
       <div className="card-body">

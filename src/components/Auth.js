@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import SignOut from './SignOut'
 import Home from './home'
 import Landing from './landing'
@@ -15,8 +15,8 @@ import icon from '../assets/images/eye.png'
 import background from '../assets/images/background.png'
 
 import Shader from '../animations/Shader'
-import vert from '../animations/shader.vert'
-import frag from '../animations/shader.frag'
+import vert from '../animations/shaders/shader.vert'
+import frag from '../animations/shaders/shader.frag'
 
 import '../styles/general.css'
 
@@ -137,10 +137,6 @@ const Auth = (props) => {
   const seePassIcon = () => {
     setSeePass(!seePass);
   }
-
-  useEffect(() => {
-
-  },[]);
 
   if(userAccess){
     return <Home />;
