@@ -1,10 +1,15 @@
 import React, {useState} from 'react';
+import Container from 'react-bootstrap/Container'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
 
 import '../../styles/landing.css'
 
 import symbol from '../../assets/images/symbol.png'
 import selecu from '../../assets/images/Selecu.png'
-
 
 const NavBar = (props) => {
   const [menu, setMenu] = useState(true);
@@ -21,65 +26,38 @@ const NavBar = (props) => {
   }
 
   return (
-      <React.Fragment>
+      <>
         <header>
-          <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" onClick={(e)=>hideElemets(e)}>
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse justify-content-center bg-dark" id="collapsibleNavbar">
-              <ul className="navbar-nav">
-              <li className="nav-item" style={{marginTop:"0.35rem"}} onClick={e => show(0)}>
-                <img src={selecu} alt="..." />
-              </li>
-                <li className="nav-item" onClick={e => show(1)}>
-                  <a className="nav-link" href="#">SOBRE NOSOTROS</a>
-                </li>
-                <li className="nav-item" onClick={e => show(2)}>
-                  <a className="nav-link" href="#">NUESTRA FILOSOFÍA</a>
-                </li>
-                <li className="nav-item" onClick={e => show(3)}>
-                  <a className="nav-link" href="#">COMUNIDAD</a>
-                </li>
-                <li className="nav-item" onClick={e => show(4)}>
-                  <a className="nav-link" href="#">CONTACTO</a>
-                </li>
-                <li className="nav-item">
-                  <img width="20rem" src={symbol} alt="..." style={{marginTop:"0.5rem"}}/>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>  
-      </React.Fragment>
+          <Navbar bg="dark" expand="lg" variant="dark">
+            <Nav.Item>
+              <Navbar.Brand className="ml-5 mr-5" href="#" onClick={e => show(0)}>
+                <Image src={selecu}/>
+              </Navbar.Brand>
+            </Nav.Item>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav>
+                <Nav.Item>
+                  <Nav.Link onClick={e => show(1)}>SOBRE NOSOTROS</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link onClick={e => show(2)}>NUESTRA FILOSOFÍA</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link onClick={e => show(3)}>COMUNIDAD</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link onClick={e => show(4)}>CONTACTO</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Image width="25rem" src={symbol} style={{marginTop:"0.5rem"}}/>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </header>
+      </>
     );
   }
 
 export default NavBar;
-
-// <nav className="navbar navbar-expand-sm navbar-dark z-top">
-//   <div className="container-fluid">
-//     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-//         <ul className="navi-list navbar-nav me-auto mb-2 mb-lg-2 bg-dark">
-//           <li className="nav-items item-1 nav-item" onClick={e => show(0)}>
-//             <img src={selecu} alt="..." />
-//           </li>
-//           <li className="nav-items item-rest" onClick={e => show(1)}>
-//             SOBRE NOSOTROS
-//           </li>
-//           <li className="nav-items item-rest" onClick={e => show(2)}>
-//             NUESTRA FILOSOFÍA
-//           </li>
-//           <li className="nav-items item-rest" onClick={e => show(3)}>
-//             COMUNIDAD
-//           </li>
-//           <li className="nav-items item-rest" onClick={e => show(4)}>
-//             CONTACTO
-//           </li>
-//           <li className="nav-item item-7">
-//             <img width="20rem" src={symbol} alt="..." />
-//           </li>
-//         </ul>
-//       </div>
-//     </div>
-// </nav>

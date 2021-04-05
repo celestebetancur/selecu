@@ -5,8 +5,9 @@ import Landing from './landing'
 import Gestores from './Gestores'
 import Mentores from './Mentores'
 import 'firebase/auth'
+import database from 'firebase/database'
 import firebaseAuth from "firebase/app";
-import { useFirebaseApp, useUser } from 'reactfire'
+import { useUser } from 'reactfire'
 import {connect} from 'react-redux'
 
 import {loadUserData} from '../actions'
@@ -18,6 +19,14 @@ import Shader from '../animations/Shader'
 import vert from '../animations/shaders/shader.vert'
 import frag from '../animations/shaders/shader.frag'
 
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import '../styles/general.css'
 
 const Auth = (props) => {
@@ -41,9 +50,8 @@ const Auth = (props) => {
   const [seePass, setSeePass] = useState(false);
   const [authUser, setAuthUser] = useState(false);
 
-  const firebase = useFirebaseApp();
   const user = useUser();
-  const db = firebase.database();
+  const database = firebaseAuth.database();
 
   const fbPersistance = () => {
    firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.NONE).then(
@@ -55,7 +63,7 @@ const Auth = (props) => {
 
   const loginUser = async () => {
     fbPersistance();
-    await firebase.auth().signInWithEmailAndPassword(email,password).then(
+    await firebaseAuth.auth().signInWithEmailAndPassword(email,password).then(
       () => {
         setAuthUser(true);
         checkLoginUser();
@@ -68,7 +76,7 @@ const Auth = (props) => {
 
   const loginAdmin = () => {
     fbPersistance();
-    firebase.auth().signInWithEmailAndPassword(email,password).then(
+    firebaseAuth.auth().signInWithEmailAndPassword(email,password).then(
       () => {
         checkLoginAdmin();
         setAuthUser(true);
@@ -81,7 +89,7 @@ const Auth = (props) => {
 
   const loginMentor = () => {
     fbPersistance();
-    firebase.auth().signInWithEmailAndPassword(email,password).then(
+    firebaseAuth.auth().signInWithEmailAndPassword(email,password).then(
       () => {
         checkLoginMentor();
         setAuthUser(true);
@@ -94,7 +102,7 @@ const Auth = (props) => {
   const checkLoginUser = () => {
     if(user.data !== null){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
+      database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
@@ -110,7 +118,7 @@ const Auth = (props) => {
   const checkLoginAdmin = () => {
     if(user.data !== null && props.roll === "Gestores"){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
+      database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
@@ -123,7 +131,7 @@ const Auth = (props) => {
   const checkLoginMentor = () => {
     if(user.data !== null && props.roll === "Mentores"){
       props.loadUserData(user);
-      db.ref().child("/users/"+user.data.uid.slice(0,10)).on(
+      database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
@@ -210,42 +218,58 @@ const Auth = (props) => {
 
 const LoginCard = (props) => {
   return(
-    <div className="container-fluid backgroundContainer background-opacity-0">
-      <div className="container background-opacity-0">
-        <div className="card selectCard" style={{width: "23rem",backgroundColor:'rgba(255,255,255,0.3)',borderRadius:'1rem'}}>
-          <div className="card-body background-opacity-0">
-            <h4>{props.welcomeText}</h4>
-            <div className="container background-opacity-0">
-              <label className="text-spaced-1">Email</label>
-              <div className="input-password background-opacity-0">
-                <input type="email" className="input-card" onChange={(e) => props.setEmail(e.target.value)} />
-                <p><strong>{props.emailNotFound}</strong></p>
-              </div>
-            </div>
-            <div className="container background-opacity-0">
-              <label className="text-spaced-1">Password </label>
-              <div className="input-password background-opacity-0">
-                <input type={props.seePass ? 'text' : 'password'} className="input-card rounded" onChange={(e) => props.setPassword(e.target.value)}/>
-                <img src={icon} id="togglePassword" onClick={(e)=> props.seePassIcon()} alt="show password"/>
-              </div>
-            </div>
-            {!props.authUser &&
-              <button onClick={props.loginUser} className="buttonSubmit btn btn-warning">Autorizar</button>
-            }
-            {props.authUser &&
-              <button onClick={props.loginUser} className="buttonSubmit btn btn-success">Entrar</button>
-            }
-            <SignOut
-              text="Regresar"
-            />
-          </div>
-        </div>
-      </div>
-      <Shader
-        vert={vert}
-        frag={frag}
-      />
-    </div>
+    <Container>
+      <Row>
+        <Col />
+          <Col>
+          <Card style={{width: "23rem",backgroundColor:'rgba(255,255,255,0.3)',borderRadius:'1rem', top:'50%'}}>
+            <Card.Body>
+              <Card.Title>{props.welcomeText}</Card.Title>
+              <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="email-selecu">@</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  type="email"
+                  placeholder="email"
+                  aria-label="email"
+                  aria-describedby="email-selecu"
+                  onChange={e => props.setEmail(e.target.value)}
+                />
+              </InputGroup>
+              <InputGroup className="mb-3" id="password">
+                <InputGroup.Prepend>
+                  <Button variant="outline-secondary">
+                    <Image src={icon} id="togglePassword" onClick={(e)=> props.seePassIcon()} alt="show password"/>
+                  </Button>
+                </InputGroup.Prepend>
+                <FormControl
+                  type={props.seePass ? 'text' : 'password'}
+                  aria-describedby="password"
+                  placeholder="password"
+                  aria-label="password"
+                  onChange={e => props.setPassword(e.target.value)}
+                />
+              </InputGroup>
+              {!props.authUser &&
+                <Button onClick={props.loginUser} variant="warning">Autorizar</Button>
+              }
+              {props.authUser &&
+                <Button onClick={props.loginUser} variant="success">Entrar</Button>
+              }
+              <SignOut
+                text="Regresar"
+              />
+            </Card.Body>
+          </Card>
+        </Col>
+        <Shader
+          vert={vert}
+          frag={frag}
+        />
+        <Col />
+      </Row>
+    </Container>
   );
 }
 

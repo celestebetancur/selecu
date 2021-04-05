@@ -7,6 +7,10 @@ import NuestraFilosofia from'./Main/nuestrafilosofia.js'
 import Contacto from'./Main/contacto.js'
 import Comunidad from'./Main/comunidad.js'
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
 import '../styles/landing.css'
 
 import background from '../assets/images/background.png'
@@ -18,18 +22,27 @@ const MenuRender = (props) => {
   switch (props.onMenu){
     case 0:
       return(
-        <React.Fragment>
-          <img className={`symbol-background z-top  state-${props.elementsActive}`} src={symbol} alt="..." />
-          <div id="defaultP5" className={`container-fluid tablero-background state-${props.elementsActive}`}>
-            <img className=" img-fluid" src={tablero} alt="..." />
-            <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
-            <HomePuzzle
-            />
-          </div>
-          <div className="container-fluid" >
-            <img className="index-background img-fluid"  src={background} alt="..." />
-          </div>
-        </React.Fragment>
+        <>
+          <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
+            <Container>
+              <Row className="justify-content-center mb-4">
+                <Image src={symbol} />
+              </Row>
+              <Row>
+                <Col />
+                <Col lg={7} >
+                  <Image src={tablero} rounded fluid/>
+                  <Container id="defaultP5">
+                    <HomePuzzle/>
+                  </Container>
+                </Col>
+                <Col className="d-flex justify-content-start">
+                  <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
+                </Col>
+              </Row>
+            </Container>
+          </Container>
+        </>
       );
     case 1:
       return <SobreNosotros />;
@@ -50,18 +63,21 @@ const Landing = () => {
     setMenu(val);
   }
 
-
   return (
-    <div className="container-fluid pos-relative">
+    <>
       <NavBar
         navCallback={toggleMenu}
         hideElemets={()=> setElementsActive(!elementsActive)}
        />
-       <MenuRender
-          onMenu={menu}
-          elementsActive={elementsActive}
-       />
-    </div>
+      <Container className="h-100 mh-100" fluid>
+        <Row className="pt-4">
+           <MenuRender
+              onMenu={menu}
+              elementsActive={elementsActive}
+           />
+        </Row>
+      </Container>
+    </>
   );
 }
 

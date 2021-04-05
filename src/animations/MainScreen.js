@@ -1,6 +1,7 @@
 import React from 'react';
 import p5 from 'p5';
 import world from '../assets/images/world.png'
+import mapa from '../assets/images/mapa.png'
 
 import '../styles/home.css'
 
@@ -8,7 +9,12 @@ let s = undefined;
 
 class MainScreen extends React.Component {
 
-  state = {};
+  state = {
+    x: 0,
+    y: 0,
+    genX: 0,
+    genY: 0
+  };
 
   onClick = (value) => {
     this.props.onClick(value);
@@ -25,6 +31,7 @@ class MainScreen extends React.Component {
       let width = 400;
       let height = 400;
       let map;
+      let mapGuide;
       let gridSpace = 10;
       let elapsedTime = 0;
       let minutes = 0;
@@ -41,19 +48,43 @@ class MainScreen extends React.Component {
       let hotspots = [islandHS, japanHS, indiaHS];
       let hsInfo = [islandInfo, japanInfo, indiaInfo];
 
+      let scale = 0.2;
+      let sliderScale;
+      let genXpos;
+      let genYpos;
+
       sketch.preload = () => {
          map = sketch.loadImage(world);
+         mapGuide = sketch.loadImage(mapa);
       }
 
       sketch.setup = () => {
-        width = map.width;
-        height = map.height;
-        cnv = sketch.createCanvas(width, height);
+        sketch.rectMode(sketch.CENTER);
+        sketch.imageMode(sketch.CENTER);
+
+        sliderScale = sketch.createSlider(1,100,1);
+        sliderScale.style('z-index','1000');
+        sliderScale.style('position','fixed');
+
+        width = sketch.windowWidth;
+        height = sketch.windowHeight;
+        genXpos = 0;
+        genYpos = 0;
+        cnv = sketch.createCanvas(sketch.windowWidth - 20, sketch.windowHeight - 20);
         cnv.parent('canvasP5');
+        cnv.style('z-index','-1000');
       };
 
       sketch.draw = () => {
-        sketch.image(map,0,0, width, height);
+        sketch.background(255);
+        scale = sketch.map(sliderScale.value(),0,255,1,6.0);
+        sketch.push();
+        sketch.translate(-genXpos * (map.width * 1.2)*scale, -genYpos * (map.height*1.2)*scale);
+        sketch.image(map,width/2,height/2,(map.width * 1.2)*scale,(map.height*1.2)*scale);
+        sketch.pop();
+        sketch.image(mapGuide,20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
+        sketch.fill(0,0,255,60);
+        sketch.rect(20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
         // let HS = sketch.grid();
         sketch.timeGet();
       };
@@ -78,14 +109,21 @@ class MainScreen extends React.Component {
       }
 
       sketch.mousePressed = () => {
-        // check mouse against grid to return info
         let x = sketch.mouseX;
         let y = sketch.mouseY;
+        //mini map
+        if(x > 20 && x < (20 + map.width * 0.05)
+           && y > 20 && y < (20 + map.height * 0.05)){
+          genXpos = sketch.map(sketch.mouseX,20,(20+map.width * 0.05),-0.2,0.2);
+          genYpos = sketch.map(sketch.mouseY,20,(20+map.height * 0.05),-0.2,0.2);
+          this.setState({x: genXpos, y: genYpos});
+        }
+        // check mouse against grid to return info
         for(let i = 0; i < width/gridSpace; i++){
           for(let j = 0; j < height/gridSpace; j++){
             if(x > i * gridSpace && x < i * gridSpace + gridSpace){
               if(y > j * gridSpace && y < j * gridSpace + gridSpace){
-                console.log(i,j); //debug and info config
+                // console.log(i,j); //debug and info config
                 for(let k = 0; k < hotspots.length; k++){
                   for(let h = 0; h < hotspots[k].length; h++){
                     if(sketch.equals(hotspots[k][h],[i,j])){
@@ -108,7 +146,10 @@ class MainScreen extends React.Component {
     s.remove();
   }
   render(){
-    return <div id="canvasP5"></div>;
+    return (
+      <div id="canvasP5">
+      </div>
+    );
   }
 }
 

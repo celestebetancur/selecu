@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Button from 'react-bootstrap/Button'
 import 'firebase/auth'
 import { useFirebaseApp} from 'reactfire'
 import {connect} from 'react-redux'
@@ -30,11 +31,11 @@ const SignOut = (props) => {
   },[signOutCompleted]);
 
     return (
-      <button
+      <Button
+        variant="primary"
         onClick={signOutFB}
-        className="buttonSubmit btn btn-primary"
         >{props.text}
-      </button>
+      </Button>
     );
 }
 

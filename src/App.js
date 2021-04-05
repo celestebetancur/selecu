@@ -1,9 +1,8 @@
 import React, {useEffect , useState}  from 'react';
 import Landing from './components/landing'
 import Login from './components/login'
-import Home from './components/home'
-import firebase from 'firebase'
-import { useFirebaseApp, useUser } from 'reactfire'
+import firebase from 'firebase/app'
+import { useUser } from 'reactfire'
 import 'firebase/auth'
 
 import {connect} from 'react-redux'

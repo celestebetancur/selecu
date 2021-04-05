@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react'
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Nav from 'react-bootstrap/Nav'
 
 const List = (props) => {
   const [typeOfUser, setTypeOfUser] = useState('');
@@ -11,21 +14,21 @@ const List = (props) => {
   const names = keys.map((name)=>{
     if(fullInfo[users[name]['UI']]['access'][typeOfUser]){
       return(
-        <div className="container">
-          <div className="card" style={{width: "18rem"}}>
-            <div className="card-body bg-muted">
+        <Container>
+          <Card style={{width: "18rem"}}>
+            <Card.Body>
               <a href="#" onClick={() => setUserToDisplay(name)}><h6 className="card-text">{name}</h6></a>
-            </div>
-          </div>
-        </div>
+            </Card.Body>
+          </Card>
+        </Container>
       );
     }
   });
 
   return(
-    <React.Fragment>
-      <div className="card" style={{width: "26rem"}}>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <>
+      <Card style={{width: "26rem"}}>
+        <Nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav sm">
             <li className={`list-group-item ${typeOfUser === 'Gestores' ? 'active': ' '}`}>
               <a className="nav-link" href="#" onClick={()=>setTypeOfUser('Gestores')}>Gestores</a>
@@ -37,12 +40,12 @@ const List = (props) => {
               <a className="nav-link" href="#" onClick={()=>setTypeOfUser('Aprendices')}>Aprendices</a>
             </li>
           </ul>
-        </nav>
+        </Nav>
         {names}
-      </div>
+      </Card>
         {userToDisplay &&
-        <div className="card" style={{width: "26rem"}}>
-          <div className="card-body">
+        <Card style={{width: "26rem"}}>
+          <Card.Body>
             <Reg
               set={userToDisplay}
               name={`${userToDisplay}`}
@@ -51,29 +54,30 @@ const List = (props) => {
               position={`Cargo: ${fullInfo[users[userToDisplay]['UI']]['registry']['year']}`}
               validation={`IUM: ${fullInfo[users[userToDisplay]['UI']]['access']['verification']}`}
             />
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
         }
-      </React.Fragment>
+      </>
   );
 }
 
 const Reg = (props)=>{
   if(props.set !== undefined){
     return(
-      <div className="container">
-        <div className="card" style={{width: "22rem"}}>
-        <h5 className="card-title">Información de registro</h5>
-        <h6 className="card-title">{props.name}</h6>
-        <hr/>
-          <div className="card-body">
-            <p>{props.email}</p>
-            <p>{props.institution}</p>
-            <p>{props.position}</p>
-            <p>{props.validation}</p>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Card style={{width: "22rem"}}>
+          <Card.Title>Información de registro</Card.Title>
+          <hr/>
+            <Card.Body>
+              <h5>{props.name}</h5>
+              <br />
+              <p>{props.email}</p>
+              <p>{props.institution}</p>
+              <p>{props.position}</p>
+              <p>{props.validation}</p>
+            </Card.Body>
+        </Card>
+      </Container>
     );
   }
 };

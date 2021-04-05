@@ -1,18 +1,16 @@
 import React from 'react';
-
-import '../../styles/mainlinks.css'
-import '../../styles/landing.css'
+import Container from 'react-bootstrap/Container'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 const Comunidad = () => {
-
   return (
-    <React.Fragment>
-      <div className="fluid-container">
-        <div class="jumbotron text-center">
+    <>
+      <Container fluid>
+        <Jumbotron>
           <h1>Comunidad Selecu</h1>
-        </div>
-      </div>
-    </React.Fragment>
+        </Jumbotron>
+      </Container>
+    </>
   );
 }
 

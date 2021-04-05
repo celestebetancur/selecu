@@ -41,7 +41,7 @@ class HomePuzzle extends React.Component {
   componentDidMount(){
     const code = (sketch) => {
 
-      let brickMove;
+      p5.disableFriendlyErrors = true; // disables FES
 
       let img;
       let baseG;
@@ -116,7 +116,6 @@ class HomePuzzle extends React.Component {
         cnv = sketch.createCanvas(width,height);
         cnv.id('p5');
         cnv.parent("defaultP5");
-        // cnv.position(windowWidth * 0.53-width, sketch.windowHeight * 0.46-height);
       };
 
       sketch.draw = () => {
@@ -395,7 +394,6 @@ class HomePuzzle extends React.Component {
         }
         if(c === 4){
           this.props.userRollPass(id);
-          // brickMove.stop();
           cnv.style('opacity',0);
           cnv.style('transition','0.5s');
           setTimeout(()=> end = !end,500);

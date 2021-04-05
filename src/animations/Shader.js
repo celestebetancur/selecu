@@ -33,6 +33,7 @@ class Shader extends React.Component {
       sketch.onWindowResized = () => {
         w = sketch.windowWidth;
         h = sketch.windowHeight;
+        shader.setUniform('u_resolution', [w, h]);
       }
     };
     s = new p5(code,'defaultP5');
@@ -42,8 +43,7 @@ class Shader extends React.Component {
   }
   render(){
     return(
-      <div
-      />
+      <></>
     );
   }
 }

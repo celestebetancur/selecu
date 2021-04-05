@@ -29,31 +29,31 @@ const Home = (props) => {
   }
   if(props.userData.data !== null){
     return(
-      <div className="container">
-        <Instructions
-          text={`Instrucciones:
-
-            Puedes dar click en el mapa
-            para obtener pistas.
-            `}
-        />
-        <div className="container img-fluid">
+      <React.Fragment>
           <MainScreen
             onClick={setClickedPlace}
             onTime={setElapsetTime}
           />
-        </div>
-        <MainPanel
-          clickedPlace={clickedPlace[0]}
-          clickedPos={clickedPlace[1]}
-          delta={elapsedTime}
-          onAvatar={setProfileToggle}
-        />
-      </div>
+      </React.Fragment>
     );
   }
   return <App />;
 }
+
+// <Instructions
+//   text={`Instrucciones:
+//
+//     Puedes dar click en el mapa
+//     para obtener pistas.
+//     `}
+// />
+
+// <MainPanel
+//   clickedPlace={clickedPlace[0]}
+//   clickedPos={clickedPlace[1]}
+//   delta={elapsedTime}
+//   onAvatar={setProfileToggle}
+// />
 
 const MainPanel = (props) => {
   const [mainPanelState, setMainPanelState] = useState(false);
