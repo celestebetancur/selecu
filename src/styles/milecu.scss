@@ -1,0 +1,134 @@
+#canvasPixelArt {
+  border-radius: 50px;
+  background: #e0e0e0;
+  // box-shadow:  20px 20px 60px #929292,-20px -20px 60px #ffffff;
+  width: 400px;
+  height: 600px;
+  position: absolute;
+  border: 10px solid rgb(255,180,0);
+  border-radius: 0.1rem;
+  z-index: 1000;
+}
+
+#divPixelArt{
+  content: '';
+  position: relative;
+  width: 416px;
+  height: 616px;
+  background: rgb(255,180,0);
+  border: 10px ridge rgb(255,180,0);
+  border-radius: 0.8rem;
+  z-index: 1000;
+}
+
+.p5Canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#maskSelector{
+  display: block;
+  position: absolute;
+  width: 10%;
+}
+
+.menuMask-image{
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  margin: 1rem;
+}
+
+#maskSelector{
+  border-radius: 50px;
+  background: #fff;
+  box-shadow:  20px 20px 60px #929292,-20px -20px 60px #ffffff;
+}
+
+#canvasColorPicker{
+  position: absolute;
+  display: block;
+  width: 150px;
+  top: 0px;
+  left: 0px;
+  clip-path: circle(40% at 50% 50%);
+}
+
+#divColorPicker{
+  position: relative;
+  width: 600px;
+  height: 170px;
+  background: red;
+  border: 10px solid rgb(255,180,0);
+  border-radius: 0.1rem;
+  background: rgb(250, 247, 175);
+}
+
+.divColorPicker-border{
+  width: 620px;
+  height: 188px;
+  background: red;
+  border: 10px ridge rgb(255,180,0);
+  border-radius: 0.8rem;
+}
+
+.colorPicker-slider{
+  -webkit-appearance: none;
+  position: relative;
+  display: block;
+  right:1rem;
+  margin-top: 0.8rem;
+  z-index: 1000;
+  width: 100%;
+  border: 6px ridge rgb(255,180,0);
+  border-radius: 0.8rem;
+  height: 21px;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.op {
+  background-color: black;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid rgb(255,160,0);
+  height: 16px;
+  width: 16px;
+  border-radius: 51% 49% 50% 50% / 16% 17% 83% 84% ;
+  background: rgb(255,200,0);
+  cursor: pointer;
+}
+#slidersColorPicker {
+  position: absolute;
+  right: 0px;
+  width: 70%;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.mainPixelArtContainer{
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; }
+.div2 { grid-area: 1 / 2 / 2 / 3; }
+.div3 { grid-area: 1 / 3 / 2 / 4; }

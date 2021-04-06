@@ -77,7 +77,7 @@ class MainScreen extends React.Component {
 
       sketch.draw = () => {
         sketch.background(255);
-        scale = sketch.map(sliderScale.value(),0,255,1,6.0);
+        scale = sketch.map(sliderScale.value(),0,255,0.45,6.0);
         sketch.push();
         sketch.translate(-genXpos * (map.width * 1.2)*scale, -genYpos * (map.height*1.2)*scale);
         sketch.image(map,width/2,height/2,(map.width * 1.2)*scale,(map.height*1.2)*scale);

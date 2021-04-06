@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import MilecuFirst from './animations/MilecuFirst'
+import MilecuFirst from './animations/Milecu/MilecuFirst'
 
 import { BrowserRouter, Switch, Route  } from "react-router-dom"
 
