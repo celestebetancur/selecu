@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import MilecuFirst from './animations/Milecu/MilecuFirst'
+import Home from './components/home'
 
-import { BrowserRouter, Switch, Route  } from "react-router-dom"
+import { HashRouter, Switch, Route  } from "react-router-dom"
 
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
@@ -19,12 +20,13 @@ ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={config}>
     <React.StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route path ="/" component={App} exact />
             <Route path ="/app" component={MilecuFirst} exact />
+            <Route path ="/home" component={Home} exact />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </React.StrictMode>
   </FirebaseAppProvider>,

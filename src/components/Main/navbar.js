@@ -6,10 +6,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 
-import '../../styles/landing.css'
+import '../../styles/landing.scss'
 
-import symbol from '../../assets/images/symbol.png'
-import selecu from '../../assets/images/Selecu.png'
+import symbol from '../../assets/images/landing/symbol.png'
+import selecu from '../../assets/images/landing/Selecu.png'
 
 const NavBar = (props) => {
   const [menu, setMenu] = useState(true);
@@ -29,7 +29,7 @@ const NavBar = (props) => {
       <>
         <header>
           <Navbar bg="dark" expand="lg" variant="dark">
-            <Nav.Item>
+            <Nav.Item className="ml-5">
               <Navbar.Brand className="ml-5 mr-5" href="#" onClick={e => show(0)}>
                 <Image src={selecu}/>
               </Navbar.Brand>
@@ -49,7 +49,7 @@ const NavBar = (props) => {
                 <Nav.Item>
                   <Nav.Link onClick={e => show(4)}>CONTACTO</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item className="ml-5">
                   <Image width="25rem" src={symbol} style={{marginTop:"0.5rem"}}/>
                 </Nav.Item>
               </Nav>

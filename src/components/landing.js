@@ -11,11 +11,11 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-import '../styles/landing.css'
+import '../styles/landing.scss'
 
-import background from '../assets/images/background.png'
-import tablero from '../assets/images/tableroBack.png'
-import symbol from '../assets/images/symbol.png'
+import background from '../assets/images/landing/background.png'
+import tablero from '../assets/images/landing/tableroBack.png'
+import symbol from '../assets/images/landing/symbol.png'
 
 const MenuRender = (props) => {
 
@@ -25,20 +25,12 @@ const MenuRender = (props) => {
         <>
           <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
             <Container>
-              <Row className="justify-content-center mb-4">
-                <Image src={symbol} />
+              <Row className="justify-content-center mt-2" lg={7}>
+                <Image src={symbol} style={{width:'30px'}}/>
               </Row>
-              <Row>
-                <Col />
-                <Col lg={7} >
-                  <Image src={tablero} rounded fluid/>
-                  <Container id="defaultP5">
-                    <HomePuzzle/>
-                  </Container>
-                </Col>
-                <Col className="d-flex justify-content-start">
-                  <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
-                </Col>
+              <Row className="justify-content-center" id="divP5Puzzle" lg={7}>
+                <Image id="image-tablero" src={tablero} />
+                <HomePuzzle/>
               </Row>
             </Container>
           </Container>
@@ -82,3 +74,4 @@ const Landing = () => {
 }
 
 export default Landing;
+// <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>

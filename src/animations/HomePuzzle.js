@@ -7,17 +7,17 @@ import {loginFirstStage, userRollPass} from '../actions'
 
 import { shuffle } from '../helpers'
 
-import base from '../assets/images/Base.png'
-import baseGen from '../assets/images/baseGen.png'
-import fichaCentral from '../assets/images/Ficha central.png'
-import amarilla from '../assets/images/amarilla.png'
-import verde from '../assets/images/verde.png'
-import azul from '../assets/images/azul.png'
-import fucsia from '../assets/images/fucsia.png'
-import agua from '../assets/images/agua.png'
-import tierra from '../assets/images/tierra.png'
-import fuego from '../assets/images/fuego.png'
-import aire from '../assets/images/aire.png'
+import base from '../assets/images/landing/Base.png'
+import baseGen from '../assets/images/landing/baseGen.png'
+import fichaCentral from '../assets/images/landing/Ficha central.png'
+import amarilla from '../assets/images/landing/amarilla.png'
+import verde from '../assets/images/landing/verde.png'
+import azul from '../assets/images/landing/azul.png'
+import fucsia from '../assets/images/landing/fucsia.png'
+import agua from '../assets/images/landing/agua.png'
+import tierra from '../assets/images/landing/tierra.png'
+import fuego from '../assets/images/landing/fuego.png'
+import aire from '../assets/images/landing/aire.png'
 
 import brickAudio from '../assets/audio/brick.m4a'
 
@@ -114,8 +114,8 @@ class HomePuzzle extends React.Component {
         width = stepSize*wCells;
         height = stepSize*hCells;
         cnv = sketch.createCanvas(width,height);
-        cnv.id('p5');
-        cnv.parent("defaultP5");
+        cnv.id('canvasP5Puzzle');
+        cnv.parent("divP5Puzzle");
       };
 
       sketch.draw = () => {

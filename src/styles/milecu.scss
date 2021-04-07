@@ -3,10 +3,10 @@
   background: #e0e0e0;
   // box-shadow:  20px 20px 60px #929292,-20px -20px 60px #ffffff;
   width: 400px;
-  height: 600px;
+  height: 400px;
   position: absolute;
   border: 10px solid rgb(255,180,0);
-  border-radius: 0.1rem;
+  border-radius: 0.5rem;
   z-index: 1000;
 }
 
@@ -14,7 +14,7 @@
   content: '';
   position: relative;
   width: 416px;
-  height: 616px;
+  height: 416px;
   background: rgb(255,180,0);
   border: 10px ridge rgb(255,180,0);
   border-radius: 0.8rem;
@@ -34,16 +34,40 @@
 }
 
 .menuMask-image{
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 60px;
   background-color: black;
-  margin: 1rem;
+  margin: 0.25rem;
 }
 
 #maskSelector{
+  position: fixed;
+  width: 80px;
+  right: 15rem;
+  top: 15rem;
   border-radius: 50px;
   background: #fff;
   box-shadow:  20px 20px 60px #929292,-20px -20px 60px #ffffff;
+}
+
+.instructP5{
+  background: rgb(255,180,0);
+  border: 10px ridge rgb(255,180,0);
+  border-radius: 0.8rem;
+  height: 420px;
+  width: 250px;
+}
+
+.textarea-instructP5{
+  color:black;
+  background-color: rgb(255,180,0);
+  border: none;
+  resize:none;
+}
+
+.textarea-instructP5:focus{
+  outline: none;
+  font-size: 1rem;
 }
 
 #canvasColorPicker{
@@ -57,7 +81,7 @@
 
 #divColorPicker{
   position: relative;
-  width: 600px;
+  width: 400px;
   height: 170px;
   background: red;
   border: 10px solid rgb(255,180,0);
@@ -66,7 +90,7 @@
 }
 
 .divColorPicker-border{
-  width: 620px;
+  width: 420px;
   height: 188px;
   background: red;
   border: 10px ridge rgb(255,180,0);
@@ -110,10 +134,31 @@ input[type=range]::-moz-range-thumb {
   background: rgb(255,200,0);
   cursor: pointer;
 }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid rgb(255,160,0);
+  height: 16px;
+  width: 16px;
+  border-radius: 51% 49% 50% 50% / 16% 17% 83% 84% ;
+  background: rgb(255,200,0);
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
 #slidersColorPicker {
   position: absolute;
   right: 0px;
-  width: 70%;
+  width: 60%;
+}
+
+#preview-avatar{
+  width: 200px;
+  border: 10px ridge rgb(255,180,0);
+  border-radius: 0.8rem;
+}
+.preview-avatar{
+  position: relative;
+  top: 50%;
 }
 
 .parent {

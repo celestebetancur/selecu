@@ -1,9 +1,13 @@
 import React from 'react';
 import p5 from 'p5';
-import world from '../assets/images/world.png'
-import mapa from '../assets/images/mapa.png'
+// import world from '../assets/images/world.png'
+import mapa from '../assets/images/mapa/mapaAlta.jpg'
+import marco from '../assets/images/mapa/marco.png'
+import fondo from '../assets/images/mapa/fondo.jpg'
 
 import '../styles/home.css'
+
+import Container from 'react-bootstrap/Container'
 
 let s = undefined;
 
@@ -27,11 +31,14 @@ class MainScreen extends React.Component {
 
     const code = (sketch) => {
 
+      let xPos = 0;
+
       let cnv;
       let width = 400;
       let height = 400;
       let map;
-      let mapGuide;
+      let mask;
+      let background;
       let gridSpace = 10;
       let elapsedTime = 0;
       let minutes = 0;
@@ -48,48 +55,69 @@ class MainScreen extends React.Component {
       let hotspots = [islandHS, japanHS, indiaHS];
       let hsInfo = [islandInfo, japanInfo, indiaInfo];
 
-      let scale = 0.2;
-      let sliderScale;
+      // let scale = 0.2;
+      // let sliderScale;
       let genXpos;
       let genYpos;
 
       sketch.preload = () => {
-         map = sketch.loadImage(world);
-         mapGuide = sketch.loadImage(mapa);
+         mask = sketch.loadImage(marco);
+         map = sketch.loadImage(mapa);
+         background = sketch.loadImage(fondo);
       }
 
       sketch.setup = () => {
-        sketch.rectMode(sketch.CENTER);
+        // sketch.rectMode(sketch.CENTER);
         sketch.imageMode(sketch.CENTER);
 
-        sliderScale = sketch.createSlider(1,100,1);
-        sliderScale.style('z-index','1000');
-        sliderScale.style('position','fixed');
+        // sliderScale = sketch.createSlider(1,100,1);
+        // sliderScale.style('z-index','1000');
+        // sliderScale.style('position','fixed');
 
         width = sketch.windowWidth;
         height = sketch.windowHeight;
         genXpos = 0;
         genYpos = 0;
-        cnv = sketch.createCanvas(sketch.windowWidth - 20, sketch.windowHeight - 20);
-        cnv.parent('canvasP5');
+        cnv = sketch.createCanvas(sketch.windowWidth - 20, sketch.windowHeight);
+        cnv.parent('canvasP5home');
+        cnv.id('canvasHomeMap');
         cnv.style('z-index','-1000');
+        cnv.resize(width,height);
       };
 
       sketch.draw = () => {
-        sketch.background(255);
-        scale = sketch.map(sliderScale.value(),0,255,0.45,6.0);
-        sketch.push();
-        sketch.translate(-genXpos * (map.width * 1.2)*scale, -genYpos * (map.height*1.2)*scale);
-        sketch.image(map,width/2,height/2,(map.width * 1.2)*scale,(map.height*1.2)*scale);
-        sketch.pop();
-        sketch.image(mapGuide,20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
-        sketch.fill(0,0,255,60);
-        sketch.rect(20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
+        sketch.background(0);
+        // scale = sketch.map(sliderScale.value(),0,255,0.38,6.0);
+        // sketch.push();
+        // sketch.translate(-genXpos * (map.width * 1.2)*scale, -genYpos * (map.height*1.2)*scale);
+        // sketch.image(mapGuide,width/2 - xPos,height/2,(map.width * 0.34),(map.height*0.34));
+        // sketch.image(mapGuide,(map.width*0.51) - xPos,height/2,(map.width * 0.34),(map.height*0.34));
+        // sketch.image(map,width/2,height/2,(map.width * 1.2),(map.height*1.2));
+        // sketch.pop();
+        // sketch.image(mapGuide,20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
+        // sketch.fill(0,0,255,60);
+        // sketch.rect(20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
         // let HS = sketch.grid();
         sketch.timeGet();
+        // xPos += 0.025;
+        // if(xPos > (map.width*0.34)){
+        //   xPos = 0;
+        // }
+        // sketch.image(map,0,0,map.width * (width/map.width),map.height * (width)/map.width);
+        // sketch.image(mask,0,0,width,height);
+
+        sketch.image(background,width/2,height/2,width,height);
+        sketch.image(map,width/2,height/2,map.width * (height/map.height),height);
+        sketch.image(mask,width/2,height/2,map.width * (height/map.height),height);
       };
 
       sketch.equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+      sketch.windowResized = () => {
+        width = sketch.windowWidth;
+        height = sketch.windowHeight;
+        cnv.resize(width,height);
+      }
 
       sketch.grid = () => {
           for(let i = 0; i < width/gridSpace; i++){
@@ -147,8 +175,8 @@ class MainScreen extends React.Component {
   }
   render(){
     return (
-      <div id="canvasP5">
-      </div>
+      <Container id="canvasP5home" fluid>
+      </Container>
     );
   }
 }

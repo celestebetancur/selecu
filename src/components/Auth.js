@@ -5,7 +5,6 @@ import Landing from './landing'
 import Gestores from './Gestores'
 import Mentores from './Mentores'
 import 'firebase/auth'
-import database from 'firebase/database'
 import firebaseAuth from "firebase/app";
 import { useUser } from 'reactfire'
 import {connect} from 'react-redux'
@@ -13,7 +12,7 @@ import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
 import icon from '../assets/images/eye.png'
-import background from '../assets/images/background.png'
+import background from '../assets/images/landing/background.png'
 
 import Shader from '../animations/Shader'
 import vert from '../animations/shaders/shader.vert'

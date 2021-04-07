@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useFirebaseApp } from 'reactfire'
 import SignOut from './SignOut'
+import ProfileMenu from './ProfileMenu'
+
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
@@ -15,6 +20,9 @@ const Profile = (props) => {
   const [parentsEmail, setParentsEmail] = useState('');
   const [school, setSchool] = useState('');
   const [level, setLevel] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+  const [profileImageURL, setProfileImageURL] = useState('');
+  const [pixelArtState, setPixelArtState] = useState(false);
 
   const firebase = useFirebaseApp();
   const db = firebase.database();
@@ -45,6 +53,8 @@ const Profile = (props) => {
         setFavoriteColor(info.color);
         setFavoriteDay(info.dayPreference);
         setFavoriteAnimal(info.animal);
+        setProfileImage(info.profileImage);
+        setProfileImageURL(info.profileImageURL);
         setUserName(registry.name);
         setParentsEmail(registry.emailParents);
         setSchool(registry.institution);
@@ -54,60 +64,68 @@ const Profile = (props) => {
   },[]);
 
   return(
-    <div className="card profileCard" style={{width: "33rem"}}>
-      <div className="card-body">
-        <h5 className="card-title">Mi perfil</h5>
-        <hr />
-        <div className="text-spaced-6">
-          <p className="card-text">Actualiza tus datos</p>
-        </div>
-        <form>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Cómo me gusta que me digan</label>
-            <input type="text" className="input" value={nickname} required onChange={e => setNickName(e.target.value)}/>
+    <Container fluid>
+      <Card style={{width: "33rem",}}>
+      {profileImage &&
+        <Card.Img className="image-profile" src={profileImageURL} />
+      }
+      {!profileImage &&
+        <Button>Pixélate</Button>
+      }
+        <Card.Body>
+          <Card.Title>Mi perfil</Card.Title>
+          <hr />
+          <div className="text-spaced-4">
+            <p className="card-text">Actualiza tus datos</p>
           </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Mi nombre completo</label>
-            <input type="text" className="input" value={username} disabled/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Correo de mi responsable</label>
-            <input type="text" className="input" value={parentsEmail} disabled/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Mi grado</label>
-            <input type="text" className="input" value={level} disabled/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Mi colegio</label>
-            <input type="text" className="input" value={school} disabled/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Día favorito</label>
-            <input type="text" className="input" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">El animal que más me gusta</label>
-            <input type="text" className="input" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Color que más me gusta</label>
-            <input type="text" className="input"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
-          </div>
-        </form>
-        {props.update === true &&
-          <button  className="buttonSubmit btn btn-primary" onClick={writeInfo}>¡Actualizate!</button>
-        }
-        {props.returnToMap == true &&
-          <button  className="buttonSubmit btn btn-secondary" onClick={()=>props.onReturnToMap(false)}>Regresar al mapa</button>
-        }
-        {props.signOut ===true &&
-          <SignOut
-            text="Salir"
-           />
-        }
-      </div>
-    </div>
+          <form>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Cómo me gusta que me digan</label>
+              <input type="text" className="input" value={nickname} required onChange={e => setNickName(e.target.value)}/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Mi nombre completo</label>
+              <input type="text" className="input" value={username} disabled/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Correo de mi responsable</label>
+              <input type="text" className="input" value={parentsEmail} disabled/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Mi grado</label>
+              <input type="text" className="input" value={level} disabled/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Mi colegio</label>
+              <input type="text" className="input" value={school} disabled/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Día favorito</label>
+              <input type="text" className="input" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">El animal que más me gusta</label>
+              <input type="text" className="input" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Color que más me gusta</label>
+              <input type="text" className="input"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
+            </div>
+          </form>
+          {props.update === true &&
+            <Button className="mr-2" variant="info" onClick={writeInfo}>¡Actualizate!</Button>
+          }
+          {props.returnToMap == true &&
+            <Button className="mr-2" variant="info" onClick={()=>props.onReturnToMap(false)}>Regresar al mapa</Button>
+          }
+          {props.signOut ===true &&
+            <SignOut
+              text="Salir"
+             />
+          }
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
 

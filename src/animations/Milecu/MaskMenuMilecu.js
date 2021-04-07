@@ -19,7 +19,7 @@ const MaskMenuMilecu = (props) => {
 
   return (
     <Container id="maskSelector">
-      <Nav defaultActiveKey="/home" className="flex-column">
+      <Nav className="flex-column">
         {img}
       </Nav>
     </Container>
