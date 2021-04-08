@@ -18,6 +18,7 @@ import agua from '../assets/images/landing/agua.png'
 import tierra from '../assets/images/landing/tierra.png'
 import fuego from '../assets/images/landing/fuego.png'
 import aire from '../assets/images/landing/aire.png'
+import tablero from '../assets/images/landing/tableroBack.png'
 
 import brickAudio from '../assets/audio/brick.m4a'
 
@@ -48,6 +49,7 @@ class HomePuzzle extends React.Component {
       let centro;
       let pngFichas = [];
       let pngHotspots = [];
+      let back;
       let end = false;
 
       let width = 500;
@@ -84,6 +86,7 @@ class HomePuzzle extends React.Component {
 
       sketch.preload = () => {
 
+        back = sketch.loadImage(tablero);
         img = sketch.loadImage(base);
         baseG = sketch.loadImage(baseGen);
         centro = sketch.loadImage(fichaCentral);
@@ -113,7 +116,7 @@ class HomePuzzle extends React.Component {
         }
         width = stepSize*wCells;
         height = stepSize*hCells;
-        cnv = sketch.createCanvas(width,height);
+        cnv = sketch.createCanvas(width+stepSize*2,height+stepSize*1.2);
         cnv.id('canvasP5Puzzle');
         cnv.parent("divP5Puzzle");
       };
@@ -124,8 +127,10 @@ class HomePuzzle extends React.Component {
           checkCode(this.state.passKeys[i],i);
         }
         sketch.background(255,255,255,0);
-        sketch.image(img,0,0);
-
+        sketch.image(back,0,0,cnv.width, cnv.height);
+        sketch.push();
+        sketch.translate((cnv.width - stepSize*wCells)/2,(cnv.height - stepSize*hCells)/2);
+        sketch.image(img,0,0, stepSize*wCells, stepSize*hCells);
         for(let i = 0; i < positionGrid.length; i++){
           sketch.image(baseG,positionGrid[i][0]*stepSize,positionGrid[i][1]*stepSize,stepSize,stepSize);
           if(i === 7) {
@@ -148,7 +153,7 @@ class HomePuzzle extends React.Component {
             }
           }
         }
-
+        sketch.pop();
         /*sketch.noStroke();
         // sketch.fill(88, 184, 204);
         sketch.fill(255);
@@ -198,14 +203,19 @@ class HomePuzzle extends React.Component {
       };
 
       sketch.windowResized = () => {
-        windowWidth = sketch.windowWidth;
-        stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
+        // windowWidth = sketch.windowWidth;
+        // windowHeight = sketch.windowHeight;
+        // stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         if(sketch.deviceOrientation === sketch.PORTRAIT  || windowWidth < sketch.windowHeight){
-          stepSize *= 2;
+          stepSize = sketch.windowWidth/6;
+          // stepSize *= 0;
+          // sketch.resizeCanvas(sketch.windowWidth,sketch.windowHeight);
         }
-        width = stepSize*wCells;
-        height = stepSize*hCells;
-        sketch.resizeCanvas(width,height);
+        // width = stepSize*wCells;
+        // height = stepSize*hCells;
+
+        cnv.resize(sketch.windowWidth,sketch.windowHeight);
+        // stepSize = cnv.width *0.12;
       }
 
       sketch.keyPressed = () =>{

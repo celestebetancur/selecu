@@ -39,7 +39,7 @@ class PixelArt extends React.Component {
 
       let [width,height,w,h]  = [400,400,400,640];
       let [x,y] = [0,0];
-      let pixSize = 20;
+      let pixSize = 5;
       let paintState = true;
       let cnv;
       let colorGrid = [];

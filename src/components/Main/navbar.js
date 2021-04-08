@@ -28,7 +28,7 @@ const NavBar = (props) => {
   return (
       <>
         <header>
-          <Navbar bg="dark" expand="lg" variant="dark">
+          <Navbar bg="dark" expand="lg" variant="dark" fixed="top">
             <Nav.Item className="ml-5">
               <Navbar.Brand className="ml-5 mr-5" href="#" onClick={e => show(0)}>
                 <Image src={selecu}/>

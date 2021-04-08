@@ -1,5 +1,4 @@
 
-
 .nav-item{
   margin-right: 80px;
   font-family: "DINNextLTPro";
@@ -11,22 +10,18 @@
   cursor: pointer;
 }
 
-#image-tablero{
-  width: 55%;
-  margin-top: 3rem;
-  z-index: -1000;
-}
-
 #divP5Puzzle{
   position: relative;
-  top:50%;
+  top:20%;
 }
 
 #canvasP5Puzzle{
-  position: absolute;
-  display: inline;
-  margin-top: 6rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(0%,0%);
+  margin-top: 2rem;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -41,7 +36,7 @@ $desktop-width: 1024px;
 
 @mixin phone {
   @media (min-width: #{$phone-width}) and (max-width: #{$desktop-width - 1px}) {
-
+    
   }
 }
 

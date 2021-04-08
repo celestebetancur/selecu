@@ -14,7 +14,6 @@ import Image from 'react-bootstrap/Image'
 import '../styles/landing.scss'
 
 import background from '../assets/images/landing/background.png'
-import tablero from '../assets/images/landing/tableroBack.png'
 import symbol from '../assets/images/landing/symbol.png'
 
 const MenuRender = (props) => {
@@ -25,11 +24,10 @@ const MenuRender = (props) => {
         <>
           <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
             <Container>
-              <Row className="justify-content-center mt-2" lg={7}>
+              <Row className="justify-content-center mt-5" lg={7}>
                 <Image src={symbol} style={{width:'30px'}}/>
               </Row>
-              <Row className="justify-content-center" id="divP5Puzzle" lg={7}>
-                <Image id="image-tablero" src={tablero} />
+              <Row className="justify-content-center" id="divP5Puzzle" lg={7} fluid>
                 <HomePuzzle/>
               </Row>
             </Container>
