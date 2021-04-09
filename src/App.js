@@ -11,8 +11,6 @@ import {loadUserData,loginFirstStage} from './actions'
 import './styles/app.css'
 
 const App = (props) => {
-
-  const [logged, setLogged] = useState(false);
   const [name, setName] = useState('');
 
   const user = useUser();
@@ -21,7 +19,6 @@ const App = (props) => {
     if(user.data !== null && !props.firstStageStatus){
       props.loadUserData(user);
       props.loginFirstStage(user.hasEmitted);
-      setLogged(true);
       const ref = firebase.database().ref().child(user.data.uid).child('info').child('name');
       ref.on(
         'value',(snapshot) => {
@@ -32,16 +29,9 @@ const App = (props) => {
   });
 
   if(!props.firstStageStatus){
-    return (
-      <React.Fragment>
-        <Landing />
-      </ React.Fragment>
-    );
+    return <Landing />;
   }
-  return (
-    <Login
-    />
-  );
+  return <Login/>;
 }
 
 const mapStateToProps = (state) => {
@@ -50,6 +40,5 @@ const mapStateToProps = (state) => {
     userData: state.loadUserData
   };
 }
-
 
 export default connect(mapStateToProps,{loadUserData,loginFirstStage})(App);

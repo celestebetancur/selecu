@@ -1,4 +1,6 @@
 import React from 'react';
+import NavBar from './navbar'
+
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Card from 'react-bootstrap/Card'
@@ -8,6 +10,7 @@ const NuestraFilosofia = () => {
 
   return (
     <>
+      <NavBar />
       <Container fluid>
         <Jumbotron>
           <h1>Nuestros principios de aprendizaje</h1>

@@ -53,7 +53,7 @@ const Auth = (props) => {
   const database = firebaseAuth.database();
 
   const fbPersistance = () => {
-   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.NONE).then(
+   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.SESSION).then(
       ()=> {
         setLoginReady(true);
       }

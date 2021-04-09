@@ -1,7 +1,8 @@
 import React,  {useState} from 'react'
 import { Redirect } from "react-router-dom"
+import {AuthCheck} from 'reactfire'
+
 import MainScreen from '../animations/MainScreen'
-import Profile from './Profile'
 import App from '../App'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
@@ -31,35 +32,23 @@ let s = undefined;
 const Home = (props) => {
   const [clickedPlace, setClickedPlace] = useState([]);
   const [elapsedTime, setElapsetTime] = useState([]);
-  const [profileToggle, setProfileToggle] = useState(false);
 
-  if(profileToggle){
-    return(
-      <Profile
-        onReturnToMap={setProfileToggle}
-        update={true}
-        signOut={true}
-        returnToMap={true}
+  return(
+    <>
+    {/*<AuthCheck>*/}
+      <MainScreen
+        onClick={setClickedPlace}
+        onTime={setElapsetTime}
       />
-    );
-  }
-  if(props.userData.data !== null){
-    return(
-      <React.Fragment>
-          <MainScreen
-            onClick={setClickedPlace}
-            onTime={setElapsetTime}
-          />
-          <MainPanel
-            clickedPlace={clickedPlace[0]}
-            clickedPos={clickedPlace[1]}
-            delta={elapsedTime}
-            onAvatar={setProfileToggle}
-          />
-      </React.Fragment>
-    );
-  }
-  return <App />;
+      <MainPanel
+        clickedPlace={clickedPlace[0]}
+        clickedPos={clickedPlace[1]}
+        delta={elapsedTime}
+      />
+    {/*</AuthCheck>
+    <App />*/}
+    </>
+  );
 }
 
 const MainPanel = (props) => {
@@ -78,8 +67,8 @@ const MainPanel = (props) => {
       <Container id="main-panel-home">
         <p id="panle-coordenadas">COORDENADAS</p>
         <Image src={panel} className="center" id="main-panel-image"/>
-          <a href="#/app"><Button id="main-panel-profile-button" >Perfil</Button></a>
-          <a>
+          <a href="#/pixelart"><Button id="main-panel-profile-button" >Perfil</Button></a>
+          <a href="#/perfilusuario">
             <Image
               src={settingsSrc} className="main-panel-a b-settings"
               onMouseEnter={() => setSettingsSrc(bSettingsOver)}

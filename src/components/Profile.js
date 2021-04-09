@@ -112,17 +112,11 @@ const Profile = (props) => {
               <input type="text" className="input"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
             </div>
           </form>
-          {props.update === true &&
-            <Button className="mr-2" variant="info" onClick={writeInfo}>¡Actualizate!</Button>
-          }
-          {props.returnToMap == true &&
-            <Button className="mr-2" variant="info" onClick={()=>props.onReturnToMap(false)}>Regresar al mapa</Button>
-          }
-          {props.signOut ===true &&
-            <SignOut
-              text="Salir"
-             />
-          }
+          <Button className="mr-2" variant="info" onClick={writeInfo}>¡Actualizate!</Button>
+          <a href="#/home"><Button className="mr-2" variant="info">Regresar al mapa</Button></a>
+          <SignOut
+            text="Salir"
+           />
         </Card.Body>
       </Card>
     </Container>

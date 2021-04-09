@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from './navbar'
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Card from 'react-bootstrap/Card'
@@ -6,6 +7,7 @@ import Card from 'react-bootstrap/Card'
 const SobreNosotros = () => {
   return (
     <>
+      <NavBar/>
       <Container fluid>
         <Jumbotron>
           <h1>Sobre Nosotros</h1>

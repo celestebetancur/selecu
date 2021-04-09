@@ -1,10 +1,13 @@
 import React from 'react';
+import NavBar from './navbar'
+
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 
 const Comunidad = () => {
   return (
     <>
+      <NavBar />
       <Container fluid>
         <Jumbotron>
           <h1>Comunidad Selecu</h1>

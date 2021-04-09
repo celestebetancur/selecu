@@ -32,7 +32,7 @@ const SignOut = (props) => {
 
     return (
       <Button
-        variant="primary"
+        variant="info"
         onClick={signOutFB}
         >{props.text}
       </Button>
