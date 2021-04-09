@@ -214,10 +214,9 @@ class HomePuzzle extends React.Component {
       }
 
       sketch.mousePressed = () => {
-        // 20, cnv.height - 55,15,30
         if(sketch.mouseX > 12 && sketch.mouseX < 12 + 15 &&
             sketch.mouseY > cnv.height - 55 && cnv.height - 55 < cnv.height - 55 + 25){
-              console.log("key");
+              window.open('#/login',"_self");
         }
         if(sketch.mouseX > xOffset && sketch.mouseX < cnv.width-xOffset &&
             sketch.mouseY > yOffset && sketch.mouseY < cnv.height-yOffset){

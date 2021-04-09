@@ -2,6 +2,9 @@ import React, {useState, useEffect ,useRef} from 'react'
 import firebaseAuth from "firebase/app";
 import { useFirebaseApp, useUser } from 'reactfire'
 
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+
 import {connect} from 'react-redux'
 import {loadUserData} from '../../actions'
 
@@ -77,33 +80,33 @@ const CreateMentor = (props) => {
   }
 
   return(
-    <div className="card selectCard profileCard" style={{width: "27rem"}}>
-      <div className="card-body">
-          <h4 className="card-title">ADMIN</h4>
-          <h6 className="card-title">Crear Mentor</h6>
+    <Card style={{width: "27rem"}}>
+      <Card.Body>
+          <Card.Title>ADMIN</Card.Title>
+          <Card.Title>Crear Mentor</Card.Title>
           <br/>
           <form onSubmit={e => e.preventDefault()} ref={inputForm}>
             <hr/>
-            <div className="container">
+            <Container>
               <label className="text-spaced-1">Nombre completo</label>
-              <input className="input-card" type="text" required onChange={e => setFullName(e.target.value)}/>
-            </div>
-            <div className="container">
+              <input className="input" type="text" required onChange={e => setFullName(e.target.value)}/>
+            </Container>
+            <Container>
               <label className="text-spaced-1">Email</label>
-              <input className="input-card" type="email" required onChange={e => setEmail(e.target.value)}/>
-            </div>
-            <div className="container">
+              <input className="input" type="email" required onChange={e => setEmail(e.target.value)}/>
+            </Container>
+            <Container>
               <label className="text-spaced-1">Contraseña</label>
-              <input className="input-card" type="text" required onChange={e => setPassword(e.target.value)}/>
-            </div>
-            <div className="container">
+              <input className="input" type="text" required onChange={e => setPassword(e.target.value)}/>
+            </Container>
+            <Container>
               <label className="text-spaced-1">Colegio</label>
-              <input className="input-card" type="text" required onChange={e => setInstitution(e.target.value)}/>
-            </div>
-            <div className="container">
+              <input className="input" type="text" required onChange={e => setInstitution(e.target.value)}/>
+            </Container>
+            <Container>
               <label className="text-spaced-1">Cargo</label>
-              <input  className="input-card" type="text" required onChange={e => setYear(e.target.value)}/>
-            </div>
+              <input  className="input" type="text" required onChange={e => setYear(e.target.value)}/>
+            </Container>
             <hr/>
               {(initDB && msg !== '' ) &&
                 <p className="alert alert-success" role="alert">{msg}</p>
@@ -124,8 +127,8 @@ const CreateMentor = (props) => {
               </div>
             }
           </form>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
   );
 }
 

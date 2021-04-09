@@ -6,6 +6,8 @@ import CreateMentor from './CreateMentor'
 import CreateUser from './CreateUser'
 import List from './List'
 
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 import '../../styles/gestores.css'
 
 import {connect} from 'react-redux'
@@ -52,11 +54,11 @@ const Gestores = (props) => {
   }
 
   return(
-    <div className="container spaced">
+    <Container>
       <div className="row">
-        <div className="card selectCard" style={{width: "15rem"}}>
-          <div className="card-body">
-          <h5 className="card-title">PANEL GESTORES</h5>
+        <Card style={{width: "15rem"}}>
+          <Card.Body>
+          <Card.Title>PANEL GESTORES</Card.Title>
             <div style={{display:"block"}}>
             <h6>{`¡${hour} ${name}!`}</h6>
               <hr />
@@ -68,8 +70,8 @@ const Gestores = (props) => {
                 text="Salir"
                />
             </div>
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
         {menuToShow === 0 &&
           <Profile
             update={true}
@@ -102,7 +104,7 @@ const Gestores = (props) => {
           />
         }
       </div>
-    </div>
+    </Container>
   );
 }
 

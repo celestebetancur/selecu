@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react'
 
+import Card from 'react-bootstrap/Card'
+import Accordion from 'react-bootstrap/Accordion'
+
 const ButtonMenu = (props) => {
   const  [state, setState] = useState(false);
 
@@ -8,23 +11,23 @@ const ButtonMenu = (props) => {
   },[state]);
 
   return(
-    <div id="accordion">
-      <div className="card">
+    <Accordion>
+      <Card>
           <a className="card-link" href='#' onClick={e => setState(0)}>
             Perfil
           </a>
-      </div>
-      <div className="card">
+      </Card>
+      <Card>
           <a className="collapsed card-link" href='#' onClick={e => setState(1)}>
             Panel administración
           </a>
-      </div>
-      <div className="card">
+      </Card>
+      <Card>
           <a className="collapsed card-link" href='#' onClick={e => setState(2)}>
             Listas
           </a>
-      </div>
-    </div>
+      </Card>
+    </Accordion>
   );
 }
 

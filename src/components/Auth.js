@@ -12,11 +12,8 @@ import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
 import icon from '../assets/images/eye.png'
+import logCard from '../assets/images/loginCard.png'
 import background from '../assets/images/landing/background.png'
-
-import Shader from '../animations/Shader'
-import vert from '../animations/shaders/shader.vert'
-import frag from '../animations/shaders/shader.frag'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -172,7 +169,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`¡Hola! Accediste a: ${props.roll}`}
+          welcomeText={`Acceso para: ${props.roll}`}
         />
       </React.Fragment>
     );
@@ -190,7 +187,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`¡Hola! Accediste a: ${props.roll}`}
+          welcomeText={`Acceso para: ${props.roll}`}
         />
       </React.Fragment>
     );
@@ -208,7 +205,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`¡Hola! Accediste a: ${props.roll}`}
+          welcomeText={`Acceso para ${props.roll}`}
         />
       </React.Fragment>
     );
@@ -217,16 +214,14 @@ const Auth = (props) => {
 
 const LoginCard = (props) => {
   return(
-    <Container>
-      <Row>
-        <Col />
-          <Col>
-          <Card style={{width: "23rem",backgroundColor:'rgba(255,255,255,0.3)',borderRadius:'1rem', top:'50%'}}>
+    <Container className="bg-img" fluid style={{backgroundImage:`url(${background})`}}>
+      <Container>
+          <Card id="login-card" style={{backgroundImage:`url(${logCard})`}}>
             <Card.Body>
-              <Card.Title>{props.welcomeText}</Card.Title>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text id="email-selecu">@</InputGroup.Text>
+              <Card.Title className="text-center">{props.welcomeText}</Card.Title>
+              <InputGroup className="mb-5 login-input-email" size="lg">
+                <InputGroup.Prepend className="email-selecu">
+                  <InputGroup.Text id="inputGroup-sizing-lg"></InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
                   type="email"
@@ -236,7 +231,7 @@ const LoginCard = (props) => {
                   onChange={e => props.setEmail(e.target.value)}
                 />
               </InputGroup>
-              <InputGroup className="mb-3" id="password">
+              <InputGroup className="mb-5 login-input-pwd" size="lg" id="password">
                 <InputGroup.Prepend>
                   <Button variant="outline-secondary">
                     <Image src={icon} id="togglePassword" onClick={(e)=> props.seePassIcon()} alt="show password"/>
@@ -250,24 +245,20 @@ const LoginCard = (props) => {
                   onChange={e => props.setPassword(e.target.value)}
                 />
               </InputGroup>
-              {!props.authUser &&
-                <Button onClick={props.loginUser} variant="warning">Autorizar</Button>
-              }
-              {props.authUser &&
-                <Button onClick={props.loginUser} variant="success">Entrar</Button>
-              }
-              <SignOut
-                text="Regresar"
-              />
+              <Container id="login-buttons" className="justify-content-sm-center">
+                {!props.authUser &&
+                  <Button onClick={props.loginUser} variant="warning" className="mr-1">Autorizar</Button>
+                }
+                {props.authUser &&
+                  <Button onClick={props.loginUser} variant="success">Entrar</Button>
+                }
+                <SignOut
+                  text="Regresar"
+                />
+              </Container>
             </Card.Body>
           </Card>
-        </Col>
-        <Shader
-          vert={vert}
-          frag={frag}
-        />
-        <Col />
-      </Row>
+        </Container>
     </Container>
   );
 }

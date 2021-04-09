@@ -16,7 +16,8 @@ import SobreNosotros from './components/Main/sobrenosotros'
 import NuestraFilosofia from './components/Main/nuestrafilosofia'
 import Comunidad from './components/Main/comunidad'
 import Contacto from './components/Main/contacto'
-//------------------------------------------------------------------------------
+//LOGIN AND AUTH----------------------------------------------------------------
+import Login from './components/login'
 
 import MilecuFirst from './animations/Milecu/MilecuFirst'
 import Home from './components/home'
@@ -36,7 +37,8 @@ ReactDOM.render(
             <Route path ="/nuestrafilosofia" component={NuestraFilosofia} exact />
             <Route path ="/comunidad" component={Comunidad} exact />
             <Route path ="/contacto" component={Contacto} exact />
-            {/*--------------------------------------------------------------*/}
+            {/*Login---------------------------------------------------------*/}
+            <Route path ="/login" component={Login} exact />
             <Route path ="/pixelart" component={MilecuFirst} exact />
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />

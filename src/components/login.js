@@ -34,11 +34,20 @@ const Login = (props) => {
   },[]);
 
   return (
-    <React.Fragment>
-      <Auth
-        roll={grades[props.userRoll]}
-       />
-    </React.Fragment>
+    <>
+      <div>
+      {props.userRoll !== null &&
+        <Auth
+          roll={grades[props.userRoll]}
+        />
+      }
+      {props.userRoll === null &&
+        <Auth
+          roll={grades[1]}
+        />
+      }
+      </div>
+    </>
   );
 }
 

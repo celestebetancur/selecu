@@ -20,6 +20,7 @@
   left: 50%;
   transform: translate(0%,0%);
   margin-top: 2rem;
+  border-radius: 1rem;
 }
 
 @keyframes fadeIn {
@@ -36,7 +37,7 @@ $desktop-width: 1024px;
 
 @mixin phone {
   @media (min-width: #{$phone-width}) and (max-width: #{$desktop-width - 1px}) {
-    
+
   }
 }
 
