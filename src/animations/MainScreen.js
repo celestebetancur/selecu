@@ -31,8 +31,6 @@ class MainScreen extends React.Component {
 
     const code = (sketch) => {
 
-      let xPos = 0;
-
       let cnv;
       let width = 400;
       let height = 400;

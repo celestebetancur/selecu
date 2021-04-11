@@ -43,11 +43,6 @@ class PixelArt extends React.Component {
       let paintState = true;
       let cnv;
       let colorGrid = [];
-      for(let i = 0; i < width/pixSize; i++){
-        for(let j = 0; j < height/pixSize; j++){
-          colorGrid.push({r:255,g:255,b:255,o:0});
-        }
-      }
 
       let url;
       let canvasFrame;
@@ -64,9 +59,14 @@ class PixelArt extends React.Component {
         capture = sketch.createCapture(sketch.VIDEO);
         capture.hide();
         capture.size(400, 400);
+        fillColorGrid(pixSize);
       };
 
       sketch.draw = () => {
+        if(gridStep(this.props.commands[7]) !== pixSize){
+          pixSize = gridStep(this.props.commands[7]);
+          fillColorGrid(pixSize);
+        }
         createBlob();
         sketch.background(255);
         w = this.props.commands[4];
@@ -81,7 +81,7 @@ class PixelArt extends React.Component {
           captured = capture.get();
           sketch.image(capture, x, y, w, h);
         }
-        grid(this.props.commands[7]);
+        grid(this.props.commands[8]);
       };
 
       sketch.mousePressed = () => {
@@ -122,6 +122,55 @@ class PixelArt extends React.Component {
             this.setState({ready:false});
             this.setState({url:url});
           },'image/jpeg', 0.95);
+        }
+      }
+
+      const gridStep = (val) => {
+        let size = 1;
+        switch (val){
+          case 1:
+            return 5;
+            break;
+          case 2:
+            return 8;
+            break;
+          case 3:
+            return 10;
+            break;
+          case 4:
+            return 16;
+            break;
+          case 5:
+            return 20;
+            break;
+          case 6:
+            return 25;
+            break;
+          case 7:
+            return 40;
+            break;
+          case 8:
+            return 50;
+            break;
+          case 9:
+            return 80;
+            break;
+          case 10:
+            return 100;
+            break;
+          case 11:
+            return 200;
+            break;
+          default:
+            return 20;
+        }
+      }
+
+      const fillColorGrid = (val) => {
+        for(let i = 0; i < width/val; i++){
+          for(let j = 0; j < height/val; j++){
+            colorGrid.push({r:255,g:255,b:255,o:0});
+          }
         }
       }
 

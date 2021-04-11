@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import Landing from '../landing'
+
 import SignOut from '../SignOut'
 import ButtonMenu from './ButtonMenu'
 import Profile from '../Profile'
@@ -46,7 +48,7 @@ const Gestores = (props) => {
   }
 
   return(
-    <AuthCheck>
+    <AuthCheck fallback={<Landing />}>
     {props.userInfo !== {} &&
       <Container>
         <div className="row">

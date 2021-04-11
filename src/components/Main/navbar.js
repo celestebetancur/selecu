@@ -15,9 +15,9 @@ const NavBar = (props) => {
   return (
       <>
         <header>
-          <Navbar bg="dark" expand="lg" variant="dark" fixed="top">
+          <Navbar bg="dark" expand="sm" variant="dark" fixed="top">
             <Nav.Item className="ml-5">
-              <Navbar.Brand className="ml-5 mr-5" href="#">
+              <Navbar.Brand className="ml-4 mr-4" href="#">
                 <Image src={selecu}/>
               </Navbar.Brand>
             </Nav.Item>

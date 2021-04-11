@@ -1,5 +1,5 @@
 export const parser = (text) => {
-        let commandsToReturn = [0,0,0,0,0,0,0,0];
+        let commandsToReturn = [0,0,0,0,0,0,0,0,0];
         let upper = text.toUpperCase();
         let newLines = upper.split(/\n/);
         let tokens = [];
@@ -29,8 +29,11 @@ export const parser = (text) => {
           if(tokens[i][0] === 'CAMARA'){
             commandsToReturn[6] = parseInt(tokens[i][1]);
           }
-          if(tokens[i][0] === 'GUIA'){
+          if(tokens[i][0] === 'PIXEL'){
             commandsToReturn[7] = parseInt(tokens[i][1]);
+          }
+          if(tokens[i][0] === 'GUIA'){
+            commandsToReturn[8] = parseInt(tokens[i][1]);
           }
         }
         return commandsToReturn;

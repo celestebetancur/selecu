@@ -1,9 +1,9 @@
-import React,  {useState} from 'react'
+import React,  {useState, Suspense} from 'react'
 import { Redirect } from "react-router-dom"
 import {AuthCheck} from 'reactfire'
 
 import MainScreen from '../animations/MainScreen'
-import App from '../App'
+import Landing from './landing'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
 import bSettings from '../assets/images/mapa/settings/setting-normal.png'
@@ -35,7 +35,8 @@ const Home = (props) => {
 
   return(
     <>
-    {/*<AuthCheck>*/}
+    {/*<AuthCheck fallback={<Landing />}>*/}
+    <Suspense fallback="cargando...">
       <MainScreen
         onClick={setClickedPlace}
         onTime={setElapsetTime}
@@ -45,8 +46,8 @@ const Home = (props) => {
         clickedPos={clickedPlace[1]}
         delta={elapsedTime}
       />
-    {/*</AuthCheck>
-    <App />*/}
+      </Suspense>
+    {/*</AuthCheck>*/}
     </>
   );
 }

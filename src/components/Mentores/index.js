@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from 'react'
+import Landing from '../landing'
 import SignOut from '../SignOut'
 
-import { useFirebaseApp, useUser, AuthCheck } from 'reactfire'
+import { AuthCheck } from 'reactfire'
 import {connect} from 'react-redux'
 
 const Mentores = (props) => {
   const [userInfo, setUserInfo] = useState({});
 
-  const firebase = useFirebaseApp();
-  const user = useUser();
-  const db = firebase.database();
 
   useEffect(()=>{
     setUserInfo(props.userInfo);
   },[props.userInfo]);
 
   return(
-    <AuthCheck>
+    <AuthCheck fallback={<Landing />}>
     {props.userInfo !== {} &&
       <div className="card selectCard" style={{width: "25rem"}}>
         <div className="card-body">

@@ -19,29 +19,22 @@ const UploadPhoto = (props) => {
   const db = firebase.storage();
   const data = firebase.database();
 
-  const put = (entry, value) => {
-    // db.ref("/users/"+user.data.uid.slice(0,10) + '/info/').update(
-    db.ref().child("/users/"+'MRmuDPwCwc'+'/'+entry+'/perfil.jpg').put(value).then((snapshot)=>{
+  const put = (value) => {
+    db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').put(value).then((snapshot)=>{
       setDone(true);
-      data.ref().child("/users/"+'MRmuDPwCwc'+'/info/profileImage/').set(true);
+      data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImage/').set(true);
     });
-    db.ref().child("/users/"+'MRmuDPwCwc'+'/'+entry+'/perfil.jpg').getDownloadURL().then((url)=>{
+    db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{
       setUrl(url);
-      data.ref().child("/users/"+'MRmuDPwCwc'+'/info/profileImageURL/').set(url);
+      data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImageURL/').set(url);
     })
   }
 
-  const get = (entry) => {
-    // db.ref("/users/"+user.data.uid.slice(0,10) + '/info/').update(
-    db.ref().child("/users/"+'MRmuDPwCwc'+'/'+entry+'/perfil.jpg').getDownloadURL().then((url)=>{
-      setUrl(url);
-    });
-  }
 
   return (
     <>
     {!done &&
-      <Button variant="info" onClick={() => put('picture',props.image)} className="mr-3">Imagen de perfil</Button>
+      <Button variant="info" onClick={() => put(props.image)} className="mr-3">Imagen de perfil</Button>
     }
     {done &&
       <p>Foto de perfil cargada con éxito</p>
