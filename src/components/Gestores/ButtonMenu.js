@@ -13,17 +13,17 @@ const ButtonMenu = (props) => {
   return(
     <Accordion>
       <Card>
-          <a className="card-link" href='#' onClick={e => setState(0)}>
+          <a className="card-link" onClick={e => setState(0)}>
             Perfil
           </a>
       </Card>
       <Card>
-          <a className="collapsed card-link" href='#' onClick={e => setState(1)}>
+          <a className="collapsed card-link" onClick={e => setState(1)}>
             Panel administración
           </a>
       </Card>
       <Card>
-          <a className="collapsed card-link" href='#' onClick={e => setState(2)}>
+          <a className="collapsed card-link" onClick={e => setState(2)}>
             Listas
           </a>
       </Card>

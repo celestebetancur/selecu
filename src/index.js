@@ -18,9 +18,13 @@ import Comunidad from './components/Main/comunidad'
 import Contacto from './components/Main/contacto'
 //LOGIN AND AUTH----------------------------------------------------------------
 import Login from './components/login'
+//Home for different usersList
+import Home from './components/home'
+import Gestores from './components/Gestores'
+import Mentores from './components/Mentores'
 
 import MilecuFirst from './animations/Milecu/MilecuFirst'
-import Home from './components/home'
+
 import Profile from './components/Profile'
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -39,6 +43,10 @@ ReactDOM.render(
             <Route path ="/contacto" component={Contacto} exact />
             {/*Login---------------------------------------------------------*/}
             <Route path ="/login" component={Login} exact />
+            {/*Home----------------------------------------------------------*/}
+            <Route path ="/homementores" component={Mentores} exact />
+            <Route path ="/homegestores" component={Gestores} exact />
+
             <Route path ="/pixelart" component={MilecuFirst} exact />
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />

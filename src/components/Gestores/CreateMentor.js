@@ -14,6 +14,7 @@ const CreateMentor = (props) => {
   const[password, setPassword] = useState('');
   const[institution, setInstitution] = useState('');
   const[year, setYear] = useState('');
+  const[nuip, setNuip] = useState('');
   const[msg, setMsg] = useState('');
   const[initDB, setInitDB] = useState(false);
   const[dcheck, setDCheck] = useState(false);
@@ -33,7 +34,9 @@ const CreateMentor = (props) => {
           nick: '',
           color: '',
           animal: '',
-          dayPreference: ''
+          dayPreference: '',
+          profileImage: false,
+          profileImageURL: ''
         },
         access: {
           verification: user.data.uid.slice(0, 4),
@@ -47,7 +50,8 @@ const CreateMentor = (props) => {
           name: fullName,
           emailParents: email,
           institution: institution,
-          year: year
+          year: year,
+          NUIP: nuip
         }
       });
       db.ref('/lists/'+fullName).set({
@@ -90,6 +94,10 @@ const CreateMentor = (props) => {
             <Container>
               <label className="text-spaced-1">Nombre completo</label>
               <input className="input" type="text" required onChange={e => setFullName(e.target.value)}/>
+            </Container>
+            <Container>
+              <label className="text-spaced-1">Cédula o NUIP</label>
+              <input className="input" type="text" required onChange={e => setNuip(e.target.value)}/>
             </Container>
             <Container>
               <label className="text-spaced-1">Email</label>

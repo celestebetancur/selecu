@@ -14,6 +14,13 @@ const firstStageRollReducer = (roll=null, action) => {
   return roll;
 }
 
+const loadUserInfoReducer = (userInfo={info:''}, action) => {
+  if(action.type === 'USER_INFO_LOADED'){
+    return action.payload;
+  }
+  return userInfo;
+}
+
 const loadUserDataFirebaseReducer = (user={}, action) => {
   if(action.type === 'USER_ALREADY_LOGGED'){
     return action.payload;
@@ -24,5 +31,6 @@ const loadUserDataFirebaseReducer = (user={}, action) => {
 export default combineReducers({
   loginFirstStage: firstStageLoginReducer,
   userRollPass: firstStageRollReducer,
-  loadUserData: loadUserDataFirebaseReducer
+  loadUserData: loadUserDataFirebaseReducer,
+  loadUserInfo: loadUserInfoReducer
 });

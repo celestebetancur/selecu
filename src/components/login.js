@@ -43,7 +43,7 @@ const Login = (props) => {
       }
       {props.userRoll === null &&
         <Auth
-          roll={grades[1]}
+          roll={grades[0]}
         />
       }
       </div>

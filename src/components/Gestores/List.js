@@ -17,7 +17,7 @@ const List = (props) => {
         <Container>
           <Card style={{width: "18rem"}}>
             <Card.Body>
-              <a href="#" onClick={() => setUserToDisplay(name)}><h6 className="card-text">{name}</h6></a>
+              <a onClick={() => setUserToDisplay(name)}><h6 className="card-text">{name}</h6></a>
             </Card.Body>
           </Card>
         </Container>
@@ -31,13 +31,13 @@ const List = (props) => {
         <Nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav sm">
             <li className={`list-group-item ${typeOfUser === 'Gestores' ? 'active': ' '}`}>
-              <a className="nav-link" href="#" onClick={()=>setTypeOfUser('Gestores')}>Gestores</a>
+              <a className="nav-link" onClick={()=>setTypeOfUser('Gestores')}>Gestores</a>
             </li>
             <li className={`list-group-item ${typeOfUser === 'Mentores' ? 'active': ' '}`}>
-              <a className="nav-link" href="#" onClick={()=>setTypeOfUser('Mentores')}>Mentores</a>
+              <a className="nav-link" onClick={()=>setTypeOfUser('Mentores')}>Mentores</a>
             </li>
             <li className={`list-group-item ${typeOfUser === 'Aprendices' ? 'active': ' '}`}>
-              <a className="nav-link" href="#" onClick={()=>setTypeOfUser('Aprendices')}>Aprendices</a>
+              <a className="nav-link" onClick={()=>setTypeOfUser('Aprendices')}>Aprendices</a>
             </li>
           </ul>
         </Nav>

@@ -14,6 +14,7 @@ const CreateUser = (props) => {
   const[password, setPassword] = useState('');
   const[institution, setInstitution] = useState('');
   const[year, setYear] = useState('');
+  const[nuip, setNuip] = useState('');
   const[msg, setMsg] = useState('');
   const[initDB, setInitDB] = useState(false);
   const[dcheck, setDCheck] = useState(false);
@@ -47,7 +48,8 @@ const CreateUser = (props) => {
           name: fullName,
           emailParents: email,
           institution: institution,
-          year: year
+          year: year,
+          NUIP: nuip
         }
       });
       db.ref('/lists/'+fullName).set({
@@ -90,6 +92,10 @@ const CreateUser = (props) => {
             <Container>
               <label className="text-spaced-1">Nombre completo</label>
               <input className="input" type="text" required onChange={e => setFullName(e.target.value)}/>
+            </Container>
+            <Container>
+              <label className="text-spaced-1">Cédula o NUIP</label>
+              <input className="input" type="text" required onChange={e => setNuip(e.target.value)}/>
             </Container>
             <Container>
               <label className="text-spaced-1">Email acudiente</label>

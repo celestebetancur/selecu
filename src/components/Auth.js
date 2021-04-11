@@ -9,7 +9,7 @@ import firebaseAuth from "firebase/app";
 import { useUser } from 'reactfire'
 import {connect} from 'react-redux'
 
-import {loadUserData} from '../actions'
+import {loadUserData,loadUserInfo} from '../actions'
 
 import icon from '../assets/images/eye.png'
 import logCard from '../assets/images/loginCard.png'
@@ -49,8 +49,8 @@ const Auth = (props) => {
   const user = useUser();
   const database = firebaseAuth.database();
 
-  const fbPersistance = () => {
-   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.SESSION).then(
+  const fbPersistance = () => {//SESSION
+   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.NONE).then(
       ()=> {
         setLoginReady(true);
       }
@@ -101,8 +101,10 @@ const Auth = (props) => {
       database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
+          props.loadUserInfo(snap);
           let access = snap.access;
           let registry = snap.registry;
+          let info = snap.info;
           if(props.roll === registry.year || access.Mentores || access.Gestores || access.Admin){
             setLoggedUser(true);
             setUserAccess(true);
@@ -117,6 +119,7 @@ const Auth = (props) => {
       database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
+          props.loadUserInfo(snap);
           let access = snap.access;
           setAdminAccess(access.Gestores);
           setLoggedAdmin(true);
@@ -130,6 +133,7 @@ const Auth = (props) => {
       database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
+          props.loadUserInfo(snap);
           let access = snap.access;
           setMentorAccess(access.Mentores);
           setLoggedMentor(true);
@@ -143,23 +147,22 @@ const Auth = (props) => {
   }
 
   if(userAccess){
-    return <Home />;
+    window.open("#/home",'_self');
+    return <></>;
   }
 
   if(adminAccess){
-    return(
-      <Gestores />
-    );
+    window.open("#/homegestores",'_self');
+    return <></>;
   }
   if(mentorAccess){
-    return(
-      <Mentores />
-    );
+    window.open("#/homementores",'_self');
+    return <></>;
   }
 
   if(props.roll === 'Gestores' && !adminAccess){
     return(
-      <React.Fragment>
+      <>
         <LoginCard
           loginUser={loginAdmin}
           roll={props.roll}
@@ -171,13 +174,13 @@ const Auth = (props) => {
           seePass={seePass}
           welcomeText={`Acceso para: ${props.roll}`}
         />
-      </React.Fragment>
+      </>
     );
   }
 
   if(props.roll === 'Mentores' && !mentorAccess){
     return(
-      <React.Fragment>
+      <>
         <LoginCard
           loginUser={loginMentor}
           roll={props.roll}
@@ -189,13 +192,13 @@ const Auth = (props) => {
           seePass={seePass}
           welcomeText={`Acceso para: ${props.roll}`}
         />
-      </React.Fragment>
+      </>
     );
   }
 
   if(props.roll !== 'Gestores' && props.roll !== 'Mentores' && !userAccess){
     return (
-      <React.Fragment>
+      <>
         <LoginCard
           loginUser={loginUser}
           roll={props.roll}
@@ -207,7 +210,7 @@ const Auth = (props) => {
           seePass={seePass}
           welcomeText={`Acceso para ${props.roll}`}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
@@ -271,4 +274,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps,{loadUserData})(Auth);
+export default connect(mapStateToProps,{loadUserData,loadUserInfo})(Auth);

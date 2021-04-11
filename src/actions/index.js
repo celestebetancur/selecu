@@ -14,6 +14,13 @@ export const userRollPass = (pass) => {
   };
 }
 
+export const loadUserInfo = (snapshot) => {
+  return {
+    type: 'USER_INFO_LOADED',
+    payload: snapshot
+  };
+}
+
 export const loadUserData = (data) => {
   return {
     type: 'USER_ALREADY_LOGGED',
