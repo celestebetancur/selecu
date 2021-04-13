@@ -19,16 +19,17 @@ const FillRedux = (props) => {
   const database = useDatabase();
 
   useEffect(()=>{
-    props.loadUserData(user);
-    database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
-      'value',(snapshot) => {
-        let snap = snapshot.val();
-        props.loadUserInfo(snap);
-        props.userRollPass(snap.registry.year);
-      }
-    );
-    if(props.userInfo.info !== ''){
-      setReduxReady(true);
+    if(!reduxReady){
+      props.loadUserData(user);
+      database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
+        'value',(snapshot) => {
+          let snap = snapshot.val();
+          props.loadUserInfo(snap);
+          props.userRollPass(snap.registry.year);
+        }
+      );
+    }
+    if(props.userInfo.info !== '' && !reduxReady){
       if(props.userInfo.access.Aprendices){
         setHomeSelect(3);
       }
@@ -38,6 +39,7 @@ const FillRedux = (props) => {
       if(props.userInfo.access.Gestores){
         setHomeSelect(1);
       }
+      setReduxReady(true);
     }
   },[user]);
 

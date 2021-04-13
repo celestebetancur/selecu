@@ -96,13 +96,6 @@
  display:none;
 }
 
-.command-textarea {
- position:absolute;
- bottom: 4%;
- left: 25%;
- z-index: 100;
- resize: none;
-}
 
 .command-textarea-true{
  border-radius: 1rem;
@@ -159,12 +152,4 @@
 .avatar-home-false {
   display: none;
   margin: 0.1;
-}
-
-.img-profile{
-  position: absolute;
-  width: 20%;
-  right: 2rem;
-  top: 4rem;
-  padding: 0.5rem;
 }

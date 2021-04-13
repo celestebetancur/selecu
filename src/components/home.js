@@ -6,6 +6,8 @@ import MainScreen from '../animations/MainScreen'
 import App from '../App'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
+import toggle from '../assets/images/mapa/toggle.png'
+import energy from '../assets/images/mapa/energia-bordes.png'
 import bSettings from '../assets/images/mapa/settings/setting-normal.png'
 import bSettingsOver from '../assets/images/mapa/settings/over.png'
 import bPushHold from '../assets/images/mapa/settings/push-hold.png'
@@ -31,8 +33,8 @@ import {loadUserData} from '../actions'
 let s = undefined;
 
 const Home = (props) => {
-  const [clickedPlace, setClickedPlace] = useState([]);
   const [elapsedTime, setElapsetTime] = useState([]);
+  const [commandForTarget, setCommandsForTarget] = useState(' ');
 
   const user = props.userInfo;
 
@@ -41,17 +43,16 @@ const Home = (props) => {
     <AuthCheck fallback={<App />}>
       <Suspense fallback={<Spinner animation="border" variant="primary" />}>
         <MainScreen
-          onClick={setClickedPlace}
           onTime={setElapsetTime}
+          commands={commandForTarget}
         />
         <MainPanel
-          clickedPlace={clickedPlace[0]}
-          clickedPos={clickedPlace[1]}
           delta={elapsedTime}
           user={user}
+          commandForTarget={(val) => setCommandsForTarget(val)}
         />
         </Suspense>
-      </AuthCheck>}
+      </AuthCheck>
     </>
   );
 }
@@ -62,6 +63,7 @@ const MainPanel = (props) => {
   const [gameSrc, setGameSrc] = useState(bGame);
   const [communitySrc, setCommunitySrc] = useState(bCommunity);
   const [knowledgeSrc, setknowlegdeSrc] = useState(bKnowledge);
+  const [toggleMainPanel, setToggleMainPanel] = useState(false);
 
   let days = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
   let date = new Date();
@@ -69,16 +71,30 @@ const MainPanel = (props) => {
 
   return(
     <Container>
-      <Container id="main-panel-home">
-        <p id="panle-coordenadas">COORDENADAS</p>
+      <Container id="main-panel-home" className="container-main-panel">
+        <a
+          onClick={() => setToggleMainPanel(!toggleMainPanel)}
+          style={{cursor:'pointer'}}
+          >
+            <Image src={toggle} className={`toggle-pos-${toggleMainPanel}`} id="main-panel-toggle"/>
+        </a>
+        <Container className={`main-panel panel-display-${toggleMainPanel}`}>
+        <p id="panel-coordenadas">COORDENADAS</p>
+        <Container>
+          <textarea
+            className='command-textarea'
+            onChange={e => props.commandForTarget(e.target.value)}
+          />
+        </Container>
         <Image src={panel} className="center" id="main-panel-image"/>
           <a href="#/pixelart">
             <Button id="main-panel-profile-button" >
             {props.user.info.profileImage &&
-              <StorageImage className="image-profile-button" storagePath={"/users/"+props.user.access.UI.slice(0,10)+'/picture/perfil.jpg'} />
+              <StorageImage className="image-profile-button" storagePath={"/users/"+props.user.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
             }
             </Button>
           </a>
+          <Image className="main-panel-b e-settings" src={energy} />
           <a href="#/perfilusuario">
             <Image
               src={settingsSrc} className="main-panel-a b-settings"
@@ -111,17 +127,9 @@ const MainPanel = (props) => {
               onMouseLeave={() => setknowlegdeSrc(bKnowledge)}
             />
           </a>
+        </Container>
       </Container>
     </Container>
-  );
-}
-
-
-const TextField = (props) => {
-  return (
-    <div className="container">
-      <textarea className={`command-textarea command-textarea-${props.active}`}/>
-    </div>
   );
 }
 

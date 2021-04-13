@@ -1,9 +1,11 @@
 import React from 'react';
 import p5 from 'p5';
-// import world from '../assets/images/world.png'
-import mapa from '../assets/images/mapa/mapaAlta.jpg'
-import marco from '../assets/images/mapa/marco.png'
+
+import mapa from '../assets/images/mapa/mapa.png'
 import fondo from '../assets/images/mapa/fondo.jpg'
+import targ from '../assets/images/mapa/target.png'
+
+import {parser} from './commands.js'
 
 import '../styles/home.css'
 
@@ -17,7 +19,8 @@ class MainScreen extends React.Component {
     x: 0,
     y: 0,
     genX: 0,
-    genY: 0
+    genY: 0,
+    commands: []
   };
 
   onClick = (value) => {
@@ -35,13 +38,15 @@ class MainScreen extends React.Component {
       let width = 400;
       let height = 400;
       let map;
-      let mask;
+      let target;
       let background;
       let gridSpace = 10;
       let elapsedTime = 0;
       let minutes = 0;
       let seconds = 0;
       let hours = 0;
+      let tPosX = 0;
+      let tPosY = 0;
 
       let islandHS = [[30,8],[31,8],[32,8],[30,9],[31,9],[32,9]];
       let islandInfo = ["Islandia es un pais de la union europea","Norte de Europa"];
@@ -59,18 +64,13 @@ class MainScreen extends React.Component {
       let genYpos;
 
       sketch.preload = () => {
-         mask = sketch.loadImage(marco);
          map = sketch.loadImage(mapa);
          background = sketch.loadImage(fondo);
+         target = sketch.loadImage(targ);
       }
 
       sketch.setup = () => {
-        // sketch.rectMode(sketch.CENTER);
         sketch.imageMode(sketch.CENTER);
-
-        // sliderScale = sketch.createSlider(1,100,1);
-        // sliderScale.style('z-index','1000');
-        // sliderScale.style('position','fixed');
 
         width = sketch.windowWidth;
         height = sketch.windowHeight;
@@ -81,32 +81,21 @@ class MainScreen extends React.Component {
         cnv.id('canvasHomeMap');
         cnv.style('z-index','-1000');
         cnv.resize(width,height);
+        tPosX = width/2;
+        tPosY = height/2;
       };
 
       sketch.draw = () => {
+        this.setState({commands:parser(this.props.commands)});
+        tPosY = -this.state.commands[0] + this.state.commands[1] + (height/2);
+        tPosX = -this.state.commands[2] + this.state.commands[3] + (width/2);
         sketch.background(0);
-        // scale = sketch.map(sliderScale.value(),0,255,0.38,6.0);
-        // sketch.push();
-        // sketch.translate(-genXpos * (map.width * 1.2)*scale, -genYpos * (map.height*1.2)*scale);
-        // sketch.image(mapGuide,width/2 - xPos,height/2,(map.width * 0.34),(map.height*0.34));
-        // sketch.image(mapGuide,(map.width*0.51) - xPos,height/2,(map.width * 0.34),(map.height*0.34));
-        // sketch.image(map,width/2,height/2,(map.width * 1.2),(map.height*1.2));
-        // sketch.pop();
-        // sketch.image(mapGuide,20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
-        // sketch.fill(0,0,255,60);
-        // sketch.rect(20 + map.width/2 * 0.05,20 + map.height/2 * 0.05,map.width * 0.05, map.height * 0.05);
-        // let HS = sketch.grid();
+
         sketch.timeGet();
-        // xPos += 0.025;
-        // if(xPos > (map.width*0.34)){
-        //   xPos = 0;
-        // }
-        // sketch.image(map,0,0,map.width * (width/map.width),map.height * (width)/map.width);
-        // sketch.image(mask,0,0,width,height);
 
         sketch.image(background,width/2,height/2,width,height);
-        sketch.image(map,width/2,height/2,map.width * (height/map.height),height);
-        sketch.image(mask,width/2,height/2,map.width * (height/map.height),height);
+        sketch.image(map,width/2,(height/2)-50,map.width * ((height-50)/map.height),height-50);
+        sketch.image(target,tPosX,tPosY,50,50);
       };
 
       sketch.equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);

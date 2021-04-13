@@ -9,22 +9,22 @@ export const parser = (text) => {
         }
         for(let i = 0; i < tokens.length; i++){
           if(tokens[i][0] === 'ARRIBA'){
-            commandsToReturn[0] = parseInt(tokens[i][1]);
+            commandsToReturn[0] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'ABAJO'){
-            commandsToReturn[1] = parseInt(tokens[i][1]);
+            commandsToReturn[1] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'IZQUIERDA'){
-            commandsToReturn[2] = parseInt(tokens[i][1]);
+            commandsToReturn[2] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'DERECHA'){
-            commandsToReturn[3] = parseInt(tokens[i][1]);
+            commandsToReturn[3] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'ANCHO'){
-            commandsToReturn[4] = parseInt(tokens[i][1]);
+            commandsToReturn[4] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'ALTO'){
-            commandsToReturn[5] = parseInt(tokens[i][1]);
+            commandsToReturn[5] = isNaN(parseInt(tokens[i][1])) ? 0 : parseInt(tokens[i][1]);
           }
           if(tokens[i][0] === 'CAMARA'){
             commandsToReturn[6] = parseInt(tokens[i][1]);

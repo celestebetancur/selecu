@@ -1,18 +1,48 @@
-#main-panel-home{
-  display: block;
+
+#main-panel-toggle{
   position: fixed;
-  bottom: 40px;
-  width: 640px;
-  height: 100px;
-  transition: height 0.25s;
+  width: 300px;
+  height: 30px;
+  left: 50%;
+  transform: translate(-50%,0);
+  z-index: 1000;
+  transition: bottom 0.25s;
+}
+
+.toggle-pos-true{
+  bottom: 150px;
+}
+.toggle-pos-false{
+  bottom: 0px;
+}
+
+.panel-display-false{
+  opacity: 0;
+}
+.panel-display-true{
+  opacity: 1;
+}
+.main-panel{
+  position: fixed;
+  bottom: 0px;
+  width: 1000px;
+  height: 160px;
   margin:1px;
   left: 50%;
   transform: translate(-50%,0%);
+  transition: opacity 0.25s;
 }
 
 #main-panel-image{
   position: absolute;
   width: 100%;
+}
+
+.image-profile-button{
+  display: inline;
+  clip-path: circle(50% at 50% 50%);
+  width: 92px;
+  transform: translate(-14px,-6px);
 }
 
 .center{
@@ -25,10 +55,10 @@
   display: inline;
   border-radius: 50%;
   position: fixed;
-  right: 33px;
-  bottom: 2px;
-  width: 60px;
-  height: 60px;
+  right: 50px;
+  bottom: 6px;
+  width: 92px;
+  height: 92px;
   background-color: rgba(255,180,0,100);
 }
 
@@ -43,28 +73,63 @@
 
 .main-panel-a{
   position: fixed;
-  width: 50px;
+  width: 60px;
   z-index: 1000;
   display: inline;
+  top: 60px;
 }
 
 .b-settings{
-  right: 140px;
-  top: 36px;
+  right: 220px;
 }
 .g-settings{
-  right: 200px;
-  top: 36px;
+  right: 310px;
 }
 .c-settings{
-  right: 260px;
-  top: 36px;
+  right: 400px;
 }
 .k-settings{
-  right: 320px;
-  top: 36px;
+  right: 490px;
+}
+.main-panel-b{
+  position: fixed;
+  width: 160px;
+  z-index: 1000;
+  display: inline;
+  top: 64px;
+}
+.e-settings{
+  left: 250px;
+}
+
+.command-textarea {
+ position:fixed;
+ width: 120px;
+ height: 68px;
+ bottom: 8px;
+ left: 44px;
+ background: rgba(0,0,0,0);
+ z-index: 100;
+ font-size: 0.7rem;
+ font-family: 'Carter One';
+ resize: none;
+ text-align: center;
+ border: none;
+ color: rgb(255,255,255);
+ text-shadow: 1px 0 green, 0 1px green;
+}
+
+.command-textarea:focus{
+  outline: none;
 }
 
 #panel-coordenadas{
-  font-family: 'Carter One'
+  font-family: 'Carter One';
+  color: rgb(255,255,255);
+  text-shadow: 2px 0 green, 0 2px green, 1px 0 green, 0 -1px green;
+  font-size: 0.7rem;
+  position: fixed;
+  left: 60px;
+  bottom: 68px;
+  z-index: 1000;
 }

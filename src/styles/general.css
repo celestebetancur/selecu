@@ -28,13 +28,6 @@
   margin: 1rem;
 }
 
-.image-profile-button{
-  display: inline;
-  clip-path: circle(50% at 50% 50%);
-  width: 65px;
-  transform: translate(-14px,-9px);
-}
-
 .input-card {
   position: absolute;
   right: 0rem;
