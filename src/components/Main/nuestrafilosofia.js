@@ -11,8 +11,8 @@ const NuestraFilosofia = () => {
   return (
     <>
       <NavBar />
-      <Container fluid>
-        <Jumbotron>
+      <Container>
+        <Jumbotron className="mt-5">
           <h1>Nuestros principios de aprendizaje</h1>
         </Jumbotron>
         <Card>

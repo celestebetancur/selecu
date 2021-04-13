@@ -50,7 +50,7 @@ const Auth = (props) => {
   const database = firebaseAuth.database();
 
   const fbPersistance = () => {//SESSION
-   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.NONE).then(
+   firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.SESSION).then(
       ()=> {
         setLoginReady(true);
       }
@@ -61,8 +61,8 @@ const Auth = (props) => {
     fbPersistance();
     await firebaseAuth.auth().signInWithEmailAndPassword(email,password).then(
       () => {
-        setAuthUser(true);
         checkLoginUser();
+        setAuthUser(true);
       },
       (e) => {
         setEmailNotFound(e.code);

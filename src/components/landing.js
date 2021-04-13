@@ -21,8 +21,8 @@ const MenuRender = (props) => {
     <>
       <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
         <Container>
-          <Row className="justify-content-center mt-5" lg={7}>
-            <Image src={symbol} style={{width:'30px'}}/>
+          <Row className="justify-content-center" lg={7}>
+            <Image className="mt-5" src={symbol} style={{width:'30px'}}/>
           </Row>
           <Row className="justify-content-center" id="divP5Puzzle" lg={7}>
             <HomePuzzle/>

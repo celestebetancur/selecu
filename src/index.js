@@ -23,7 +23,7 @@ import Home from './components/home'
 import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
-import MilecuFirst from './animations/Milecu/MilecuFirst'
+import PixelArt from './animations/Milecu/pixelArt'
 
 import Profile from './components/Profile'
 
@@ -47,7 +47,7 @@ ReactDOM.render(
             <Route path ="/homementores" component={Mentores} exact />
             <Route path ="/homegestores" component={Gestores} exact />
 
-            <Route path ="/pixelart" component={MilecuFirst} exact />
+            <Route path ="/pixelart" component={PixelArt} exact />
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />
           </Switch>

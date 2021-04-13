@@ -15,9 +15,10 @@ const NavBar = (props) => {
   return (
       <>
         <header>
-          <Navbar bg="dark" expand="sm" variant="dark" fixed="top">
-            <Nav.Item className="ml-5">
-              <Navbar.Brand className="ml-4 mr-4" href="#">
+          <Navbar bg="dark" expand="lg" variant="dark" fixed="top">
+            <Container>
+            <Nav.Item>
+              <Navbar.Brand href="#">
                 <Image src={selecu}/>
               </Navbar.Brand>
             </Nav.Item>
@@ -36,11 +37,12 @@ const NavBar = (props) => {
                 <Nav.Item>
                   <Nav.Link href="#/contacto">CONTACTO</Nav.Link>
                 </Nav.Item>
-                <Nav.Item className="ml-5">
+                <Nav.Item className="ml-1">
                   <Image width="25rem" src={symbol} style={{marginTop:"0.5rem"}}/>
                 </Nav.Item>
               </Nav>
             </Navbar.Collapse>
+            </Container>
           </Navbar>
         </header>
       </>

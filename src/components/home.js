@@ -1,9 +1,9 @@
 import React,  {useState, Suspense} from 'react'
 import { Redirect } from "react-router-dom"
-import {AuthCheck} from 'reactfire'
+import {AuthCheck, StorageImage} from 'reactfire'
 
 import MainScreen from '../animations/MainScreen'
-import Landing from './landing'
+import App from '../App'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
 import bSettings from '../assets/images/mapa/settings/setting-normal.png'
@@ -23,6 +23,7 @@ import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
@@ -33,21 +34,24 @@ const Home = (props) => {
   const [clickedPlace, setClickedPlace] = useState([]);
   const [elapsedTime, setElapsetTime] = useState([]);
 
+  const user = props.userInfo;
+
   return(
     <>
-    {/*<AuthCheck fallback={<Landing />}>*/}
-    <Suspense fallback="cargando...">
-      <MainScreen
-        onClick={setClickedPlace}
-        onTime={setElapsetTime}
-      />
-      <MainPanel
-        clickedPlace={clickedPlace[0]}
-        clickedPos={clickedPlace[1]}
-        delta={elapsedTime}
-      />
-      </Suspense>
-    {/*</AuthCheck>*/}
+    <AuthCheck fallback={<App />}>
+      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+        <MainScreen
+          onClick={setClickedPlace}
+          onTime={setElapsetTime}
+        />
+        <MainPanel
+          clickedPlace={clickedPlace[0]}
+          clickedPos={clickedPlace[1]}
+          delta={elapsedTime}
+          user={user}
+        />
+        </Suspense>
+      </AuthCheck>}
     </>
   );
 }
@@ -68,7 +72,13 @@ const MainPanel = (props) => {
       <Container id="main-panel-home">
         <p id="panle-coordenadas">COORDENADAS</p>
         <Image src={panel} className="center" id="main-panel-image"/>
-          <a href="#/pixelart"><Button id="main-panel-profile-button" >Perfil</Button></a>
+          <a href="#/pixelart">
+            <Button id="main-panel-profile-button" >
+            {props.user.info.profileImage &&
+              <StorageImage className="image-profile-button" storagePath={"/users/"+props.user.access.UI.slice(0,10)+'/picture/perfil.jpg'} />
+            }
+            </Button>
+          </a>
           <a href="#/perfilusuario">
             <Image
               src={settingsSrc} className="main-panel-a b-settings"
@@ -125,7 +135,8 @@ const Instructions = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.loadUserData
+    userData: state.loadUserData,
+    userInfo: state.loadUserInfo
   };
 }
 

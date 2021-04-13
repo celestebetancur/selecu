@@ -65,7 +65,7 @@ class ColorPicker extends React.Component {
 
   render(){
     return (
-      <div className="divColorPicker-border div3">
+      <div className="divColorPicker-border">
         <div id="divColorPicker" >
           <div id="slidersColorPicker"></div>
         </div>

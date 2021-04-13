@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Landing from '../landing'
+import App from '../../App'
 import SignOut from '../SignOut'
 
 import { AuthCheck } from 'reactfire'
@@ -14,7 +14,7 @@ const Mentores = (props) => {
   },[props.userInfo]);
 
   return(
-    <AuthCheck fallback={<Landing />}>
+    <AuthCheck fallback={<App />}>
     {props.userInfo !== {} &&
       <div className="card selectCard" style={{width: "25rem"}}>
         <div className="card-body">

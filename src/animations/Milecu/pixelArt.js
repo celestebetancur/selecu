@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import p5 from 'p5';
-import UploadPhoto from '../../components/uploadPhoto.js'
+import UploadPhoto from '../../components/uploadPhoto'
 
-import ColorPicker from './colorPicker.js'
+import ColorPicker from './colorPicker'
+import CommandsPixelArt from './commandsPixelArt'
+
+import {AuthCheck} from 'reactfire'
 
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
+import Spinner from 'react-bootstrap/Spinner'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Nav from 'react-bootstrap/Nav'
 import '../../styles/milecu.scss'
 
 let s = undefined;
@@ -14,31 +21,54 @@ let s = undefined;
 class PixelArt extends React.Component {
 
   state = {
+    commands: [],
+    setGrid: false,
+    camaraState: false,
+    usePhoto: false,
     color:{},
     image: {},
     ready: false,
-    menu: false,
-    url: ''
+    url: '',
+    drawing: false,
+    upload: false
   };
 
   setColor = (value) => {
     this.setState({color:value});
   }
-
-  writePhoto = () => {
-    this.setState({ready:!this.state.ready});
-    this.setState({menu:!this.state.menu});
+  setCommands = (value) => {
+    this.setState({commands:value});
   }
-  changeMenu = () => {
-    this.setState({menu:!this.state.menu});
+  reboot = () => {
+    this.setState({camaraState:true},()=>{
+      this.setState({usePhoto:false});
+      this.setState({url:''});
+      this.setState({drawing:false});
+    });
+  }
+  usePhotoToDraw = () => {
+    this.setState({usePhoto:true})
+    this.setState({camaraState:false});
+  }
+  setGrid = () => {
+    this.setState({setGrid:!this.state.setGrid});
+    if(this.state.setGrid){
+      this.setState({commands:[0,0,0,0,0,0,0,0,1]});
+    }
+    if(!this.state.setGrid){
+      this.setState({commands:[0,0,0,0,0,0,0,0,0]});
+    }
+  }
+  setReady = () => {
+    this.setState({ready:true});
   }
 
   componentDidMount(){
 
     const code = (sketch) => {
 
-      let [width,height,w,h]  = [400,400,400,640];
-      let [x,y] = [0,0];
+      let [width,height,w,h]  = [400,400,600,400];
+      let [x,y] = [-100,0];
       let pixSize = 5;
       let paintState = true;
       let cnv;
@@ -52,36 +82,40 @@ class PixelArt extends React.Component {
       let imageCaptured = false;
 
       sketch.setup = () => {
-        cnv = sketch.createCanvas(width, height);
-        cnv.parent('divPixelArt');
-        cnv.id('canvasPixelArt');
-
-        capture = sketch.createCapture(sketch.VIDEO);
-        capture.hide();
+        capture = sketch.createCapture(sketch.VIDEO, () => {
+          cnv = sketch.createCanvas(width, height);
+          cnv.parent('divPixelArt');
+          cnv.id('canvasPixelArt');;
+          fillColorGrid(pixSize);
+        });
         capture.size(400, 400);
-        fillColorGrid(pixSize);
+        capture.hide();
       };
 
       sketch.draw = () => {
-        if(gridStep(this.props.commands[7]) !== pixSize){
-          pixSize = gridStep(this.props.commands[7]);
-          fillColorGrid(pixSize);
-        }
-        createBlob();
         sketch.background(255);
-        w = this.props.commands[4];
-        h = this.props.commands[5];
-        x = -this.props.commands[2] + this.props.commands[3];
-        y = -this.props.commands[0] + this.props.commands[1];
-        // sketch.background(255);
-        if(this.props.commands[6] === 0){
+        sketch.image(captured, x, y, w, h);
+        if(this.state.camaraState){
+          captured = capture.get();
+        }
+        if(!this.state.camaraState){
+          sketch.fill(255);
+          sketch.rect(0,0,400,400);
+        }
+        if(this.state.usePhoto){
           sketch.image(captured, x, y, w, h);
         }
-        if(this.props.commands[6] === 1){
-          captured = capture.get();
-          sketch.image(capture, x, y, w, h);
+        if(gridStep(this.state.commands[7]) !== pixSize){
+          pixSize = gridStep(this.state.commands[7]);
+          fillColorGrid(pixSize);
         }
-        grid(this.props.commands[8]);
+        sketch.image(capture, -400, 0, 400 , 400);
+        grid(this.state.commands[8]);
+        createBlob();
+        if(this.state.drawing){
+          sketch.fill(255);
+          sketch.rect(0,0,400,400);
+        }
       };
 
       sketch.mousePressed = () => {
@@ -92,18 +126,16 @@ class PixelArt extends React.Component {
           colorGrid[temp] = this.state.color;
         }
         if(!paintState){
-          colorGrid[temp] = {r:255,g:200,b:0,o:80};
+          colorGrid[temp] = {r:255,g:255,b:255,o:0};
         }
       }
 
       sketch.keyPressed = () => {
-        // console.log(sketch.keyCode, sketch.CONTROL);
         if(sketch.keyCode === sketch.SHIFT){
           paintState = false;
         }
         if(sketch.keyCode === sketch.CONTROL){
           this.setState({image:canvasFrame});
-          console.log(this.state.image);
         }
       }
       sketch.keyReleased = () => {
@@ -114,13 +146,14 @@ class PixelArt extends React.Component {
 
       const createBlob = () => {
         if(this.state.ready){
-          captured = capture.get();
+          // captured = capture.get();
           url = cnv.canvas.toDataURL('image/jpeg', 1.0);
           cnv.canvas.toBlob((blob)=>{
             canvasFrame = blob;
             this.setState({image:blob});
             this.setState({ready:false});
             this.setState({url:url});
+            this.setState({drawing:true});
           },'image/jpeg', 0.95);
         }
       }
@@ -193,7 +226,7 @@ class PixelArt extends React.Component {
         }
       }
     }
-    s = new p5(code,'defaultP5');
+    s = new p5(code);
   }
 
   componentWillUnmount(){
@@ -201,40 +234,72 @@ class PixelArt extends React.Component {
   }
   render(){
     return (
-      <>
-        <div id="divPixelArt" className="div1">
-        </div>
-        <ColorPicker
-          setColor={this.setColor}
-        />
-        {this.state.menu &&
-          <>
-            <Container>
-              <Button variant="info" className="mr-3">Descargar a mi equipo</Button>
-              <Button variant="info" onClick={this.writePhoto}>Volver</Button>
-              <UploadPhoto
-                image={this.state.image}
+      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+        <AuthCheck>
+          <Container fluid>
+            <Row />
+              <Nav>
+                {!this.state.usePhoto &&
+                  <Nav.Item>
+                    <Button variant="info" onClick={() => this.setState({camaraState:!this.state.camaraState})}>Cámara</Button>
+                  </Nav.Item>
+                }
+                {this.state.usePhoto &&
+                  <>
+                    <Nav.Item>
+                      <Button variant="info" onClick={() =>this.setReady()}>Dibujo listo</Button>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Button variant="info" onClick={() => this.reboot()}>Eliminar toma</Button>
+                    </Nav.Item>
+                  </>
+                }
+                <Nav.Item>
+                  <Button variant="info" onClick={() => this.setGrid()}>Guía de dibujo</Button>
+                </Nav.Item>
+                {this.state.camaraState &&
+                  <Nav.Item>
+                    <Button variant="info" onClick={() => this.usePhotoToDraw()}>Tomar foto</Button>
+                  </Nav.Item>
+                }
+                <Nav.Item>
+                  <Nav.Link href="#/home" variant="info">Regresar al mapa</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            <Row>
+              <Col>
+                <div id="divPixelArt"></div>
+              </Col>
+              {/*<Col>
+              <CommandsPixelArt
+                setCommands={this.setCommands}
               />
-            </Container>
-            <Container className="div3">
-              <Container className="preview-avatar">
-                <Image id="preview-avatar" src={this.state.url}/>
-              </Container>
-            </Container>
-          </>
-        }
-        {!this.state.menu &&
-          <>
-            <Container>
-              <Container>
-                <Button className="mr-3" variant="warning" onClick={this.writePhoto}>Listo</Button>
-              </Container>
-            </Container>
-          </>
-        }
-      </>
+              </Col>*/}
+              <Col>
+                <Row>
+                  <ColorPicker
+                    setColor={this.setColor}
+                  />
+                </Row>
+                <Row>
+                {this.state.url !== '' &&
+                  <Container>
+                    <Image id="preview-avatar" src={this.state.url} />
+                    <UploadPhoto
+                      image={this.state.image}
+                    />
+                  </Container>
+                }
+                </Row>
+              </Col>
+            </Row>
+          </Container>
+        </AuthCheck>
+      </Suspense>
     );
   }
 }
+
+
 
 export default PixelArt;

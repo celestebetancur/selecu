@@ -8,8 +8,8 @@ const SobreNosotros = () => {
   return (
     <>
       <NavBar/>
-      <Container fluid>
-        <Jumbotron>
+      <Container>
+        <Jumbotron className="mt-5">
           <h1>Sobre Nosotros</h1>
         </Jumbotron>
         <Card>

@@ -9,8 +9,8 @@ const Contacto = () => {
   return (
     <>
       <NavBar />
-      <Container fluid>
-        <Jumbotron>
+      <Container>
+        <Jumbotron className="mt-5">
           <h1>¡Nos encantaría saber de ti!</h1>
         </Jumbotron>
         <Card>

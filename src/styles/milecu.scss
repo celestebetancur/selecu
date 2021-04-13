@@ -11,7 +11,7 @@
 }
 
 #divPixelArt{
-  content: '';
+  display: inline-block;
   position: relative;
   width: 416px;
   height: 416px;
@@ -134,25 +134,8 @@ input[type=range]::-webkit-slider-thumb {
   border: 10px ridge rgb(255,180,0);
   border-radius: 0.8rem;
 }
-.preview-avatar{
-  position: relative;
-  top: 50%;
-}
-
-.parent {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  overflow-y: hidden;
-}
 
 .mainPixelArtContainer{
   background-repeat: no-repeat;
   background-size:cover;
 }
-
-.div1 { grid-area: 1 / 1 / 2 / 2; }
-.div2 { grid-area: 1 / 2 / 2 / 3; }
-.div3 { grid-area: 1 / 3 / 2 / 4; }
