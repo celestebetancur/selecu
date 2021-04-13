@@ -2,6 +2,7 @@ import React, {useState, useEffect, Suspense} from 'react'
 import { useFirebaseApp, StorageImage } from 'reactfire'
 import SignOut from './SignOut'
 import ProfileMenu from './ProfileMenu'
+import App from '../App'
 
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
@@ -68,11 +69,11 @@ const Profile = (props) => {
 
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-      <AuthCheck>
+      <AuthCheck fallback={<App />}>
         <Container fluid>
           <Card style={{width: "33rem",}}>
           {profileImage &&
-            <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} />
+            <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
           }
             <Card.Body>
               <Card.Title>Mi perfil</Card.Title>

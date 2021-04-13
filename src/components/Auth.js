@@ -4,6 +4,8 @@ import Home from './home'
 import Landing from './landing'
 import Gestores from './Gestores'
 import Mentores from './Mentores'
+import FallbackAccessDenied from './fallbackAccessDenied'
+import Blackhole from './Blackhole'
 import 'firebase/auth'
 import firebaseAuth from "firebase/app";
 import { useUser } from 'reactfire'
@@ -97,7 +99,6 @@ const Auth = (props) => {
   }
   const checkLoginUser = () => {
     if(user.data !== null){
-      props.loadUserData(user);
       database.ref().child("/users/"+user.data.uid.slice(0,10)).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
@@ -108,6 +109,7 @@ const Auth = (props) => {
           if(props.roll === registry.year || access.Mentores || access.Gestores || access.Admin){
             setLoggedUser(true);
             setUserAccess(true);
+            props.loadUserData(user);
           }
         }
       );
@@ -146,21 +148,52 @@ const Auth = (props) => {
     setSeePass(!seePass);
   }
 
-  if(userAccess){
-    window.open("#/home",'_self');
-    return <></>;
+  if(loggedUser){
+    if(userAccess){
+      return (
+        <Blackhole
+          roll="Aprendiz"
+        />
+      );
+    }
+    if(!userAccess){
+      return (
+        <FallbackAccessDenied
+          roll="Aprendiz"
+        />
+      );
+    }
   }
 
-  if(adminAccess){
-    window.open("#/homegestores",'_self');
-    return <></>;
-  }
-  if(mentorAccess){
-    window.open("#/homementores",'_self');
-    return <></>;
+  if(loggedAdmin){
+    if(!adminAccess){
+      return(
+        <FallbackAccessDenied
+          roll="Gestor"
+        />
+      );
+    }
+    if(adminAccess){
+      window.open("#/homegestores",'_self');
+      return <></>;
+    }
   }
 
-  if(props.roll === 'Gestores' && !adminAccess){
+  if(loggedMentor){
+    if(!mentorAccess){
+      return(
+        <FallbackAccessDenied
+          roll="Mentor"
+        />
+      );
+    }
+    if(mentorAccess){
+      window.open("#/homementores",'_self');
+      return <></>;
+    }
+  }
+
+  if(props.roll === 'Gestores' && !loggedAdmin){
     return(
       <>
         <LoginCard
@@ -178,7 +211,7 @@ const Auth = (props) => {
     );
   }
 
-  if(props.roll === 'Mentores' && !mentorAccess){
+  if(props.roll === 'Mentores' && !loggedMentor){
     return(
       <>
         <LoginCard
@@ -196,7 +229,7 @@ const Auth = (props) => {
     );
   }
 
-  if(props.roll !== 'Gestores' && props.roll !== 'Mentores' && !userAccess){
+  if(props.roll !== 'Gestores' && props.roll !== 'Mentores' && !loggedUser){
     return (
       <>
         <LoginCard

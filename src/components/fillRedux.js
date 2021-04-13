@@ -4,9 +4,7 @@ import {useUser, useDatabase} from 'reactfire'
 import {connect} from 'react-redux'
 import {loadUserInfo, userRollPass, loadUserData} from '../actions'
 
-import Home from './home'
-import Mentores from './Mentores'
-import Gestores from './Gestores'
+import Blackhole from './Blackhole'
 
 import Spinner from 'react-bootstrap/Spinner'
 import Container from 'react-bootstrap/Container'
@@ -47,24 +45,20 @@ const FillRedux = (props) => {
     case 0:
       return(
         <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-          <Spinner animation="border" variant="primary" />
+          <Container className="center">
+            <Spinner animation="border" variant="primary" />
+          </Container>
         </Suspense>
       );
       break;
     case 1:
-      return(
-        <Gestores />
-      );
+      return <Blackhole roll="Gestores"/>;
       break;
     case 2:
-      return(
-        <Mentores />
-      );
+      return <Blackhole roll="Mentores"/>;
       break;
     case 3:
-      return(
-        <Home />
-      );
+      return <Blackhole roll="Aprendices" />
       break;
   }
 }

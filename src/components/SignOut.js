@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import App from '../App'
 import Button from 'react-bootstrap/Button'
 import 'firebase/auth'
 import { useFirebaseApp} from 'reactfire'
@@ -12,24 +13,26 @@ const SignOut = (props) => {
   const firebase = useFirebaseApp();
 
   const signOutFB = async () =>{
+
     window.alert("Estás por salir de SELECU");
     await firebase.auth().signOut().then(
       () => {
         setSignOutCompleted(true);
+        sessionStorage.clear();
+        localStorage.clear();
+        props.loginFirstStage(false);
+        props.loadUserData({});
+        props.userRollPass(null);
+        window.open("#/","_self");
       }
     );
   }
 
-  useEffect(()=>{
     if(signOutCompleted){
-      sessionStorage.clear();
-      localStorage.clear();
-      props.loginFirstStage(false);
-      props.loadUserData({});
-      props.userRollPass(null);
-      window.open('#','_self');
+      return(
+        <App />
+      );
     }
-  },[signOutCompleted]);
 
     return (
       <Button

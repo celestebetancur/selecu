@@ -39,9 +39,8 @@ const Home = (props) => {
   const user = props.userInfo;
 
   return(
-    <>
-    <AuthCheck fallback={<App />}>
-      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+    <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+      <AuthCheck fallback={<App />}>
         <MainScreen
           onTime={setElapsetTime}
           commands={commandForTarget}
@@ -51,9 +50,8 @@ const Home = (props) => {
           user={user}
           commandForTarget={(val) => setCommandsForTarget(val)}
         />
-        </Suspense>
       </AuthCheck>
-    </>
+    </Suspense>
   );
 }
 
