@@ -1,3 +1,37 @@
+@import "mixins";
+
+.opacity-fadeInOut{
+  animation: fadeInOut 7s;
+  overflow: hidden;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.opacity-false{
+  opacity:1;
+  transition: 1s;
+}
+
+.opacity-true{
+  opacity:0;
+  transition: opacity 5s;
+}
+
+#bh-img{
+  opacity:1;
+  width: 25%;
+  clip-path: polygon(52% 0 , 11% 35%, 11% 99% , 29% 64%, 34% 99%, 52% 63%, 61% 99%, 74% 63%, 90% 100%, 90% 32%);
+}
 
 .nav-item{
   margin-right: 80px;
@@ -32,17 +66,15 @@
   }
 }
 
-$phone-width: 480px;
-$desktop-width: 1024px;
-
-@mixin phone {
-  @media (min-width: #{$phone-width}) and (max-width: #{$desktop-width - 1px}) {
-
-  }
-}
-
-@mixin desktop {
-  @media (min-width: #{$desktop-width}) {
-
-  }
+.landing-button-popover{
+  display: inline;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,0);
+  border: none;
+  width: 0.25rem;
+  height: 2rem;
+  left: 16rem;
+  bottom: 1rem;
 }

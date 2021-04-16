@@ -12,16 +12,16 @@ import Container from 'react-bootstrap/Container'
 
 const Blackhole = (props) => {
   const [status, setStatus] = useState(false);
-
+  const [opacity, setOpacity] = useState(false);
 
   useEffect(()=>{
-    setTimeout(() => setStatus(true),5000);
+    setTimeout(() => setOpacity(true),1000);
+    setTimeout(() => setStatus(true),6000);
   },[]);
 
-  console.log(status, props.roll);
-
   if(status){
-    if(props.roll === "Aprendices"){
+    console.log(props.roll)
+    if(props.roll === "Aprendiz"){
       window.open("#/home",'_self');
       return <></>;
     }
@@ -36,30 +36,29 @@ const Blackhole = (props) => {
   }
 
     return (
-      <Container id="canvasParentBH" fluid>
+      <Container id="canvasParentBH" className='opacity-fadeInOut' fluid>
         <Shader
           vert={vert}
           frag={frag}
         />
         {props.userInfo.info.profileImage &&
           <Anime
-          easing="easeOutElastic"
-          loop={false}
-          duration={5000}
-          direction="alternate"
-          delay={1000}
-          scale={[3.0, 0.0]}
-          rotate={[0.0,360.0]}
-        >
+            easing="easeOutElastic"
+            loop={false}
+            duration={3000}
+            direction="alternate"
+            delay={500}
+            scale={[1.0,3.0, 0.0]}
+            rotate={[0.0,360.0]}
+          >
           <StorageImage
             id="bh-img"
-            className="bh-img"
-            storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'}
+            storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'}
             alt="Imagen de perfíl"
-            style={{clipPath: "circle(50% at 50% 50%)"}}
             />
           </Anime>
         }
+
       </Container>
     );
 }

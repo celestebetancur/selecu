@@ -39,7 +39,7 @@ const FillRedux = (props) => {
       }
       setReduxReady(true);
     }
-  },[user]);
+  },[user.data]);
 
   switch(homeSelect){
     case 0:

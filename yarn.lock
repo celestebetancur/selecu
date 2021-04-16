@@ -3801,6 +3801,11 @@ commander@^4.1.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
+commander@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+
 common-tags@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.0.tgz"
@@ -9945,6 +9950,11 @@ react-bootstrap@^1.5.2:
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
+react-cool-img@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/react-cool-img/-/react-cool-img-1.2.9.tgz#33fc265d973b7b75b0dfe97d49370cf32da34230"
+  integrity sha512-bDrscBQRMUqv1fmyiEmIUHkLeZp4jWlDej4z0wReXD/xiuInymu36SmESs3aiA5eM2ku3vXQjifpimN+IBr+0w==
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-11.0.4.tgz"
@@ -12742,6 +12752,14 @@ yargs@^15.4.1:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+yarn-upgrade-all@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/yarn-upgrade-all/-/yarn-upgrade-all-0.5.4.tgz#3c00677957739187a30a4ee4824c46f43996c173"
+  integrity sha512-XaFO3Yv6cXEBizancbRxJT3fdgHfiESNJoV/czWzXRXN2CZBk61IQIFbmeMRE6HhXcBGd+rVmnUg5Csw4axdDA==
+  dependencies:
+    chalk "^4.1.0"
+    commander "^5.1.0"
 
 yocto-queue@^0.1.0:
   version "0.1.0"

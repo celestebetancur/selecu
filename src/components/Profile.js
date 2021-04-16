@@ -1,7 +1,6 @@
 import React, {useState, useEffect, Suspense} from 'react'
 import { useFirebaseApp, StorageImage } from 'reactfire'
 import SignOut from './SignOut'
-import ProfileMenu from './ProfileMenu'
 import App from '../App'
 
 import Container from 'react-bootstrap/Container'
@@ -11,6 +10,8 @@ import Spinner from 'react-bootstrap/Spinner'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
+
+import containerBack from '../assets/images/fondo-colors.png'
 
 import {AuthCheck} from 'reactfire'
 
@@ -71,55 +72,59 @@ const Profile = (props) => {
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
         <Container fluid>
-          <Card style={{width: "33rem",}}>
+          <Card style={{width: "33rem"}}>
           {profileImage &&
             <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
           }
             <Card.Body>
               <Card.Title>Mi perfil</Card.Title>
               <hr />
-              <div className="text-spaced-5">
+              <div className="mb-5 mt-5">
                 <p className="card-text">Actualiza tus datos</p>
               </div>
               <form>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Cómo me gusta que me digan</label>
+                  <label className="mb-3">Cómo me gusta que me digan</label>
                   <input type="text" className="input" value={nickname} required onChange={e => setNickName(e.target.value)}/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Mi nombre completo</label>
+                  <label className="mb-3">Mi nombre completo</label>
                   <input type="text" className="input" value={username} disabled/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Correo de mi responsable</label>
+                  <label className="mb-3">Correo de mi responsable</label>
                   <input type="text" className="input" value={parentsEmail} disabled/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Mi grado</label>
+                  <label className="mb-3">Mi grado</label>
                   <input type="text" className="input" value={level} disabled/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Mi colegio</label>
+                  <label className="mb-3">Mi colegio</label>
                   <input type="text" className="input" value={school} disabled/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Día favorito</label>
+                  <label className="mb-3">Día favorito</label>
                   <input type="text" className="input" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">El animal que más me gusta</label>
+                  <label className="mb-3">El animal que más me gusta</label>
                   <input type="text" className="input" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
                 </div>
                 <div style={{display:"block"}}>
-                  <label className="text-spaced-1">Color que más me gusta</label>
+                  <label className="mb-3">Color que más me gusta</label>
                   <input type="text" className="input"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
                 </div>
               </form>
               <Button className="mr-2" variant="info" onClick={writeInfo}>¡Actualizate!</Button>
-              <a href="#/home"><Button className="mr-2" variant="info">Regresar al mapa</Button></a>
-              <SignOut
-                text="Salir"
-               />
+              {props.userRoll < 4 &&
+                <>
+                  <a href="#/home"><Button className="mr-2" variant="info">Regresar al mapa</Button></a>
+                  <SignOut
+                    text="Salir"
+                   />
+                </>
+              }
             </Card.Body>
           </Card>
         </Container>
@@ -130,7 +135,8 @@ const Profile = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.loadUserData
+    userData: state.loadUserData,
+    userRoll: state.userRollPass
   };
 }
 

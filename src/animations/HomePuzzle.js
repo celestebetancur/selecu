@@ -19,7 +19,6 @@ import tierra from '../assets/images/landing/tierra.png'
 import fuego from '../assets/images/landing/fuego.png'
 import aire from '../assets/images/landing/aire.png'
 import tablero from '../assets/images/landing/tableroBack.png'
-import key from '../assets/images/landing/key.png'
 
 import brickAudio from '../assets/audio/brick.m4a'
 
@@ -30,9 +29,9 @@ class HomePuzzle extends React.Component {
   state = {
     play: false,
     passKeys: [
-      [3,2,1,0], //Primero
+      [0,1,2,3], //Primero
       [0,1,3,2], //Segundo
-      [0,1,2,3]  //tercero
+      [3,2,1,0]  //tercero
     ]
   };
 
@@ -50,7 +49,6 @@ class HomePuzzle extends React.Component {
       let centro;
       let pngFichas = [];
       let pngHotspots = [];
-      let keyMentors;
       let back;
       let end = false;
 
@@ -106,7 +104,6 @@ class HomePuzzle extends React.Component {
         pngHotspots.push(sketch.loadImage(fuego));
         pngHotspots.push(sketch.loadImage(tierra));
 
-        keyMentors = sketch.loadImage(key);
       }
 
       sketch.setup = () => {
@@ -156,7 +153,6 @@ class HomePuzzle extends React.Component {
           }
         }
         sketch.pop();
-        sketch.image(keyMentors,20, cnv.height - 55,12,25);
       };
 
       sketch.windowResized = () => {
@@ -351,11 +347,10 @@ class HomePuzzle extends React.Component {
         }
         if(c === 4){
           this.props.userRollPass(id);
-          cnv.style('opacity',0);
-          cnv.style('transition','0.5s');
-          setTimeout(()=> end = !end,500);
-          if(end){
-            this.introPassed();
+          if(this.props.userRoll !== null){
+            cnv.style('opacity',0);
+            cnv.style('transition','0.5s');
+            setTimeout(() => this.introPassed(),600);
           }
         }
       }

@@ -16,9 +16,9 @@ const App = (props) => {
 
   if(props.firstStageStatus){
     return (
-      <AuthCheck fallback={<Login/>}>
-        <FillRedux />
-      </AuthCheck>
+      <Login
+        roll={props.userRoll}
+      />
     );
   }
 
@@ -34,7 +34,7 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     firstStageStatus: state.loginFirstStage,
-    userData: state.loadUserData
+    userRoll: state.userRollPass
   };
 }
 

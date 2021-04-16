@@ -25,7 +25,7 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import '../styles/general.css'
+import '../styles/general.scss'
 
 const Auth = (props) => {
 
@@ -47,6 +47,7 @@ const Auth = (props) => {
   const [loginReady, setLoginReady] = useState(false);
   const [seePass, setSeePass] = useState(false);
   const [authUser, setAuthUser] = useState(false);
+  const [opacity, setOpacity] = useState(false);
 
   const user = useUser();
   const database = firebaseAuth.database();
@@ -107,9 +108,13 @@ const Auth = (props) => {
           let registry = snap.registry;
           let info = snap.info;
           if(props.roll === registry.year || access.Mentores || access.Gestores || access.Admin){
-            setLoggedUser(true);
+            setTimeout(()=>setLoggedUser(true),5000);
+            setOpacity(true);
             setUserAccess(true);
             props.loadUserData(user);
+          }
+          if(props.roll !== registry.year){
+            setEmailNotFound(`Te registraron en: ${registry.year}`);
           }
         }
       );
@@ -242,6 +247,7 @@ const Auth = (props) => {
           emailNotFound={emailNotFound}
           seePass={seePass}
           welcomeText={`Acceso para ${props.roll}`}
+          opacity={opacity}
         />
       </>
     );
@@ -250,11 +256,12 @@ const Auth = (props) => {
 
 const LoginCard = (props) => {
   return(
-    <Container className="bg-img" fluid style={{backgroundImage:`url(${background})`}}>
+    <Container className={`bg-img opacity-${props.opacity}`} fluid style={{backgroundImage:`url(${background})`}}>
       <Container>
           <Card id="login-card" style={{backgroundImage:`url(${logCard})`}}>
             <Card.Body>
               <Card.Title className="text-center">{props.welcomeText}</Card.Title>
+              <Card.Subtitle className="text-center">{props.emailNotFound}</Card.Subtitle>
               <InputGroup className="mb-5 login-input-email" size="lg">
                 <InputGroup.Prepend className="email-selecu">
                   <InputGroup.Text id="inputGroup-sizing-lg"></InputGroup.Text>

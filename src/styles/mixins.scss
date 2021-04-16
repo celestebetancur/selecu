@@ -1,0 +1,35 @@
+$phone-width: 480px;
+$desktop-width: 1024px;
+
+@mixin phone {
+  @media (min-width: #{$phone-width}) and (max-width: #{$desktop-width - 1px}) {
+
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+
+  }
+}
+
+@mixin background-pos {
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-attachment:scroll;
+  background-size:cover;
+}
+
+@mixin padding-reset{
+  padding: 0px;
+}
+
+@mixin pm-reset{
+  padding: 0px;
+  margin: 0px;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+}

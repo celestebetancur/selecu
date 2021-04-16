@@ -23,6 +23,8 @@ class Shader extends React.Component {
         cnv.position(0,0);
         sketch.noStroke();
         cnv.style('z-index','-1000');
+        cnv.parent('canvasParentBH');
+        cnv.id('shader-canvas');
       }
       sketch.draw = () => {
         shader.setUniform('u_resolution', [w, h]);

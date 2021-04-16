@@ -41,5 +41,5 @@ vec2 kaleid(vec2 _st, float nSides) {
 		vec3 canvas = vec3(c.x,c.y,c.z);
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
 		vec4 hydra = osc(kaleid(st, 3.), 4., 0.4, 8.);
-    gl_FragColor = vec4(canvas.x*hydra.x,canvas.y*hydra.y,hydra.z*canvas.z,.9);
+    gl_FragColor = vec4(hydra.x,hydra.y,hydra.z*canvas.z,.9);
   }

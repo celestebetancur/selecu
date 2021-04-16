@@ -1,24 +1,13 @@
+@import "mixins";
+
 .selectCard {
   display: relative;
 }
 
-.text-spaced-6 {
-  margin-bottom: 6rem;
-}
-.text-spaced-5 {
-  margin-bottom: 5rem;
-}
-.text-spaced-4 {
-  margin-bottom: 4rem;
-}
-.text-spaced-3 {
-  margin-bottom: 3rem;
-}
-.text-spaced-2 {
-  margin-bottom: 2rem;
-}
-.text-spaced-1 {
-  margin-bottom: 1rem;
+.bg-img{
+  @include background-pos;
+  height: 100%;
+  position: fixed;
 }
 
 .image-profile{
@@ -64,22 +53,6 @@
   margin-left: 16%;
 }
 
-.bg-img{
-  background-repeat:no-repeat;
-  background-position:center bottom;
-  background-attachment:scroll;
-  background-size:cover;
-  height: 100%;
-  position: fixed;
-}
-
-.bg-setuo{
-  background-repeat:no-repeat;
-  background-position:center bottom;
-  background-attachment:scroll;
-  background-size:cover;
-}
-
 .background-opacity-0{
   background-color: rgba(255,255,255,0);
 }
@@ -106,10 +79,10 @@
 }
 
 .login-input-email{
-  top:25%;
+  top:6rem;
 }
 .login-input-pwd{
-  top:26%;
+  top:7rem;
 }
 
 #login-buttons{
@@ -117,10 +90,6 @@
   bottom: 10%;
   display: flex;
   padding-left: 0px;
-}
-
-.rounded {
-  border-radius: 1rem;
 }
 
 .input{

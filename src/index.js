@@ -24,14 +24,15 @@ import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
 import PixelArt from './animations/Milecu/pixelArt'
-
+import Blackhole from './components/Blackhole'
 import Profile from './components/Profile'
+
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={config}>
-    <React.StrictMode>
+    {/*<React.StrictMode>*/}
       <Provider store={store}>
         <HashRouter basename={process.env.PUBLIC_URL}>
           <Switch>
@@ -50,10 +51,13 @@ ReactDOM.render(
             <Route path ="/pixelart" component={PixelArt} exact />
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />
+
+
+            <Route path ="/test" component={Blackhole} exact />
           </Switch>
         </HashRouter>
       </Provider>
-    </React.StrictMode>
+    {/*</React.StrictMode>*/}
   </FirebaseAppProvider>,
   document.getElementById('root')
 );

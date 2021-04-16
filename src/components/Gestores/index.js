@@ -10,7 +10,7 @@ import List from './List'
 
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
-import '../../styles/gestores.css'
+import '../../styles/gestores.scss'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../../actions'

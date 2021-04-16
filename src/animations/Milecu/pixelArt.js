@@ -270,11 +270,6 @@ class PixelArt extends React.Component {
               <Col>
                 <div id="divPixelArt"></div>
               </Col>
-              {/*<Col>
-              <CommandsPixelArt
-                setCommands={this.setCommands}
-              />
-              </Col>*/}
               <Col>
                 <Row>
                   <ColorPicker

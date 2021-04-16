@@ -7,8 +7,6 @@ import targ from '../assets/images/mapa/target.png'
 
 import {parser} from './commands.js'
 
-import '../styles/home.css'
-
 import Container from 'react-bootstrap/Container'
 
 let s = undefined;
@@ -26,9 +24,9 @@ class MainScreen extends React.Component {
   onClick = (value) => {
     this.props.onClick(value);
   }
-  onTime = (value) => {
-    this.props.onTime(value);
-  }
+  // onTime = (value) => {
+  //   this.props.onTime(value);
+  // }
 
   componentDidMount(){
 
@@ -91,7 +89,7 @@ class MainScreen extends React.Component {
         tPosX = -this.state.commands[2] + this.state.commands[3] + (width/2);
         sketch.background(0);
 
-        sketch.timeGet();
+        // sketch.timeGet();
 
         sketch.image(background,width/2,height/2,width,height);
         sketch.image(map,width/2,(height/2)-50,map.width * ((height-50)/map.height),height-50);
@@ -115,13 +113,13 @@ class MainScreen extends React.Component {
         }
       };
 
-      sketch.timeGet = () => {
-        elapsedTime = Math.floor(sketch.millis()/1000.0);
-        seconds = elapsedTime%60;
-        minutes = Math.floor(elapsedTime/60);
-        hours = Math.floor(minutes/60);
-        this.onTime([hours,minutes,seconds]);
-      }
+      // sketch.timeGet = () => {
+      //   elapsedTime = Math.floor(sketch.millis()/1000.0);
+      //   seconds = elapsedTime%60;
+      //   minutes = Math.floor(elapsedTime/60);
+      //   hours = Math.floor(minutes/60);
+      //   this.onTime([hours,minutes,seconds]);
+      // }
 
       sketch.mousePressed = () => {
         let x = sketch.mouseX;
