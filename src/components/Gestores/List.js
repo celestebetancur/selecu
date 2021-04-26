@@ -14,7 +14,7 @@ const List = (props) => {
   const names = keys.map((name)=>{
     if(fullInfo[users[name]['UI']]['access'][typeOfUser]){
       return(
-        <Container>
+        <Container key={name}>
           <Card style={{width: "18rem"}}>
             <Card.Body>
               <a onClick={() => setUserToDisplay(name)}><h6 className="card-text">{name}</h6></a>

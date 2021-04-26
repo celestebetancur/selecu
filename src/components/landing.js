@@ -42,7 +42,6 @@ const Landing = (props) => {
       <Container className="h-100 mh-100" fluid>
         <Row className="pt-4">
           <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
-            <Container>
               <Row className="justify-content-center" lg={7}>
                 <Img className="mt-5" src={symbol} style={{width:'30px'}}/>
               </Row>
@@ -56,18 +55,16 @@ const Landing = (props) => {
                     <Popover id='popover-positioned-left'>
                       <Popover.Title as="h3">Ingreso para Mentores y Gestores</Popover.Title>
                       <Popover.Content>
-                        <Button variant="warning" className="mr-3 ml-3" onClick={()=> keyMentors()}>Mentores</Button>
-                        <Button variant="warning" onClick={()=> keyAdmin()}>Gestores</Button>
+                        <Button variant="warning" className="mr-3 ml-3" onClick={keyMentors}>Mentores</Button>
+                        <Button variant="warning" onClick={keyAdmin}>Gestores</Button>
                       </Popover.Content>
                     </Popover>
                   }
                   >
-                  <Button variant="secondary" className="landing-button-popover" style={{backgroundImage:`url(${key})`}}>
-                  </Button>
+                  <Button variant="secondary" className="landing-button-popover" style={{backgroundImage:`url(${key})`}} />
                 </OverlayTrigger>
               </Row>
             </Container>
-          </Container>
         </Row>
       </Container>
     </>

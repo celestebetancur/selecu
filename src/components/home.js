@@ -16,10 +16,6 @@ import Spinner from 'react-bootstrap/Spinner'
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
-import '../styles/gridsystem.scss'
-
-let s = undefined;
-
 const Home = (props) => {
   const [commandForTarget, setCommandsForTarget] = useState(' ');
 
@@ -28,11 +24,11 @@ const Home = (props) => {
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
-        <Container className="grid-main-parent" fluid>
+        <Container className="home-canvas-container" fluid>
           <MainScreen
             commands={commandForTarget}
           />
-          <Row className="grid-row-half pt-50">
+          <Row>
             <MainPanel
               user={user}
               commandForTarget={(val) => setCommandsForTarget(val)}

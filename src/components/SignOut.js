@@ -23,7 +23,7 @@ const SignOut = (props) => {
         props.loginFirstStage(false);
         props.loadUserData({});
         props.userRollPass(null);
-        window.open("#/","_self");
+        window.open("/","_self");
       }
     );
   }

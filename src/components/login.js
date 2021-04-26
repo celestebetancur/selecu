@@ -18,26 +18,17 @@ const Login = (props) => {
 
   return (
     <>
-      <div>
-      {props.userRoll !== null &&
-        <Auth
-          roll={grades[props.userRoll]}
-        />
+      {props.userRoll === null
+        ? <Auth roll={grades[0]}/>
+        : <Auth roll={grades[props.userRoll]}/>
       }
-      {props.userRoll === null &&
-        <Auth
-          roll={grades[0]}
-        />
-      }
-      </div>
     </>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    userRoll: state.userRollPass,
-    userData: state.loadUserData
+    userRoll: state.userRollPass
   };
 }
 

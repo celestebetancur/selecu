@@ -27,9 +27,9 @@ class ColorPicker extends React.Component {
 
       sketch.setup = () => {
         r = sketch.createSlider(0,255,255);
-        g = sketch.createSlider(0,255,180);
-        b = sketch.createSlider(0,255,0);
-        o = sketch.createSlider(1,255,100);
+        g = sketch.createSlider(0,255,255);
+        b = sketch.createSlider(0,255,255);
+        o = sketch.createSlider(1,255,255);
         r.class('colorPicker-slider red');
         g.class('colorPicker-slider green');
         b.class('colorPicker-slider blue');
@@ -66,8 +66,9 @@ class ColorPicker extends React.Component {
   render(){
     return (
       <div className="divColorPicker-border">
-        <div id="divColorPicker" >
-          <div id="slidersColorPicker"></div>
+        <div id="divColorPicker">
+          <div id='div-canvas-colorPicker' draggable></div>
+          <div id="slidersColorPicker" ></div>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React,  {useState} from 'react'
-import { Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {StorageImage} from 'reactfire'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
@@ -35,10 +35,6 @@ const MainPanel = (props) => {
   const [knowledgeSrc, setknowlegdeSrc] = useState(bKnowledge);
   const [toggleMainPanel, setToggleMainPanel] = useState(false);
 
-  // let days = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-  // let date = new Date();
-  // let text = `Elapsed time ${props.delta[0]}:${props.delta[1]}:${props.delta[2]} ${days[date.getDay()]} ${date.getDate()}`;
-
   return(
     <Container>
       <Container id="main-panel-home" className="container-main-panel">
@@ -57,46 +53,46 @@ const MainPanel = (props) => {
           />
         </Container>
         <Img src={panel} className="center" id="main-panel-image"/>
-          <a href="#/pixelart">
+          <Link to="pixelart">
             <Button id="main-panel-profile-button" >
             {props.userInfo.info.profileImage &&
               <StorageImage className="image-profile-button" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
             }
             </Button>
-          </a>
+          </Link>
           <Img className="main-panel-b e-settings" src={energy} />
-          <a href="#/perfilusuario">
+          <Link to="perfilusuario">
             <Img
               src={settingsSrc} className="main-panel-a b-settings"
               onMouseEnter={() => setSettingsSrc(bSettingsOver)}
               onMouseDown={() => setSettingsSrc(bPushHold)}
               onMouseLeave={() => setSettingsSrc(bSettings)}
             />
-          </a>
-          <a>
+          </Link>
+          <Link>
             <Img
               src={gameSrc} className="main-panel-a g-settings"
               onMouseEnter={() => setGameSrc(bGameOver)}
               onMouseDown={() => setGameSrc(bGPushHold)}
               onMouseLeave={() => setGameSrc(bGame)}
             />
-          </a>
-          <a>
+          </Link>
+          <Link>
             <Img
               src={communitySrc} className="main-panel-a c-settings"
               onMouseEnter={() => setCommunitySrc(bCommunityOver)}
               onMouseDown={() => setCommunitySrc(bCPushHold)}
               onMouseLeave={() => setCommunitySrc(bCommunity)}
             />
-          </a>
-          <a>
+          </Link>
+          <Link>
             <Img
               src={knowledgeSrc} className="main-panel-a k-settings"
               onMouseEnter={() => setknowlegdeSrc(bKnowledgeOver)}
               onMouseDown={() => setknowlegdeSrc(bKPushHold)}
               onMouseLeave={() => setknowlegdeSrc(bKnowledge)}
             />
-          </a>
+          </Link>
         </Container>
       </Container>
     </Container>

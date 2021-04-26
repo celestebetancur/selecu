@@ -1,12 +1,18 @@
+#pixelapp-main-container{
+  position:absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top:7%;
+  width:90%;
+  overflow: hidden;
+}
+
 #canvasPixelArt {
-  border-radius: 50px;
-  background: #e0e0e0;
-  // box-shadow:  20px 20px 60px #929292,-20px -20px 60px #ffffff;
+  border-radius: 5px;
+  background: #fff;
   width: 400px;
   height: 400px;
   position: absolute;
-  border: 10px solid rgb(255,180,0);
-  border-radius: 0.5rem;
   z-index: 1000;
 }
 
@@ -15,10 +21,18 @@
   position: relative;
   width: 416px;
   height: 416px;
-  background: rgb(255,180,0);
-  border: 10px ridge rgb(255,180,0);
+  background: #826b50;
+  border: 10px ridge #d6a770;
   border-radius: 0.8rem;
   z-index: 1000;
+  margin-left: 5rem;
+}
+
+#div-canvas-colorPicker{
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  z-index: 2000;
 }
 
 .p5Canvas {
@@ -49,11 +63,10 @@
 }
 
 #canvasColorPicker{
-  position: absolute;
+  position: relative;
   display: block;
   width: 150px;
   top: 0px;
-  left: 0px;
   clip-path: circle(40% at 50% 50%);
 }
 
@@ -61,18 +74,18 @@
   position: relative;
   width: 400px;
   height: 170px;
-  background: red;
-  border: 10px solid rgb(255,180,0);
+  border: 10px solid #d6a770;
   border-radius: 0.1rem;
   background: rgb(250, 247, 175);
 }
 
 .divColorPicker-border{
+  position: relative;
   width: 420px;
   height: 188px;
-  background: red;
-  border: 10px ridge rgb(255,180,0);
+  border: 10px ridge #d6a770;
   border-radius: 0.8rem;
+  margin-right: 5rem;
 }
 
 .colorPicker-slider{
@@ -131,11 +144,45 @@ input[type=range]::-webkit-slider-thumb {
 
 #preview-avatar{
   width: 200px;
-  border: 10px ridge rgb(255,180,0);
+  border: 10px ridge #d6a770;
   border-radius: 0.8rem;
 }
 
 .mainPixelArtContainer{
   background-repeat: no-repeat;
   background-size:cover;
+}
+
+.savedColor{
+  border: 6px ridge #d6a770;
+  position: absolute;
+  background-color: #fff;
+  z-index: 1000;
+  border-radius: 50px;
+  width: 4rem;
+  height: 4rem;
+  top: 20rem;
+}
+
+.button-pixelapp{
+  border-radius: 50px;
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.savedColor:hover{
+  cursor: pointer;
+}
+
+.one-color{
+  right: 37%;
+}
+.two-color{
+  right: 28%;
+}
+.three-color{
+  right: 19%;
+}
+.four-color{
+  right: 10%;
 }

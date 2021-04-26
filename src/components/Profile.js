@@ -11,8 +11,6 @@ import Spinner from 'react-bootstrap/Spinner'
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
-import containerBack from '../assets/images/fondo-colors.png'
-
 import {AuthCheck} from 'reactfire'
 
 const Profile = (props) => {
@@ -71,7 +69,6 @@ const Profile = (props) => {
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
-        <Container fluid>
           <Card style={{width: "33rem"}}>
           {profileImage &&
             <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
@@ -127,7 +124,6 @@ const Profile = (props) => {
               }
             </Card.Body>
           </Card>
-        </Container>
       </AuthCheck>
     </Suspense>
   );

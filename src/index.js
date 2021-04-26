@@ -24,9 +24,8 @@ import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
 import PixelArt from './animations/Milecu/pixelArt'
-import Blackhole from './components/Blackhole'
+import CardMenu from './components/cardMenu'
 import Profile from './components/Profile'
-
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -38,10 +37,10 @@ ReactDOM.render(
           <Switch>
             {/*Landing page--------------------------------------------------*/}
             <Route path ="/" component={App} exact />
-            <Route path ="/quienessomos" component={SobreNosotros} exact />
-            <Route path ="/nuestrafilosofia" component={NuestraFilosofia} exact />
-            <Route path ="/comunidad" component={Comunidad} exact />
-            <Route path ="/contacto" component={Contacto} exact />
+            <Route path ="/quienessomos" component={SobreNosotros}/>
+            <Route path ="/nuestrafilosofia" component={NuestraFilosofia}/>
+            <Route path ="/comunidad" component={Comunidad}/>
+            <Route path ="/contacto" component={Contacto}/>
             {/*Login---------------------------------------------------------*/}
             <Route path ="/login" component={Login} exact />
             {/*Home----------------------------------------------------------*/}
@@ -53,7 +52,7 @@ ReactDOM.render(
             <Route path ="/perfilusuario" component={Profile} exact />
 
 
-            <Route path ="/test" component={Blackhole} exact />
+            <Route path ="/test" component={CardMenu} exact />
           </Switch>
         </HashRouter>
       </Provider>

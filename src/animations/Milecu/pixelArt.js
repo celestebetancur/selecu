@@ -30,11 +30,37 @@ class PixelArt extends React.Component {
     ready: false,
     url: '',
     drawing: false,
-    upload: false
+    upload: false,
+    buttonColor1: '',
+    buttonColor2: '',
+    buttonColor3: '',
+    buttonColor4: ''
   };
 
   setColor = (value) => {
-    this.setState({color:value});
+    this.setState(state => ({
+      color:value
+    }));
+  }
+  setButtonColor1 = () => {
+    this.setState(state => ({
+      buttonColor1: {r: this.state.color.r,g: this.state.color.g,b: this.state.color.b, o:this.state.color.o},
+    }));
+  }
+  setButtonColor2 = () => {
+    this.setState(state => ({
+      buttonColor2: {r: this.state.color.r,g: this.state.color.g,b: this.state.color.b, o:this.state.color.o},
+    }));
+  }
+  setButtonColor3 = () => {
+    this.setState(state => ({
+      buttonColor3: {r: this.state.color.r,g: this.state.color.g,b: this.state.color.b, o:this.state.color.o},
+    }));
+  }
+  setButtonColor4 = () => {
+    this.setState(state => ({
+      buttonColor4: {r: this.state.color.r,g: this.state.color.g,b: this.state.color.b, o:this.state.color.o},
+    }));
   }
   setCommands = (value) => {
     this.setState({commands:value});
@@ -83,11 +109,11 @@ class PixelArt extends React.Component {
 
       sketch.setup = () => {
         capture = sketch.createCapture(sketch.VIDEO, () => {
-          cnv = sketch.createCanvas(width, height);
-          cnv.parent('divPixelArt');
-          cnv.id('canvasPixelArt');;
           fillColorGrid(pixSize);
         });
+        cnv = sketch.createCanvas(width, height);
+        cnv.parent('divPixelArt');
+        cnv.id('canvasPixelArt');;
         capture.size(400, 400);
         capture.hide();
       };
@@ -118,9 +144,13 @@ class PixelArt extends React.Component {
         }
       };
 
+      sketch.mouseDragged = () => {
+
+      }
+
       sketch.mousePressed = () => {
-        if(sketch.mouseY > -10 && sketch.mouseY < 390){
-          var temp = Math.floor((sketch.mouseY-10)/pixSize) + Math.floor((sketch.mouseX-10)/ pixSize) * (height/pixSize);
+        if(sketch.mouseY > 0 && sketch.mouseY < 400){
+          var temp = Math.floor((sketch.mouseY)/pixSize) + Math.floor((sketch.mouseX)/ pixSize) * (height/pixSize);
         }
         if(paintState){
           colorGrid[temp] = this.state.color;
@@ -232,45 +262,53 @@ class PixelArt extends React.Component {
   componentWillUnmount(){
     s.remove();
   }
+
+
   render(){
     return (
-      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-        <AuthCheck>
-          <Container fluid>
+          <Container id="pixelapp-main-container" fluid>
+            <div className="savedColor one-color">
+              <button
+                onDragOver={e => e.preventDefault()}
+                onDrop={this.setButtonColor1}
+                onClick={() => this.setColor(this.state.buttonColor1)}
+                className='button-pixelapp one-color'
+                style={{background:`rgba(${this.state.buttonColor1.r},${this.state.buttonColor1.g},${this.state.buttonColor1.b})`,opacity:`${this.state.buttonColor1.o/255.0}`}}>
+              </button>
+            </div>
+            <div className='savedColor two-color'>
+              <button
+                onDragOver={e => e.preventDefault()}
+                onDrop={this.setButtonColor2}
+                onClick={() => this.setColor(this.state.buttonColor2)}
+                className='button-pixelapp'
+                style={{background:`rgba(${this.state.buttonColor2.r},${this.state.buttonColor2.g},${this.state.buttonColor2.b})`,opacity:`${this.state.buttonColor2.o/255.0}`}}>
+              </button>
+            </div>
+            <div className='savedColor three-color'>
+              <button
+                onDragOver={e => e.preventDefault()}
+                onDrop={this.setButtonColor3}
+                onClick={() => this.setColor(this.state.buttonColor3)}
+                className='button-pixelapp'
+                style={{background:`rgba(${this.state.buttonColor3.r},${this.state.buttonColor3.g},${this.state.buttonColor3.b})`,opacity:`${this.state.buttonColor3.o/255.0}`}}>
+              </button>
+            </div>
+            <div className='savedColor four-color'>
+              <button
+                onDragOver={e => e.preventDefault()}
+                onDrop={this.setButtonColor4}
+                onClick={() => this.setColor(this.state.buttonColor4)}
+                className='button-pixelapp'
+                style={{background:`rgba(${this.state.buttonColor4.r},${this.state.buttonColor4.g},${this.state.buttonColor4.b})`,opacity:`${this.state.buttonColor4.o/255.0}`}}>
+              </button>
+            </div>
             <Row />
-              <Nav>
-                {!this.state.usePhoto &&
-                  <Nav.Item>
-                    <Button variant="info" onClick={() => this.setState({camaraState:!this.state.camaraState})}>Cámara</Button>
-                  </Nav.Item>
-                }
-                {this.state.usePhoto &&
-                  <>
-                    <Nav.Item>
-                      <Button variant="info" onClick={() =>this.setReady()}>Dibujo listo</Button>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Button variant="info" onClick={() => this.reboot()}>Eliminar toma</Button>
-                    </Nav.Item>
-                  </>
-                }
-                <Nav.Item>
-                  <Button variant="info" onClick={() => this.setGrid()}>Guía de dibujo</Button>
-                </Nav.Item>
-                {this.state.camaraState &&
-                  <Nav.Item>
-                    <Button variant="info" onClick={() => this.usePhotoToDraw()}>Tomar foto</Button>
-                  </Nav.Item>
-                }
-                <Nav.Item>
-                  <Nav.Link href="#/home" variant="info">Regresar al mapa</Nav.Link>
-                </Nav.Item>
-              </Nav>
             <Row>
-              <Col>
+              <Col className="justify-content-center" style={{display:'flex'}}>
                 <div id="divPixelArt"></div>
               </Col>
-              <Col>
+              <Col className="justify-content-center" style={{display:'flex'}}>
                 <Row>
                   <ColorPicker
                     setColor={this.setColor}
@@ -288,9 +326,37 @@ class PixelArt extends React.Component {
                 </Row>
               </Col>
             </Row>
+            <Row className="justify-content-center" style={{marginTop:'15%'}}>
+            <Nav>
+              {!this.state.usePhoto &&
+                <Nav.Item>
+                  <Button variant="info" onClick={() => this.setState({camaraState:!this.state.camaraState})}>Cámara</Button>
+                </Nav.Item>
+              }
+              {this.state.usePhoto &&
+                <>
+                  <Nav.Item>
+                    <Button variant="info" onClick={() =>this.setReady()}>Dibujo listo</Button>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Button variant="info" onClick={() => this.reboot()}>Eliminar toma</Button>
+                  </Nav.Item>
+                </>
+              }
+              <Nav.Item>
+                <Button variant="info" onClick={() => this.setGrid()}>Guía de dibujo</Button>
+              </Nav.Item>
+              {this.state.camaraState &&
+                <Nav.Item>
+                  <Button variant="info" onClick={() => this.usePhotoToDraw()}>Tomar foto</Button>
+                </Nav.Item>
+              }
+              <Nav.Item>
+                <Nav.Link href="#/home" variant="info">Regresar al mapa</Nav.Link>
+              </Nav.Item>
+            </Nav>
+            </Row>
           </Container>
-        </AuthCheck>
-      </Suspense>
     );
   }
 }

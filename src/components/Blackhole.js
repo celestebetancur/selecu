@@ -58,8 +58,7 @@ const Blackhole = (props) => {
             />
           </Anime>
         }
-
-      </Container>
+       </Container>
     );
 }
 

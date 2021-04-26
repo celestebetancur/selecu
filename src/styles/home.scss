@@ -4,6 +4,10 @@
   @include padding-reset;
 }
 
+.home-canvas-container{
+  @include padding-reset;
+}
+
 #main-panel-toggle{
   position: fixed;
   width: 300px;

@@ -61,8 +61,10 @@ const CreateMentor = (props) => {
   },[user.data]);
 
   const doubleCheck = () => {
+    if(fullName !== '' && email !== '' && password !== '' && institution !== '' && year !== ''){
       setDCheck(true);
       setMsg("Por favor revise los datos antes de oprimir -Crear-");
+    }
   }
 
   const createUser = async (event) => {
@@ -124,15 +126,13 @@ const CreateMentor = (props) => {
                 <p className="alert alert-danger" role="alert">{msg}</p>
               }
             <hr/>
-            {!dcheck &&
-              <button className="btn btn-warning" onClick={()=> doubleCheck()}>Crear</button>
-            }
-            {dcheck &&
+            {dcheck ?
               <div>
                 <label className="text-spaced-1">IUG</label>
                 <input type="password" style={{width:"6rem"}} required onChange={e => setpassIUG(e.target.value)}/>
                 <button className="btn btn-danger" onClick={(event) => createUser(event)}>Crear</button>
               </div>
+              : <button className="btn btn-warning" onClick={()=> doubleCheck()}>Crear</button>
             }
           </form>
         </Card.Body>
