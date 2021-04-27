@@ -290,14 +290,16 @@ const LoginCard = (props) => {
               </InputGroup>
               <Container id="login-buttons" className="justify-content-sm-center">
                 {!props.authUser &&
+                  <>
                   <Button onClick={props.loginUser} variant="warning" className="mr-1">Autorizar</Button>
+                    <SignOut
+                      text="Inicio"
+                    />
+                  </>
                 }
                 {props.authUser &&
                   <Button onClick={props.loginUser} variant="success">Entrar</Button>
                 }
-                <SignOut
-                  text="Regresar"
-                />
               </Container>
             </Card.Body>
           </Card>

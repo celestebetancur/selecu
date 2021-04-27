@@ -92,7 +92,7 @@ class MainScreen extends React.Component {
         // sketch.timeGet();
 
         sketch.image(background,width/2,height/2,width,height);
-        sketch.image(map,width/2,(height/2)-50,map.width * ((height-50)/map.height),height-50);
+        sketch.image(map,width/2,(height/2),map.width * ((height)/map.height)+200,height+100);
         sketch.image(target,tPosX,tPosY,50,50);
       };
 

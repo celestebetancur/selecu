@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainPanel from './MainPanel'
 import Img from "react-cool-img";
+
+import {connect} from 'react-redux'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -14,7 +16,10 @@ import CommandPixelArtfrom from '../animations/Milecu/commandsPixelArt'
 import fondo from '../assets/images/pixelapp/fondo-colors.png'
 import marco from '../assets/images/pixelapp/cuadrícula.png'
 
-const CardMenu = (props) => {
+const PixelApp = (props) => {
+  const [commandForTarget, setCommandsForTarget] = useState(' ')
+
+  const user = props.userInfo
 
   return (
     <Container className="justify-content-center" style={{overflow:'hidden', height:'80%'}} fluid>
@@ -22,9 +27,19 @@ const CardMenu = (props) => {
         <Img style={{width:"90%",height:'70%'}} src={fondo}/>
         <PixelArt />
       </Row>
-      <MainPanel />
+      <MainPanel
+        user={user}
+        commandForTarget={(val) => setCommandsForTarget(val)}
+      />
     </Container>
   );
 }
 
-export default CardMenu;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.loadUserData,
+    userInfo: state.loadUserInfo
+  };
+}
+
+export default connect(mapStateToProps)(PixelApp);

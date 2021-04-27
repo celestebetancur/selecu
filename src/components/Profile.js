@@ -129,6 +129,10 @@ const Profile = (props) => {
   );
 }
 
+Profile.defaultProps = {
+  
+}
+
 const mapStateToProps = (state) => {
   return {
     userData: state.loadUserData,

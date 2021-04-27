@@ -23,8 +23,7 @@ import Home from './components/home'
 import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
-import PixelArt from './animations/Milecu/pixelArt'
-import CardMenu from './components/cardMenu'
+import PixelApp from './components/PixelApp'
 import Profile from './components/Profile'
 
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -42,17 +41,15 @@ ReactDOM.render(
             <Route path ="/comunidad" component={Comunidad}/>
             <Route path ="/contacto" component={Contacto}/>
             {/*Login---------------------------------------------------------*/}
-            <Route path ="/login" component={Login} exact />
+            <Route path ="/login" component={Login}/>
             {/*Home----------------------------------------------------------*/}
-            <Route path ="/homementores" component={Mentores} exact />
-            <Route path ="/homegestores" component={Gestores} exact />
+            <Route path ="/homementores" component={Mentores}/>
+            <Route path ="/homegestores" component={Gestores}/>
 
-            <Route path ="/pixelart" component={PixelArt} exact />
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />
 
-
-            <Route path ="/test" component={CardMenu} exact />
+            <Route path ="/pixelart" component={PixelApp} exact />
           </Switch>
         </HashRouter>
       </Provider>

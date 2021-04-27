@@ -1,22 +1,11 @@
 import React,  {useState} from 'react'
 import { Link } from "react-router-dom"
 import {StorageImage} from 'reactfire'
+import PropTypes from 'prop-types';
 
 import panel from '../assets/images/mapa/panel-vacio.png'
 import toggle from '../assets/images/mapa/toggle.png'
 import energy from '../assets/images/mapa/energia-bordes.png'
-import bSettings from '../assets/images/mapa/settings/setting-normal.png'
-import bSettingsOver from '../assets/images/mapa/settings/over.png'
-import bPushHold from '../assets/images/mapa/settings/push-hold.png'
-import bGame from '../assets/images/mapa/game/normal.png'
-import bGameOver from '../assets/images/mapa/game/over.png'
-import bGPushHold from '../assets/images/mapa/game/push-hold.png'
-import bCommunity from '../assets/images/mapa/community/normal.png'
-import bCommunityOver from '../assets/images/mapa/community/over.png'
-import bCPushHold from '../assets/images/mapa/community/push-hold.png'
-import bKnowledge from '../assets/images/mapa/knowledge/normal.png'
-import bKnowledgeOver from '../assets/images/mapa/knowledge/over.png'
-import bKPushHold from '../assets/images/mapa/knowledge/hold-push.png'
 
 import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
@@ -29,10 +18,10 @@ import {loadUserData} from '../actions'
 
 const MainPanel = (props) => {
   const [mainPanelState, setMainPanelState] = useState(false);
-  const [settingsSrc, setSettingsSrc] = useState(bSettings);
-  const [gameSrc, setGameSrc] = useState(bGame);
-  const [communitySrc, setCommunitySrc] = useState(bCommunity);
-  const [knowledgeSrc, setknowlegdeSrc] = useState(bKnowledge);
+  const [settingsSrc, setSettingsSrc] = useState(props.button4[2]);
+  const [gameSrc, setGameSrc] = useState(props.button3[2]);
+  const [communitySrc, setCommunitySrc] = useState(props.button2[2]);
+  const [knowledgeSrc, setknowlegdeSrc] = useState(props.button1[2]);
   const [toggleMainPanel, setToggleMainPanel] = useState(false);
 
   return(
@@ -45,7 +34,7 @@ const MainPanel = (props) => {
             <Img src={toggle} className={`toggle-pos-${toggleMainPanel}`} id="main-panel-toggle"/>
         </a>
         <Container className={`main-panel panel-display-${toggleMainPanel}`}>
-        <p id="panel-coordenadas">COORDENADAS</p>
+        <p id="panel-coordenadas" className="text-center">{props.textFunction}</p>
         <Container>
           <textarea
             className='command-textarea'
@@ -61,36 +50,36 @@ const MainPanel = (props) => {
             </Button>
           </Link>
           <Img className="main-panel-b e-settings" src={energy} />
-          <Link to="perfilusuario">
+          <Link to={props.button4Action}>
             <Img
               src={settingsSrc} className="main-panel-a b-settings"
-              onMouseEnter={() => setSettingsSrc(bSettingsOver)}
-              onMouseDown={() => setSettingsSrc(bPushHold)}
-              onMouseLeave={() => setSettingsSrc(bSettings)}
+              onMouseEnter={() => setSettingsSrc(props.button4[0])}
+              onMouseDown={() => setSettingsSrc(props.button4[1])}
+              onMouseLeave={() => setSettingsSrc(props.button4[2])}
             />
           </Link>
           <Link>
             <Img
               src={gameSrc} className="main-panel-a g-settings"
-              onMouseEnter={() => setGameSrc(bGameOver)}
-              onMouseDown={() => setGameSrc(bGPushHold)}
-              onMouseLeave={() => setGameSrc(bGame)}
+              onMouseEnter={() => setGameSrc(props.button3[0])}
+              onMouseDown={() => setGameSrc(props.button3[1])}
+              onMouseLeave={() => setGameSrc(props.button3[2])}
             />
           </Link>
           <Link>
             <Img
               src={communitySrc} className="main-panel-a c-settings"
-              onMouseEnter={() => setCommunitySrc(bCommunityOver)}
-              onMouseDown={() => setCommunitySrc(bCPushHold)}
-              onMouseLeave={() => setCommunitySrc(bCommunity)}
+              onMouseEnter={() => setCommunitySrc(props.button2[0])}
+              onMouseDown={() => setCommunitySrc(props.button2[1])}
+              onMouseLeave={() => setCommunitySrc(props.button2[2])}
             />
           </Link>
           <Link>
             <Img
               src={knowledgeSrc} className="main-panel-a k-settings"
-              onMouseEnter={() => setknowlegdeSrc(bKnowledgeOver)}
-              onMouseDown={() => setknowlegdeSrc(bKPushHold)}
-              onMouseLeave={() => setknowlegdeSrc(bKnowledge)}
+              onMouseEnter={() => setknowlegdeSrc(props.button1[0])}
+              onMouseDown={() => setknowlegdeSrc(props.button1[1])}
+              onMouseLeave={() => setknowlegdeSrc(props.button1[2])}
             />
           </Link>
         </Container>
@@ -98,6 +87,17 @@ const MainPanel = (props) => {
     </Container>
   );
 }
+
+MainPanel.propTypes = {
+  commandForTarget: PropTypes.func,
+  user: PropTypes.object,
+  button1: PropTypes.array,
+  button2: PropTypes.array,
+  button3: PropTypes.array,
+  button4: PropTypes.array,
+  button4Action: PropTypes.string,
+  textFunction: PropTypes.string
+};
 
 const mapStateToProps = (state) => {
   return {
