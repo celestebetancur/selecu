@@ -49,7 +49,7 @@ ReactDOM.render(
             <Route path ="/home" component={Home} exact />
             <Route path ="/perfilusuario" component={Profile} exact />
 
-            <Route path ="/pixelart" component={PixelApp} exact />
+            <Route path ="/pixelapp" component={PixelApp} exact />
           </Switch>
         </HashRouter>
       </Provider>

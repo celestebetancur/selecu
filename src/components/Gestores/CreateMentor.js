@@ -1,5 +1,4 @@
 import React, {useState, useEffect ,useRef} from 'react'
-import firebaseAuth from "firebase/app";
 import { useFirebaseApp, useUser } from 'reactfire'
 
 import Card from 'react-bootstrap/Card'
@@ -69,7 +68,7 @@ const CreateMentor = (props) => {
 
   const createUser = async (event) => {
     if(verCode === passIUG){
-      const userC = await firebase.auth().createUserWithEmailAndPassword(email,password).then(
+      await firebase.auth().createUserWithEmailAndPassword(email,password).then(
         (s) => {
           setInitDB(true);
           setMsg("User succesfully created, Thank you!");

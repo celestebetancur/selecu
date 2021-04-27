@@ -36,8 +36,9 @@ const SignOut = (props) => {
 
     return (
       <Button
-        variant="info"
+        variant="dark"
         onClick={signOutFB}
+        className={props.className}
         >{props.text}
       </Button>
     );

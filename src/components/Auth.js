@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import SignOut from './SignOut'
 import Home from './home'
 import Landing from './landing'
-import Gestores from './Gestores'
-import Mentores from './Mentores'
 import FallbackAccessDenied from './fallbackAccessDenied'
 import Blackhole from './Blackhole'
 import 'firebase/auth'
@@ -23,8 +21,6 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import '../styles/general.scss'
 
 const Auth = (props) => {
@@ -257,7 +253,7 @@ const Auth = (props) => {
 const LoginCard = (props) => {
   return(
     <Container className={`bg-img opacity-${props.opacity}`} fluid style={{backgroundImage:`url(${background})`}}>
-      <Container>
+      <Container style={{marginTop:'4rem'}}>
           <Card id="login-card" style={{backgroundImage:`url(${logCard})`}}>
             <Card.Body>
               <Card.Title className="text-center">{props.welcomeText}</Card.Title>
@@ -291,14 +287,15 @@ const LoginCard = (props) => {
               <Container id="login-buttons" className="justify-content-sm-center">
                 {!props.authUser &&
                   <>
-                  <Button onClick={props.loginUser} variant="warning" className="mr-1">Autorizar</Button>
+                  <Button onClick={props.loginUser} variant="dark" className="login-button mr-1">Autorizar</Button>
                     <SignOut
-                      text="Inicio"
+                      text="Regresar"
+                      className='login-button'
                     />
                   </>
                 }
                 {props.authUser &&
-                  <Button onClick={props.loginUser} variant="success">Entrar</Button>
+                  <Button onClick={props.loginUser} variant="dark" className="login-button">Iniciar</Button>
                 }
               </Container>
             </Card.Body>

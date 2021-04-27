@@ -37,25 +37,29 @@
   margin-right: 80px;
   font-family: "DINNextLTPro";
   cursor: pointer;
-  border-bottom: rgb(255,120,0);
+  border-bottom: rgb(255,125,40) none 0px;
 }
+
+.nav-item-border{
+  border-bottom: rgb(255,125,40) solid 5px;
+}
+
 .nav-link:hover{
   text-decoration: none;
-  color: rgb(255,125,0) !important;
+  color: rgb(255,125,40) !important;
   cursor: pointer;
 }
 
 #divP5Puzzle{
   position: relative;
   display: flex;
-  // top:20%;
   height: 100%;
   align-items: center;
   flex-direction: column;
 }
 
 #canvasP5Puzzle{
-  transform: translate(0%,-30%);
+  transform: translate(0%,-50%);
   border-radius: 1rem;
 }
 

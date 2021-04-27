@@ -3,7 +3,6 @@ import p5 from 'p5';
 import UploadPhoto from '../../components/uploadPhoto'
 
 import ColorPicker from './colorPicker'
-import CommandsPixelArt from './commandsPixelArt'
 
 import {AuthCheck} from 'reactfire'
 
@@ -78,12 +77,6 @@ class PixelArt extends React.Component {
   }
   setGrid = () => {
     this.setState({setGrid:!this.state.setGrid});
-    if(this.state.setGrid){
-      this.setState({commands:[0,0,0,0,0,0,0,0,1]});
-    }
-    if(!this.state.setGrid){
-      this.setState({commands:[0,0,0,0,0,0,0,0,0]});
-    }
   }
   setReady = () => {
     this.setState({ready:true});
@@ -119,6 +112,12 @@ class PixelArt extends React.Component {
       };
 
       sketch.draw = () => {
+        if(this.props.commands[6] === 1){
+          this.setState({camaraState:true})
+        }
+        if(this.props.commands[6] === 0){
+          this.setState({camaraState:false})
+        }
         sketch.background(255);
         sketch.image(captured, x, y, w, h);
         if(this.state.camaraState){
@@ -131,12 +130,14 @@ class PixelArt extends React.Component {
         if(this.state.usePhoto){
           sketch.image(captured, x, y, w, h);
         }
-        if(gridStep(this.state.commands[7]) !== pixSize){
-          pixSize = gridStep(this.state.commands[7]);
+        if(gridStep(this.props.commands[7]) !== pixSize){
+          pixSize = gridStep(this.props.commands[7]);
           fillColorGrid(pixSize);
         }
         sketch.image(capture, -400, 0, 400 , 400);
-        grid(this.state.commands[8]);
+        if(this.state.setGrid || this.props.commands[8] === 1){
+          grid();
+        }
         createBlob();
         if(this.state.drawing){
           sketch.fill(255);

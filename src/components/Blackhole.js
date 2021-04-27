@@ -12,15 +12,12 @@ import Container from 'react-bootstrap/Container'
 
 const Blackhole = (props) => {
   const [status, setStatus] = useState(false);
-  const [opacity, setOpacity] = useState(false);
 
   useEffect(()=>{
-    setTimeout(() => setOpacity(true),1000);
     setTimeout(() => setStatus(true),6000);
   },[]);
 
   if(status){
-    console.log(props.roll)
     if(props.roll === "Aprendiz"){
       window.open("#/home",'_self');
       return <></>;

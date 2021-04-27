@@ -1,5 +1,4 @@
 import React, {useState, useEffect ,useRef} from 'react'
-import firebaseAuth from "firebase/app";
 import { useFirebaseApp, useUser } from 'reactfire'
 
 import {connect} from 'react-redux'

@@ -44,37 +44,36 @@ class HomePuzzle extends React.Component {
 
       p5.disableFriendlyErrors = true; // disables FES
 
-      let img;
-      let baseG;
-      let centro;
-      let pngFichas = [];
-      let pngHotspots = [];
-      let back;
-      let end = false;
+      let img
+      let baseG
+      let centro
+      let pngFichas = []
+      let pngHotspots = []
+      let back
 
-      let xOffset;
-      let yOffset;
-      let width = 500;
-      let height = 400;
-      let windowWidth = 0;
-      let cnv = undefined;
-      let keys = 8;
-      let wCells = 5;
-      let hCells = 3;
+      let xOffset
+      let yOffset
+      let width = 500
+      let height = 400
+      let windowWidth = 0
+      let cnv
+      let keys = 8
+      let wCells = 5
+      let hCells = 3
 
-      let stepSize = width/wCells;
-      const maxStepSize = stepSize;
-      let activeCube = 1;
-      const sizeConst = 16;
+      let stepSize = width/wCells
+      const maxStepSize = stepSize
+      let activeCube = 1
+      const sizeConst = 16
 
       let positionGrid = [];
       for(let i = 0; i < hCells; i++){
         for(let j = 0; j < wCells; j++){
-          positionGrid.push([j,i]);
+          positionGrid.push([j,i])
         }
       }
-      let hotspotsShuffle = shuffle([1,3,5,9,11,13]);
-      let hotspots = hotspotsShuffle.splice(0,4);
+      let hotspotsShuffle = shuffle([1,3,5,9,11,13])
+      let hotspots = hotspotsShuffle.splice(0,4)
 
       let wallsGrid = [[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[1,0],[1,0],[1,1],[0,0],[0,0],[1,1],[1,0],[1,0],[0,1],[1,0],[0,0],[0,1],[0,1],[1,0],[1,0], [1,0],[0,1],[0,0],[1,1],[0,1],[1,0],[1,1],[1,0],[0,0],[0,0],[1,1],[0,0],[0,1],[0,0],[1,0], [0,0],[1,1],[1,1],[1,0],[1,0],[0,0],[0,1],[1,1],[1,1],[0,0],[1,1],[0,1],[1,1],[1,1],[1,1], [0,0],[0,1],[0,0],[1,1],[1,0],[0,1],[0,1],[0,0],[1,0],[0,1],[0,1],[0,0],[0,1],[0,1],[1,0], [1,0],[0,0],[1,0],[0,1],[1,0],[0,0],[0,1],[1,0],[0,1],[1,0],[1,0],[1,1],[1,0],[1,0],[1,0], [1,1],[1,1],[0,1],[0,0],[0,1],[1,0],[1,0],[1,0],[0,0],[1,1],[1,0],[0,0],[0,0],[0,1],[1,1], [0,0],[0,1],[1,1],[1,1],[0,1],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[0,0],[0,0],[1,0], [1,0],[0,0],[0,1],[0,1],[1,1],[1,0],[1,0],[0,1],[0,1],[0,1],[1,0],[1,0],[1,1],[1,1],[1,0], [0,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[1,0],[1,0]];
       //Pseudorandom maze
@@ -82,45 +81,46 @@ class HomePuzzle extends React.Component {
         wallsGrid.push([Math.floor(Math.random()*2),Math.floor(Math.random()*2)]);
       }*/
 
-      let currentPos = shuffle([0,2,4,6,8,10,12,14]);
+      let currentPos = shuffle([0,2,4,6,8,10,12,14])
 
       sketch.preload = () => {
 
-        back = sketch.loadImage(tablero);
-        img = sketch.loadImage(base);
-        baseG = sketch.loadImage(baseGen);
-        centro = sketch.loadImage(fichaCentral);
-        pngFichas.push(sketch.loadImage(fucsia));
-        pngFichas.push(sketch.loadImage(verde));
-        pngFichas.push(sketch.loadImage(azul));
-        pngFichas.push(sketch.loadImage(amarilla));
-        pngFichas.push(sketch.loadImage(fucsia));
-        pngFichas.push(sketch.loadImage(verde));
-        pngFichas.push(sketch.loadImage(azul));
-        pngFichas.push(sketch.loadImage(amarilla));
+        back = sketch.loadImage(tablero)
+        img = sketch.loadImage(base)
+        baseG = sketch.loadImage(baseGen)
+        centro = sketch.loadImage(fichaCentral)
+        pngFichas.push(sketch.loadImage(fucsia))
+        pngFichas.push(sketch.loadImage(verde))
+        pngFichas.push(sketch.loadImage(azul))
+        pngFichas.push(sketch.loadImage(amarilla))
+        pngFichas.push(sketch.loadImage(fucsia))
+        pngFichas.push(sketch.loadImage(verde))
+        pngFichas.push(sketch.loadImage(azul))
+        pngFichas.push(sketch.loadImage(amarilla))
 
-        pngHotspots.push(sketch.loadImage(agua));
-        pngHotspots.push(sketch.loadImage(aire));
-        pngHotspots.push(sketch.loadImage(fuego));
-        pngHotspots.push(sketch.loadImage(tierra));
+        pngHotspots.push(sketch.loadImage(agua))
+        pngHotspots.push(sketch.loadImage(aire))
+        pngHotspots.push(sketch.loadImage(fuego))
+        pngHotspots.push(sketch.loadImage(tierra))
 
       }
 
       sketch.setup = () => {
-        hotspotsShuffle = shuffle([1,3,5,9,11,13]);
-        hotspots = hotspotsShuffle.splice(0,4);
-        windowWidth = sketch.windowWidth;
-        stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
+        hotspotsShuffle = shuffle([1,3,5,9,11,13])
+        hotspots = hotspotsShuffle.splice(0,4)
+        windowWidth = sketch.windowWidth
+        stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize
         if(sketch.deviceOrientation === sketch.PORTRAIT || windowWidth < sketch.windowHeight){
-          stepSize *= 2;
+          stepSize *= 2
         }
-        width = stepSize*wCells;
-        height = stepSize*hCells;
-        cnv = sketch.createCanvas(width+stepSize*2,height+stepSize*1.2);
-        cnv.id('canvasP5Puzzle');
-        cnv.parent("divP5Puzzle");
-        xOffset = (cnv.width - stepSize*wCells)/2;
-        yOffset = (cnv.height - stepSize*hCells)/2;
+        width = stepSize*wCells
+        height = stepSize*hCells
+        cnv = sketch.createCanvas(width+stepSize*2,height+stepSize*1.2)
+        cnv.id('canvasP5Puzzle')
+        cnv.parent("divP5Puzzle")
+        cnv.center()
+        xOffset = (cnv.width - stepSize*wCells)/2
+        yOffset = (cnv.height - stepSize*hCells)/2
       };
 
       sketch.draw = () => {
@@ -146,9 +146,9 @@ class HomePuzzle extends React.Component {
           // sketch.stroke(255);
           for(let i = 0; i < keys; i++){
             if(activeCube === i){
-              cubeDrawImg(pngFichas[i],positionGrid[currentPos[i]],true);
+              cubeDrawImg(pngFichas[i],positionGrid[currentPos[i]],true)
             } else {
-              cubeDrawImg(pngFichas[i],positionGrid[currentPos[i]],false);
+              cubeDrawImg(pngFichas[i],positionGrid[currentPos[i]],false)
             }
           }
         }
@@ -156,11 +156,12 @@ class HomePuzzle extends React.Component {
       };
 
       sketch.windowResized = () => {
-        windowWidth = sketch.windowWidth;
-        stepSize = sketch.windowWidth < sketch.windowHeight ? windowWidth/8 : windowWidth/sizeConst;
-        width = stepSize*wCells;
-        height = stepSize*hCells;
-        cnv.resize(width+stepSize*2,height+stepSize*1.2);
+        windowWidth = sketch.windowWidth
+        stepSize = sketch.windowWidth < sketch.windowHeight ? windowWidth/8 : windowWidth/sizeConst
+        width = stepSize*wCells
+        height = stepSize*hCells
+        cnv.resize(width+stepSize*2,height+stepSize*1.2)
+        cnv.center()
       }
 
       sketch.keyPressed = () =>{

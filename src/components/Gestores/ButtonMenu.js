@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card'
 import Accordion from 'react-bootstrap/Accordion'
 
 const ButtonMenu = (props) => {
-  const  [state, setState] = useState(false);
+  const [state, setState] = useState(false);
 
   useEffect(()=>{
     props.setMenuNumber(state);
@@ -13,19 +13,19 @@ const ButtonMenu = (props) => {
   return(
     <Accordion>
       <Card>
-          <a className="card-link" onClick={e => setState(0)}>
+          <p className="card-link" onClick={e => setState(0)}>
             Perfil
-          </a>
+          </p>
       </Card>
       <Card>
-          <a className="collapsed card-link" onClick={e => setState(1)}>
+          <p className="collapsed card-link" onClick={e => setState(1)}>
             Panel administración
-          </a>
+          </p>
       </Card>
       <Card>
-          <a className="collapsed card-link" onClick={e => setState(2)}>
+          <p className="collapsed card-link" onClick={e => setState(2)}>
             Listas
-          </a>
+          </p>
       </Card>
     </Accordion>
   );

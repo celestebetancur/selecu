@@ -75,6 +75,7 @@ const Gestores = (props) => {
                 {menuToShow === 0 &&
                   <Profile
                     update={true}
+                    functionsAvailable={false}
                   />
                 }
                 {menuToShow === 1 &&

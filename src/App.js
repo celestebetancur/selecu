@@ -1,13 +1,12 @@
 import React, {Suspense}  from 'react';
 import Landing from './components/landing'
 import Login from './components/login'
-import Home from './components/home'
 import FillRedux from './components/fillRedux'
 
 import {connect} from 'react-redux'
 import {loadUserData,loginFirstStage} from './actions'
 
-import {AuthCheck, useUser} from 'reactfire'
+import {AuthCheck} from 'reactfire'
 
 import Spinner from 'react-bootstrap/Spinner'
 import './styles/app.css'

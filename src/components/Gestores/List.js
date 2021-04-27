@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Nav from 'react-bootstrap/Nav'
@@ -17,12 +17,13 @@ const List = (props) => {
         <Container key={name}>
           <Card style={{width: "18rem"}}>
             <Card.Body>
-              <a onClick={() => setUserToDisplay(name)}><h6 className="card-text">{name}</h6></a>
+              <span onClick={() => setUserToDisplay(name)}><h6 className="card-link">{name}</h6></span>
             </Card.Body>
           </Card>
         </Container>
       );
     }
+    return null
   });
 
   return(
@@ -31,13 +32,13 @@ const List = (props) => {
         <Nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav sm">
             <li className={`list-group-item ${typeOfUser === 'Gestores' ? 'active': ' '}`}>
-              <a className="nav-link" onClick={()=>setTypeOfUser('Gestores')}>Gestores</a>
+              <p className="nav-link" onClick={()=>setTypeOfUser('Gestores')}>Gestores</p>
             </li>
             <li className={`list-group-item ${typeOfUser === 'Mentores' ? 'active': ' '}`}>
-              <a className="nav-link" onClick={()=>setTypeOfUser('Mentores')}>Mentores</a>
+              <p className="nav-link" onClick={()=>setTypeOfUser('Mentores')}>Mentores</p>
             </li>
             <li className={`list-group-item ${typeOfUser === 'Aprendices' ? 'active': ' '}`}>
-              <a className="nav-link" onClick={()=>setTypeOfUser('Aprendices')}>Aprendices</a>
+              <p className="nav-link" onClick={()=>setTypeOfUser('Aprendices')}>Aprendices</p>
             </li>
           </ul>
         </Nav>

@@ -16,23 +16,13 @@ import Spinner from 'react-bootstrap/Spinner'
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
-import bSettings from '../assets/images/mapa/settings/setting-normal.png'
-import bSettingsOver from '../assets/images/mapa/settings/over.png'
-import bPushHold from '../assets/images/mapa/settings/push-hold.png'
-import bGame from '../assets/images/mapa/game/normal.png'
-import bGameOver from '../assets/images/mapa/game/over.png'
-import bGPushHold from '../assets/images/mapa/game/push-hold.png'
-import bCommunityOver from '../assets/images/mapa/community/over.png'
-import bCPushHold from '../assets/images/mapa/community/push-hold.png'
-import bCommunity from '../assets/images/mapa/community/normal.png'
-import bKnowledge from '../assets/images/mapa/knowledge/normal.png'
-import bKnowledgeOver from '../assets/images/mapa/knowledge/over.png'
-import bKPushHold from '../assets/images/mapa/knowledge/hold-push.png'
+import { FaCog } from "react-icons/fa";
+import { FaGlobeAmericas } from "react-icons/fa";
+import { FaUserFriends } from "react-icons/fa";
+import { FaExpandArrowsAlt } from "react-icons/fa";
 
 const Home = (props) => {
   const [commandForTarget, setCommandsForTarget] = useState(' ');
-
-  const user = props.userInfo;
 
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
@@ -43,13 +33,12 @@ const Home = (props) => {
           />
           <Row>
             <MainPanel
-              user={user}
               textFunction='COORDENADAS'
               commandForTarget={(val) => setCommandsForTarget(val)}
-              button4={[bSettingsOver,bPushHold,bSettings]}
-              button3={[bGameOver,bGPushHold,bGame]}
-              button2={[bCommunityOver,bCPushHold,bCommunity]}
-              button1={[bKnowledgeOver,bKPushHold,bKnowledge]}
+              button1={FaExpandArrowsAlt}
+              button2={FaUserFriends}
+              button3={FaGlobeAmericas}
+              button4={FaCog}
               button4Action='perfilusuario'
             />
           </Row>

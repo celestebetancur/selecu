@@ -2,6 +2,7 @@
 
 #canvasP5home{
   @include padding-reset;
+  overflow-x: hidden;
 }
 
 .home-canvas-container{
@@ -80,16 +81,37 @@
   height: 10%
 }
 
+.center-icons{
+  position: absolute;
+  top: -0.2rem;
+  left: 0.6rem;
+}
+
 .main-panel-a{
+  font-size: 2.2rem;
   position: fixed;
   width: 60px;
+  height: 60px;
   z-index: 1000;
   display: inline;
   top: 60px;
+  box-shadow:  6px 6px 12px #949494,
+             0px 0px 4px #826b50;
+  border: #eee solid 4px;
+  border-radius: 50%;
+  background: rgb(255,111,0);
+  background: radial-gradient(circle, rgba(255,111,0,0.7) 0%, rgba(255,184,0,0.7) 82%, rgba(237,237,237,0.7) 80%);
+}
+
+.main-panel-a:hover{
+  border: rgb(255,111,0) solid 4px;
+  background: rgb(255,111,0);
+  background: radial-gradient(circle, rgba(255,111,0,1) 0%, rgba(255,184,0,1) 82%, rgba(237,237,237,1) 80%);
 }
 
 .b-settings{
   right: 220px;
+
 }
 .g-settings{
   right: 310px;
@@ -102,13 +124,32 @@
 }
 .main-panel-b{
   position: fixed;
-  width: 160px;
+  width: 11rem;
   z-index: 1000;
   display: inline;
-  top: 64px;
+  top: 4rem;
 }
 .e-settings{
-  left: 250px;
+  left: 14rem;
+}
+
+.energyBar{
+  position: fixed;
+  // width: 7.95rem;
+  height: 1.6rem;
+  left: 17.4rem;
+  top: 4.82rem;
+  background: rgb(0,164,255);
+  background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
+  z-index: 2000;
+  display: inline;
+  border-radius: 5px;
+}
+.img-energy-container{
+  display: inline;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
 }
 
 .command-textarea {
