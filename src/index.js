@@ -24,7 +24,7 @@ import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
 import PixelApp from './components/PixelApp'
-import Profile from './components/Profile'
+import MainProfile from './components/MainProfile'
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -47,7 +47,7 @@ ReactDOM.render(
             <Route path ="/homegestores" component={Gestores}/>
 
             <Route path ="/home" component={Home} exact />
-            <Route path ="/perfilusuario" component={Profile} exact />
+            <Route path ="/perfilusuario" component={MainProfile} exact />
 
             <Route path ="/pixelapp" component={PixelApp} exact />
           </Switch>

@@ -3,11 +3,11 @@
   width: 36rem;
   font-family: 'carter one';
   position:absolute;
-  display: inline-block;
-  top:4rem;
+  top:0rem;
   background: rgba(255,255,255,0);
   background-color: rgba(255,255,255,0);
   margin-top:4rem;
+  height: 70vh;
 }
 
 .input-profile{
@@ -22,4 +22,14 @@
     margin-top: 1rem;
     display: flex;
     font-family: 'DINNextLTPro';
+}
+
+.card-profile-gestores{
+  width: 35rem;
+  margin-top:0px;
+  border:none;
+}
+
+.container-center-flex{
+  display: flex;
 }

@@ -1,6 +1,5 @@
 import React, {useState, useEffect, Suspense} from 'react'
 import { useFirebaseApp, StorageImage } from 'reactfire'
-import Img from "react-cool-img";
 import PropTypes from 'prop-types';
 import SignOut from './SignOut'
 import App from '../App'
@@ -12,8 +11,6 @@ import Spinner from 'react-bootstrap/Spinner'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
-
-import fondo from '../assets/images/pixelapp/fondo-colors.png'
 
 import {AuthCheck} from 'reactfire'
 
@@ -75,15 +72,12 @@ const Profile = (props) => {
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
-        <Container fluid>
-          <Container className="justify-content-center" style={{display:'flex',marginTop:'4rem'}}>
-          <Img style={{width:"60%",height:'70vh'}} src={fondo}/>
-          <Card className="card-profile-primero">
-          {profileImage &&
-            <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
-          }
-            <Card.Body>
-              <Card.Title>Mi perfil</Card.Title>
+        <Card className={`card-profile-${props.level}`}>
+        {profileImage &&
+          <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
+        }
+          <Card.Body>
+            <Card.Title>Mi perfil</Card.Title>
               <hr />
               <div className="mb-5 mt-5">
                 <p className="card-text">Actualiza tus datos</p>
@@ -136,15 +130,9 @@ const Profile = (props) => {
               </Container>
             </Card.Body>
           </Card>
-          </Container>
-          </Container>
       </AuthCheck>
     </Suspense>
   );
-}
-
-Profile.defaultProps = {
-
 }
 
 const mapStateToProps = (state) => {
@@ -159,7 +147,8 @@ Profile.propTypes = {
 }
 
 Profile.defaultProps = {
-  functionsAvailable: true
+  functionsAvailable: true,
+  level: 'primero'
 }
 
 export default connect(mapStateToProps,{loadUserData})(Profile);
