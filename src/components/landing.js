@@ -42,7 +42,7 @@ const Landing = (props) => {
       <Container className="h-100 mh-100" fluid>
         <Row className="pt-4">
           <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
-              <Row className="justify-content-center" lg={7}>
+              <Row className="justify-content-center symbol-container" lg={7}>
                 <Img className="mt-5" src={symbol} style={{width:'30px'}}/>
               </Row>
               <Row className="justify-content-center" id="divP5Puzzle" lg={7}>

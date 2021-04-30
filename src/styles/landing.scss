@@ -50,6 +50,12 @@
   cursor: pointer;
 }
 
+.symbol-container{
+  position: absolute;
+  top:2rem;
+  left: 50%;
+}
+
 #divP5Puzzle{
   position: relative;
   display: flex;
@@ -59,8 +65,8 @@
 }
 
 #canvasP5Puzzle{
-  transform: translate(0%,-50%);
   border-radius: 1rem;
+  transform: translateY(-10%);
 }
 
 @keyframes fadeIn {
@@ -82,5 +88,5 @@
   width: 0.25rem;
   height: 2rem;
   left: 25%;
-  bottom: 42%;
+  bottom: 35%;
 }

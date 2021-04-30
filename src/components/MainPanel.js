@@ -57,12 +57,12 @@ const MainPanel = (props) => {
               className="main-panel-a b-settings"
             ><span className="center-icons">{props.button4()}</span></Button>
           </Link>
-          <Link to="">
+          <Link to="home">
             <Button
               className="main-panel-a g-settings"
             ><span className="center-icons">{props.button3()}</span></Button>
           </Link>
-          <Link to="">
+          <Link to="comunidad">
             <Button
               className="main-panel-a c-settings"
             ><span className="center-icons">{props.button2()}</span></Button>

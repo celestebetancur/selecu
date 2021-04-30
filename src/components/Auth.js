@@ -206,7 +206,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`Acceso para: ${props.roll}`}
+          welcomeText={`${props.roll}`}
         />
       </>
     );
@@ -224,7 +224,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`Acceso para: ${props.roll}`}
+          welcomeText={`${props.roll}`}
         />
       </>
     );
@@ -242,7 +242,7 @@ const Auth = (props) => {
           seePassIcon={seePassIcon}
           emailNotFound={emailNotFound}
           seePass={seePass}
-          welcomeText={`Acceso para ${props.roll}`}
+          welcomeText={`${props.roll}`}
           opacity={opacity}
         />
       </>
@@ -253,7 +253,7 @@ const Auth = (props) => {
 const LoginCard = (props) => {
   return(
     <Container className={`bg-img opacity-${props.opacity}`} fluid style={{backgroundImage:`url(${background})`}}>
-      <Container style={{marginTop:'4rem'}}>
+      <Container style={{marginTop:'8vh'}}>
           <Card id="login-card" style={{backgroundImage:`url(${logCard})`}}>
             <Card.Body>
               <Card.Title className="text-center">{props.welcomeText}</Card.Title>

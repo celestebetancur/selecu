@@ -327,7 +327,7 @@ class PixelArt extends React.Component {
                 </Row>
               </Col>
             </Row>
-            <Row className="justify-content-center" style={{marginTop:'15%'}}>
+            <Row className="justify-content-center">
             <Nav>
               {!this.state.usePhoto &&
                 <Nav.Item>

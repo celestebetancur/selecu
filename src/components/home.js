@@ -1,4 +1,4 @@
-import React,  {useState, Suspense} from 'react'
+import React,  {useState, Suspense, useEffect} from 'react'
 import { Redirect } from "react-router-dom"
 import {AuthCheck, StorageImage} from 'reactfire'
 
@@ -21,13 +21,27 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 
+import ContentLoader from './ContentLoader'
+
 const Home = (props) => {
   const [commandForTarget, setCommandsForTarget] = useState(' ');
+  const [registry, setRegistry] = useState('');
+
+  useEffect(()=>{
+    let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
+    setRegistry(type)
+  })
 
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
+          <ContentLoader
+            degree={registry}
+          />
         <Container className="home-canvas-container" fluid>
+          {props.userInfo.info.profileImage === false &&
+            <div className="container-glass-full"></div>
+          }
           <MainScreen
             commands={commandForTarget}
           />

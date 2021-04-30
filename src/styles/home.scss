@@ -9,24 +9,35 @@
   @include padding-reset;
 }
 
+.container-glass-full{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba( 255, 255, 255, 0.15 );
+  backdrop-filter: blur( 6.0px );
+  -webkit-backdrop-filter: blur( 6.0px );
+}
+
 #main-panel-toggle{
   position: fixed;
-  width: 300px;
-  height: 30px;
+  width: 19rem;
+  height: 2.5rem;
   left: 50%;
   transform: translate(-50%,0);
-  z-index: 1000;
+  z-index: 2000;
   transition: bottom 0.25s;
 }
 
 .toggle-pos-true{
-  bottom: 150px;
+  bottom: 9.4rem;
 }
 .toggle-pos-false{
   bottom: 0px;
 }
 
 .panel-display-false{
+  display: none;
   opacity: 0;
 }
 .panel-display-true{
@@ -35,24 +46,24 @@
 .main-panel{
   position: fixed;
   bottom: 0px;
-  width: 1000px;
-  height: 160px;
-  margin:1px;
+  width: 63rem;
+  height: 10rem;
   left: 50%;
   transform: translate(-50%,0%);
   transition: opacity 0.25s;
+  z-index: 1000;
 }
 
 #main-panel-image{
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 63rem;
 }
 
 .image-profile-button{
   display: inline;
   clip-path: circle(50% at 50% 50%);
-  width: 92px;
-  transform: translate(-14px,-6px);
+  width: 5.9rem;
+  transform: translate(-1rem,-0.45rem);
 }
 
 .center{
@@ -62,39 +73,40 @@
 }
 
 #main-panel-profile-button{
+  position: fixed;
   display: inline;
   border-radius: 50%;
-  position: fixed;
-  right: 50px;
-  bottom: 6px;
-  width: 92px;
-  height: 92px;
+  right: 3.1rem;
+  bottom: 0.38rem;
+  width: 5.75rem;
+  height: 5.75rem;
   background-color: rgba(255,180,0,100);
 }
 
 #main-panel-container{
+  position: fixed;
   background: red;
   display:inline;
-  position: absolute;
   bottom: 0;
   width: 100%;
-  height: 10%
+  height: 10%;
+  z-index: 2000;
 }
 
 .center-icons{
+  font-size: 2.2rem;
   position: absolute;
-  top: -0.2rem;
-  left: 0.6rem;
+  top: -0.1rem;
+  left: 0.7rem;
 }
 
 .main-panel-a{
-  font-size: 2.2rem;
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   z-index: 1000;
   display: inline;
-  top: 60px;
+  top: 3rem;
   box-shadow:  6px 6px 12px #949494,
              0px 0px 4px #826b50;
   border: #eee solid 4px;
@@ -110,24 +122,23 @@
 }
 
 .b-settings{
-  right: 220px;
-
+  right: 14rem;
 }
 .g-settings{
-  right: 310px;
+  right: 20rem;
 }
 .c-settings{
-  right: 400px;
+  right: 26rem;
 }
 .k-settings{
-  right: 490px;
+  right: 32rem;
 }
 .main-panel-b{
   position: fixed;
   width: 11rem;
   z-index: 1000;
   display: inline;
-  top: 4rem;
+  top: 3rem;
 }
 .e-settings{
   left: 14rem;
@@ -135,10 +146,9 @@
 
 .energyBar{
   position: fixed;
-  // width: 7.95rem;
   height: 1.6rem;
   left: 17.4rem;
-  top: 4.82rem;
+  top: 3.82rem;
   background: rgb(0,164,255);
   background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
   z-index: 2000;
@@ -147,17 +157,17 @@
 }
 .img-energy-container{
   display: inline;
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 11rem;
   z-index: 1000;
 }
 
 .command-textarea {
  position:fixed;
- width: 120px;
- height: 68px;
- bottom: 8px;
- left: 44px;
+ width: 7.5rem;
+ height: 4.4rem;
+ bottom: 0.5rem;
+ left: 2.75rem;
  background: rgba(0,0,0,0);
  z-index: 100;
  font-size: 0.7rem;
@@ -174,12 +184,12 @@
 }
 
 #panel-coordenadas{
+  position: fixed;
   font-family: 'Carter One';
   color: rgb(255,255,255);
   text-shadow: 2px 0 green, 0 2px green, 1px 0 green, 0 -1px green;
   font-size: 0.7rem;
-  position: fixed;
-  left: 60px;
-  bottom: 68px;
+  left: 3.9rem;
+  bottom: 4.2rem;
   z-index: 1000;
 }

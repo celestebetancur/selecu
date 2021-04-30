@@ -56,7 +56,7 @@ const Gestores = (props) => {
           <Row>
           {props.userInfo !== {} &&
             <>
-              <Card style={{width: "15rem"}}>
+              <Card style={{width: "15rem", border:'none'}}>
                 <Card.Body>
                   <Card.Title>PANEL GESTORES</Card.Title>
                     <div style={{display:"block"}}>
@@ -82,7 +82,7 @@ const Gestores = (props) => {
                 {menuToShow === 1 &&
               <>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul className="list-group">
+            <ul className="list-group" style={{border:'none'}}>
               <li className="list-group-item">
                 <a className="nav-link" onClick={()=>setMenuToShowCreate(0)}>Crear Mentor</a>
               </li>

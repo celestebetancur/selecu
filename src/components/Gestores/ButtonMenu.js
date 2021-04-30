@@ -11,18 +11,18 @@ const ButtonMenu = (props) => {
   },[state]);
 
   return(
-    <Accordion>
-      <Card>
+    <Accordion >
+      <Card style={{border:'none'}}style={{border:'none'}}>
           <p className="card-link" onClick={e => setState(0)}>
             Perfil
           </p>
       </Card>
-      <Card>
+      <Card style={{border:'none'}}>
           <p className="collapsed card-link" onClick={e => setState(1)}>
             Panel administración
           </p>
       </Card>
-      <Card>
+      <Card style={{border:'none'}}>
           <p className="collapsed card-link" onClick={e => setState(2)}>
             Listas
           </p>
