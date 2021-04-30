@@ -1,12 +1,11 @@
 import React, {Suspense, useEffect, useState}  from 'react';
 
 import {connect} from 'react-redux'
-import {loadUserData,loginFirstStage} from '../actions'
+import {loadContent} from '../actions'
 
 import {useDatabase} from 'reactfire'
 
 const ContentLoader = (props) => {
-  const [content, setContent] = useState({})
 
   const db = useDatabase();
 
@@ -14,8 +13,7 @@ const ContentLoader = (props) => {
     if(props.degree !== 'undefined'){
       db.ref().child("/content/"+props.degree+"/"+"1"+"/").get().then((snapshot) => {
         if (snapshot.exists()) {
-          setContent(snapshot.val());
-          console.log(snapshot.val())
+          props.loadContent(snapshot.val())
         } else {
           console.log("No data available");
         }
@@ -23,7 +21,7 @@ const ContentLoader = (props) => {
         console.error(error);
       });
     }
-  },[])
+  },[props.degree])
 
   return(
     <></>
@@ -32,8 +30,8 @@ const ContentLoader = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userInfo: state.loadUserInfo
+    userInfo: state.loadUserInfo,
   };
 }
 
-export default connect(mapStateToProps,{loadUserData,loginFirstStage})(ContentLoader);
+export default connect(mapStateToProps,{loadContent})(ContentLoader);

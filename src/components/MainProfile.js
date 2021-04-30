@@ -9,7 +9,7 @@ const MainProfile = () => {
   return (
     <Container fluid>
       <Container className="justify-content-center container-center-flex">
-        <Img style={{width:"60%",height:'38rem'}} src={fondo}/>
+        <Img style={{width:"39rem",height:'38rem'}} src={fondo}/>
         <Profile />
       </Container>
     </Container>

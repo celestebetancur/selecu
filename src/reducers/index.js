@@ -28,9 +28,17 @@ const loadUserDataFirebaseReducer = (user={}, action) => {
   return user;
 }
 
+const loadContentReducer = (data={}, action) => {
+  if(action.type === 'CONTENT_LOADED'){
+    return action.payload;
+  }
+  return data;
+}
+
 export default combineReducers({
   loginFirstStage: firstStageLoginReducer,
   userRollPass: firstStageRollReducer,
   loadUserData: loadUserDataFirebaseReducer,
-  loadUserInfo: loadUserInfoReducer
+  loadUserInfo: loadUserInfoReducer,
+  loadContent: loadContentReducer
 });

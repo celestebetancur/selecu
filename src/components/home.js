@@ -20,12 +20,15 @@ import { FaCog } from "react-icons/fa";
 import { FaGlobeAmericas } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
 import { FaExpandArrowsAlt } from "react-icons/fa";
+import diagram from '../assets/images/icons/diagram.svg'
 
 import ContentLoader from './ContentLoader'
+import ContentDisplay from './ContentDisplay'
 
 const Home = (props) => {
   const [commandForTarget, setCommandsForTarget] = useState(' ');
   const [registry, setRegistry] = useState('');
+  const [contentActive, setSetContentActive] = useState(false);
 
   useEffect(()=>{
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
@@ -36,7 +39,7 @@ const Home = (props) => {
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
           <ContentLoader
-            degree={registry}
+            degree={registry.toLowerCase()}
           />
         <Container className="home-canvas-container" fluid>
           {props.userInfo.info.profileImage === false &&
@@ -45,6 +48,9 @@ const Home = (props) => {
           <MainScreen
             commands={commandForTarget}
           />
+        {contentActive &&
+          <ContentDisplay />
+        }
           <Row>
             <MainPanel
               textFunction='COORDENADAS'
@@ -52,8 +58,8 @@ const Home = (props) => {
               button1={FaExpandArrowsAlt}
               button2={FaUserFriends}
               button3={FaGlobeAmericas}
-              button4={FaCog}
-              button4Action='perfilusuario'
+              button4={diagram}
+              button1Action={() => setSetContentActive(!contentActive)}
             />
           </Row>
         </Container>

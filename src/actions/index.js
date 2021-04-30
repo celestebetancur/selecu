@@ -27,3 +27,10 @@ export const loadUserData = (data) => {
     payload: data
   };
 }
+
+export const loadContent = (data) => {
+  return {
+    type: 'CONTENT_LOADED',
+    payload: data
+  };
+}

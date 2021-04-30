@@ -2,6 +2,7 @@ import React,  {useState} from 'react'
 import { Link } from "react-router-dom"
 import {StorageImage} from 'reactfire'
 import PropTypes from 'prop-types';
+import { ReactSVG } from 'react-svg'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
 import toggle from '../assets/images/mapa/toggle.png'
@@ -38,13 +39,11 @@ const MainPanel = (props) => {
           />
         </Container>
         <Img src={panel} className="center" id="main-panel-image"/>
-          <Link to="pixelapp">
             <Button id="main-panel-profile-button" >
             {props.userInfo.info.profileImage &&
               <StorageImage className="image-profile-button" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
             }
             </Button>
-          </Link>
           <Container className="main-panel-b e-settings">
             <div>
               <Img className="img-energy-container" src={energy} />
@@ -52,26 +51,21 @@ const MainPanel = (props) => {
             <div className='energyBar' style={{width:'7.95rem'}}>
             </div>
           </Container>
-          <Link to={props.button4Action}>
             <Button
               className="main-panel-a b-settings"
-            ><span className="center-icons">{props.button4()}</span></Button>
-          </Link>
+            >  </Button>
           <Link to="home">
             <Button
               className="main-panel-a g-settings"
-            ><span className="center-icons">{props.button3()}</span></Button>
+            ><span className="center-icons"></span></Button>
           </Link>
-          <Link to="comunidad">
             <Button
               className="main-panel-a c-settings"
-            ><span className="center-icons">{props.button2()}</span></Button>
-          </Link>
-          <Link to="">
+            ><span className="center-icons"></span></Button>
             <Button
+              onClick={props.button1Action}
               className="main-panel-a k-settings"
-            ><span className="center-icons">{props.button1()}</span></Button>
-          </Link>
+            ><ReactSVG className="center-icons" src={props.button4}/></Button>
         </Container>
       </Container>
     </Container>
