@@ -52,17 +52,7 @@ const ContentDisplay = (props) => {
             />
           </ContainerBack>
         }
-        {index === 1 &&
-          <ContainerBack>
-            <TxtAlone
-              text={props.contentToDiplay[index].mainText}
-              index={index}
-              setIndexUp={setIndexUp}
-              setIndexDown={setIndexDown}
-            />
-          </ContainerBack>
-        }
-        {index === 2 &&
+        {index >= 1 && index <= props.contentToDiplay['structure']['intro'] &&
           <ContainerBack>
             <TxtAlone
               text={props.contentToDiplay[index].mainText}

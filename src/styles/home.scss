@@ -30,7 +30,7 @@
 }
 
 .toggle-pos-true{
-  bottom: 9.4rem;
+  bottom: 146px;
 }
 .toggle-pos-false{
   bottom: 0px;
@@ -46,7 +46,7 @@
 .main-panel{
   position: fixed;
   bottom: 0px;
-  width: 63rem;
+  width: 100%;
   height: 10rem;
   left: 50%;
   transform: translate(-50%,0%);
@@ -56,7 +56,8 @@
 
 #main-panel-image{
   position: fixed;
-  width: 63rem;
+  width: 960px;
+  bottom: 0px;
 }
 
 .image-profile-button{
@@ -75,17 +76,18 @@
 #main-panel-profile-button{
   position: fixed;
   display: inline;
+  top: 50%;
+  left: 50%;
+  transform: translate(338px,-20px);
   border-radius: 50%;
-  right: 3.1rem;
-  bottom: 0.38rem;
-  width: 5.75rem;
-  height: 5.75rem;
-  background-color: rgba(255,180,0,100);
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255,180,0,1);
+  border-color: rgba(255,180,0,0);
 }
 
 #main-panel-container{
   position: fixed;
-  background: red;
   display:inline;
   bottom: 0;
   width: 100%;
@@ -93,14 +95,14 @@
   z-index: 2000;
 }
 
-
 .main-panel-a{
   position: fixed;
   width: 4rem;
   height: 4rem;
   z-index: 1000;
   display: inline;
-  top: 3rem;
+  top: 50%;
+  left:50%;
   box-shadow:  6px 6px 12px #949494,
              0px 0px 4px #826b50;
   border: #eee solid 4px;
@@ -116,16 +118,16 @@
 }
 
 .b-settings{
-  right: 14rem;
+  transform: translate(200px,-26px);
 }
 .g-settings{
-  right: 20rem;
+  transform: translate(110px,-26px);
 }
 .c-settings{
-  right: 26rem;
+  transform: translate(20px,-26px);
 }
 .k-settings{
-  right: 32rem;
+  transform: translate(-70px,-26px);
 }
 .main-panel-b{
   position: fixed;
@@ -135,14 +137,13 @@
   top: 3rem;
 }
 .e-settings{
-  left: 14rem;
+  transform: translate(266px,12px);
 }
 
 .energyBar{
   position: fixed;
   height: 1.6rem;
-  left: 17.4rem;
-  top: 3.82rem;
+  transform: translate(39px,13px);
   background: rgb(0,164,255);
   background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
   z-index: 2000;
@@ -160,9 +161,8 @@
  position:fixed;
  width: 7.5rem;
  height: 4.4rem;
- bottom: 0.5rem;
- left: 2.75rem;
  background: rgba(0,0,0,0);
+ transform: translate(106px,80px);
  z-index: 100;
  font-size: 0.7rem;
  font-family: 'Carter One';
@@ -183,8 +183,8 @@
   color: rgb(255,255,255);
   text-shadow: 2px 0 green, 0 2px green, 1px 0 green, 0 -1px green;
   font-size: 0.7rem;
-  left: 3.9rem;
-  bottom: 4.2rem;
+  left:50%;
+  transform: translate(134px,60px);
   z-index: 1000;
 }
 
@@ -247,22 +247,5 @@
 }
 
 .center-icons{
-  display: inline;
-  left:4rem;
+  position: relative;
 }
-//
-// .input-content-enter::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-//   color: #fecc44;
-//   text-align: center;
-//   opacity: 1; /* Firefox */
-// }
-//
-// .input-content-enter:-ms-input-placeholder { /* Internet Explorer 10-11 */
-//   color: #fecc44;
-//   text-align: center;
-// }
-//
-// .input-content-enter::-ms-input-placeholder { /* Microsoft Edge */
-//   color: #fecc44;
-//   text-align: center;
-// }

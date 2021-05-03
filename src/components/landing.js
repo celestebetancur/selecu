@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {BrowserView} from "react-device-detect";
 
 import HomePuzzle from '../animations/HomePuzzle'
 import NavBar from './Main/navbar.js'
@@ -47,22 +48,24 @@ const Landing = (props) => {
               </Row>
               <Row className="justify-content-center" id="divP5Puzzle" lg={7}>
                 <HomePuzzle/>
-                <OverlayTrigger
-                  trigger="click"
-                  key='left'
-                  placement='left'
-                  overlay={
-                    <Popover id='popover-positioned-left'>
-                      <Popover.Title as="h3">Ingreso para Mentores y Gestores</Popover.Title>
-                      <Popover.Content>
-                        <Button variant="warning" className="mr-3 ml-3" onClick={keyMentors}>Mentores</Button>
-                        <Button variant="warning" onClick={keyAdmin}>Gestores</Button>
-                      </Popover.Content>
-                    </Popover>
-                  }
-                  >
-                  <Button variant="secondary" className="landing-button-popover" style={{backgroundImage:`url(${key})`}} />
-                </OverlayTrigger>
+                <BrowserView>
+                  <OverlayTrigger
+                    trigger="click"
+                    key='left'
+                    placement='left'
+                    overlay={
+                      <Popover id='popover-positioned-left'>
+                        <Popover.Title as="h3">Ingreso para Mentores y Gestores</Popover.Title>
+                        <Popover.Content>
+                          <Button variant="warning" className="mr-3 ml-3" onClick={keyMentors}>Mentores</Button>
+                          <Button variant="warning" onClick={keyAdmin}>Gestores</Button>
+                        </Popover.Content>
+                      </Popover>
+                    }
+                    >
+                    <Button variant="secondary" className="landing-button-popover" style={{backgroundImage:`url(${key})`}} />
+                  </OverlayTrigger>
+                </BrowserView>
               </Row>
             </Container>
         </Row>

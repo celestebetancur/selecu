@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import SignOut from './SignOut'
 import Home from './home'
 import Landing from './landing'
-import FallbackAccessDenied from './fallbackAccessDenied'
+import {FallbackAccessDenied} from './fallbackAccessDenied'
 import Blackhole from './Blackhole'
 import 'firebase/auth'
 import firebaseAuth from "firebase/app";

@@ -1,6 +1,11 @@
 import React, {useState, useEffect, Suspense} from 'react'
 import App from '../../App'
 
+import {
+  BrowserView,
+  MobileView
+} from "react-device-detect";
+
 import SignOut from '../SignOut'
 import ButtonMenu from './ButtonMenu'
 import Profile from '../Profile'
@@ -50,67 +55,74 @@ const Gestores = (props) => {
   }
 
   return(
-    <Suspense fallback={<Spinner animation="border" variant="primary" />}>
-      <AuthCheck fallback={<App />}>
-        <Container fluid>
-          <Row>
-          {props.userInfo !== {} &&
-            <>
-              <Card style={{width: "15rem", border:'none'}}>
-                <Card.Body>
-                  <Card.Title>PANEL GESTORES</Card.Title>
-                    <div style={{display:"block"}}>
-                    <h6>{`¡${hour} ${props.userInfo.info.nick}!`}</h6>
-                    <hr />
-                    <ButtonMenu
-                      setMenuNumber={setMenuNumber}
-                    />
-                    <br/>
-                    <SignOut
-                      text="Salir"
-                    />
-                    </div>
-                  </Card.Body>
-                </Card>
-                {menuToShow === 0 &&
-                  <Profile
-                    update={true}
-                    level='gestores'
-                    functionsAvailable={false}
-                  />
-                }
-                {menuToShow === 1 &&
+    <>
+    <BrowserView>
+      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+        <AuthCheck fallback={<App />}>
+          <Container fluid>
+            <Row>
+            {props.userInfo !== {} &&
               <>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul className="list-group" style={{border:'none'}}>
-              <li className="list-group-item">
-                <a className="nav-link" onClick={()=>setMenuToShowCreate(0)}>Crear Mentor</a>
-              </li>
-              <li className="list-group-item">
-                <a className="nav-link" onClick={()=>setMenuToShowCreate(1)}>Crear Aprendiz</a>
-              </li>
-            </ul>
-          </nav>
-          {menuToShowCreate === 0 &&
-            <CreateMentor />
-          }
-          {menuToShowCreate === 1 &&
-            <CreateUser />
-          }
-        </>
-        }
-          {menuToShow === 2 &&
-            <List
-              usersList={usersList}
-              fullInfo={fullInfo}
-            />
-          }
+                <Card style={{width: "15rem", border:'none'}}>
+                  <Card.Body>
+                    <Card.Title>PANEL GESTORES</Card.Title>
+                      <div style={{display:"block"}}>
+                      <h6>{`¡${hour} ${props.userInfo.info.nick}!`}</h6>
+                      <hr />
+                      <ButtonMenu
+                        setMenuNumber={setMenuNumber}
+                      />
+                      <br/>
+                      <SignOut
+                        text="Salir"
+                      />
+                      </div>
+                    </Card.Body>
+                  </Card>
+                  {menuToShow === 0 &&
+                    <Profile
+                      update={true}
+                      level='gestores'
+                      functionsAvailable={false}
+                    />
+                  }
+                  {menuToShow === 1 &&
+                <>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <ul className="list-group" style={{border:'none'}}>
+                <li className="list-group-item">
+                  <a className="nav-link" onClick={()=>setMenuToShowCreate(0)}>Crear Mentor</a>
+                </li>
+                <li className="list-group-item">
+                  <a className="nav-link" onClick={()=>setMenuToShowCreate(1)}>Crear Aprendiz</a>
+                </li>
+              </ul>
+            </nav>
+            {menuToShowCreate === 0 &&
+              <CreateMentor />
+            }
+            {menuToShowCreate === 1 &&
+              <CreateUser />
+            }
           </>
-        }
-        </Row>
-      </Container>
-      </AuthCheck>
-    </Suspense>
+          }
+            {menuToShow === 2 &&
+              <List
+                usersList={usersList}
+                fullInfo={fullInfo}
+              />
+            }
+            </>
+          }
+          </Row>
+        </Container>
+        </AuthCheck>
+      </Suspense>
+    </BrowserView>
+    <MobileView>
+      <p>Esta app solo puede ser visualizada desde un computador</p>
+    </MobileView>
+    </>
   );
 }
 

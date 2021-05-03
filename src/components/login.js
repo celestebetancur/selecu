@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
+import {BrowserView, MobileView} from "react-device-detect";
+import {FallbackMobile} from './fallbackAccessDenied'
 
 import Auth from './Auth'
 import App from '../App'
@@ -18,10 +20,15 @@ const Login = (props) => {
 
   return (
     <>
+      <BrowserView>
       {props.userRoll === null
         ? <Auth roll={grades[0]}/>
         : <Auth roll={grades[props.userRoll]}/>
       }
+      </BrowserView>
+      <MobileView>
+        <FallbackMobile />
+      </MobileView>
     </>
   );
 }
