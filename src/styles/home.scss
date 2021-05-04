@@ -73,6 +73,13 @@
   border: none;
 }
 
+.image-profile-button-done{
+  display: inline;
+  clip-path: circle(50% at 50% 50%);
+  width: 5.9rem;
+  transform: translate(-10px,-6px);
+}
+
 .center{
   top: 50%;
   left: 50%;
@@ -82,6 +89,7 @@
 #main-panel-profile-button{
   position: fixed;
   display: inline;
+  transform-origin: center;
   top: 50%;
   left: 50%;
   transform: translate(338px,-20px);
@@ -103,39 +111,17 @@
 
 .main-panel-a{
   position: fixed;
-  cursor: pointer;
   border-radius: 50px;
-  width: 50px;
   z-index: 1000;
-  // display: inline;
   top: 50%;
   left:50%;
-  height: 40px;
-  // box-shadow:  6px 6px 12px #949494,
-  //            0px 0px 4px #826b50;
-  // border: #eee solid 4px;
-  // border-radius: 50%;
-  // background: rgb(255,111,0);
-  // background: radial-gradient(circle, rgba(255,111,0,0.7) 0%, rgba(255,184,0,0.7) 82%, rgba(237,237,237,0.7) 80%);
 }
 
-// .main-panel-a:hover{
-//   border: rgb(255,111,0) solid 4px;
-//   background: rgb(255,111,0);
-//   background: radial-gradient(circle, rgba(255,111,0,1) 0%, rgba(255,184,0,1) 82%, rgba(237,237,237,1) 80%);
-// }
-
-.b-settings{
-  transform: translate(200px,-26px);
-}
-.g-settings{
-  transform: translate(110px,-26px);
-}
 .c-settings{
-  transform: translate(20px,-26px);
+  transform: translate(190px,-26px);
 }
 .k-settings{
-  transform: translate(-80px,-26px);
+  transform: translate(100px,-26px);
 }
 .main-panel-b{
   position: fixed;
@@ -151,8 +137,8 @@
 .energyBar{
   position: fixed;
   left:50%;
-  height: 1.6rem;
-  transform: translate(-34px,13px);
+  height: 36px;
+  transform: translate(-18px,20px);
   background: rgb(0,164,255);
   background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
   z-index: 2000;
@@ -162,17 +148,17 @@
 .img-energy-container{
   display: inline;
   position: fixed;
-  width: 11rem;
+  width: 250px;
   z-index: 1000;
 }
 
 .command-textarea {
  position:fixed;
  width: 7.5rem;
- height: 4.4rem;
+ height: 4.3rem;
  left:50%;
  background: rgba(0,0,0,0);
- transform: translate(-436px,80px);
+ transform: translate(-436px,82px);
  z-index: 100;
  font-size: 0.7rem;
  font-family: 'Carter One';
@@ -254,6 +240,26 @@
 .bt-next{
   top:11rem;
   left:60rem;
+}
+
+.bt-active-true{
+  cursor: pointer;
+}
+.bt-active-false{
+  cursor:default;
+}
+
+.btn-jump-true{
+  animation: jumping 0.5s infinite;
+}
+
+@keyframes jumping {
+    0% {
+      background-color: rgba(255,180,0,1);
+    }
+    100% {
+      background-color: rgba(255,180,0,0);;
+    }
 }
 
 .center-icons{

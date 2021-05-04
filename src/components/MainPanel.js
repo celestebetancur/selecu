@@ -1,12 +1,14 @@
-import React,  {useState} from 'react'
+import React,  {useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
 import {StorageImage} from 'reactfire'
 import PropTypes from 'prop-types';
 import { ReactSVG } from 'react-svg'
+import ReactHowler from 'react-howler'
+
+import bleep from '../assets/audio/bleep.ogg'
 
 import panel from '../assets/images/mapa/panel-vacio.png'
 import toggle from '../assets/images/mapa/toggle.png'
-import energy from '../assets/images/mapa/energia-bordes.png'
 import button from '../assets/images/icons/fondo.png'
 
 import '../styles/home.scss'
@@ -19,11 +21,16 @@ import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
 const MainPanel = (props) => {
-  const [mainPanelState, setMainPanelState] = useState(false);
-  const [toggleMainPanel, setToggleMainPanel] = useState(false);
+  const [mainPanelState, setMainPanelState] = useState(false)
+  const [toggleMainPanel , setToggleMainPanel] = useState(false)
 
   return(
     <Container>
+      <ReactHowler
+        src={bleep}
+        playing={props.btProfileState}
+        loop={props.btProfileState}
+      />
       <Container id="main-panel-home" className="container-main-panel">
         <div
           onClick={() => setToggleMainPanel(!toggleMainPanel)}
@@ -40,40 +47,30 @@ const MainPanel = (props) => {
           />
         </Container>
         <Img src={panel} className="center" id="main-panel-image"/>
-            <Button id="main-panel-profile-button" >
+            <Button
+              id="main-panel-profile-button"
+              className={`btn-jump-${props.btProfileState}`}>
             {props.userInfo.info.profileImage &&
-              <StorageImage className="image-profile-button" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
+              <StorageImage className="image-profile-button-done" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
             }
             </Button>
-          <Container className="main-panel-b e-settings">
-            <div>
-              <Img className="img-energy-container" src={energy} />
-            </div>
-            <div className='energyBar' style={{width:'7.95rem'}}>
-            </div>
-          </Container>
-            <span
-              className="main-panel-a b-settings"
+            {props.children}
+
+            <Link to="home"
+              className={`main-panel-a c-settings bt-active-${props.bt2State}`}
             >
-            <Img src={button} className="panel-button-img" />
-          </span>
+              <Img src={button} className="panel-button-img" />
+              <ReactSVG className="center-icons-a" src={props.button2}/>
+            </Link>
+
             <span
-              className="main-panel-a g-settings"
-            ><span className="center-icons"></span>
-          <Img src={button} className="panel-button-img" />
-        </span>
-            <span
-              className="main-panel-a c-settings"
-            ><span className="center-icons"></span>
-          <Img src={button} className="panel-button-img" />
-        </span>
-          <span
-              onClick={props.button1Action}
-              className="main-panel-a k-settings"
+              onClick={props.bt1State ? props.button1Action : null}
+              className={`main-panel-a k-settings bt-active-${props.bt1State}`}
             >
-            <Img src={button} className="panel-button-img" />
-            <ReactSVG className="center-icons-a" src={props.button4}/>
-          </span>
+              <Img src={button} className="panel-button-img"/>
+              <ReactSVG className="center-icons-a" src={props.button1}/>
+            </span>
+
         </Container>
       </Container>
     </Container>
@@ -84,7 +81,8 @@ MainPanel.propTypes = {
   commandForTarget: PropTypes.func,
   user: PropTypes.object,
   button4Action: PropTypes.string,
-  textFunction: PropTypes.string
+  textFunction: PropTypes.string,
+  bt1State: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {

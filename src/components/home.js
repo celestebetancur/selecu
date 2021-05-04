@@ -1,6 +1,7 @@
 import React,  {useState, Suspense, useEffect} from 'react'
 import { Redirect } from "react-router-dom"
 import {AuthCheck, StorageImage} from 'reactfire'
+import {map} from '../helpers'
 
 import MainScreen from '../animations/MainScreen'
 import MainPanel from './MainPanel'
@@ -16,11 +17,9 @@ import Spinner from 'react-bootstrap/Spinner'
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
-import { FaCog } from "react-icons/fa";
-import { FaGlobeAmericas } from "react-icons/fa";
-import { FaUserFriends } from "react-icons/fa";
-import { FaExpandArrowsAlt } from "react-icons/fa";
+import energy from '../assets/images/mapa/energia-bordes.png'
 import diagram from '../assets/images/icons/diagram.svg'
+import tierra from '../assets/images/icons/tierra.svg'
 
 import ContentLoader from './ContentLoader'
 import ContentDisplay from './ContentDisplay'
@@ -55,17 +54,41 @@ const Home = (props) => {
             <MainPanel
               textFunction='COORDENADAS'
               commandForTarget={(val) => setCommandsForTarget(val)}
-              button1={FaExpandArrowsAlt}
-              button2={FaUserFriends}
-              button3={FaGlobeAmericas}
-              button4={diagram}
+              button1={diagram}
+              button2={tierra}
               button1Action={() => setSetContentActive(!contentActive)}
-            />
+              bt1State={props.userInfo.info.profileImage}
+              bt2State={props.userInfo.info.profileImage}
+              btProfileState={!props.userInfo.info.profileImage}
+            >
+            <Energy />
+            </ MainPanel>
           </Row>
         </Container>
       </AuthCheck>
     </Suspense>
   );
+}
+
+const Energy = () => {
+  const [time , setTime] = useState(0)
+
+  useEffect(()=>{
+    let tempTime = new Date().getHours()
+    let normalizedTime = tempTime >= 6 && tempTime < 20 ? tempTime : -1
+    let widthEnergy = map(normalizedTime,6,20,181,0)
+    setTime(widthEnergy)
+  })
+
+  return(
+    <Container className="main-panel-b e-settings">
+      <div>
+        <Img className="img-energy-container" src={energy} />
+      </div>
+      <div className='energyBar' style={{width:`${time}px`}}>
+      </div>
+    </Container>
+  )
 }
 
 const mapStateToProps = (state) => {
