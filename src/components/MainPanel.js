@@ -7,6 +7,7 @@ import { ReactSVG } from 'react-svg'
 import panel from '../assets/images/mapa/panel-vacio.png'
 import toggle from '../assets/images/mapa/toggle.png'
 import energy from '../assets/images/mapa/energia-bordes.png'
+import button from '../assets/images/icons/fondo.png'
 
 import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
@@ -51,21 +52,28 @@ const MainPanel = (props) => {
             <div className='energyBar' style={{width:'7.95rem'}}>
             </div>
           </Container>
-            <Button
+            <span
               className="main-panel-a b-settings"
-            >  </Button>
-          <Link to="home">
-            <Button
+            >
+            <Img src={button} className="panel-button-img" />
+          </span>
+            <span
               className="main-panel-a g-settings"
-            ><span className="center-icons"></span></Button>
-          </Link>
-            <Button
+            ><span className="center-icons"></span>
+          <Img src={button} className="panel-button-img" />
+        </span>
+            <span
               className="main-panel-a c-settings"
-            ><span className="center-icons"></span></Button>
-            <Button
+            ><span className="center-icons"></span>
+          <Img src={button} className="panel-button-img" />
+        </span>
+          <span
               onClick={props.button1Action}
               className="main-panel-a k-settings"
-            ><ReactSVG className="center-icons" src={props.button4}/></Button>
+            >
+            <Img src={button} className="panel-button-img" />
+            <ReactSVG className="center-icons-a" src={props.button4}/>
+          </span>
         </Container>
       </Container>
     </Container>
