@@ -19,6 +19,12 @@ $desktop-width: 1024px;
   background-attachment:scroll;
   background-size:cover;
 }
+@mixin background-pos-top {
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-attachment:scroll;
+  background-size:cover;
+}
 
 @mixin padding-reset{
   padding: 0px;

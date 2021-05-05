@@ -28,7 +28,7 @@ const MainPanel = (props) => {
     <Container>
       <ReactHowler
         src={bleep}
-        playing={props.btProfileState}
+        playing={!props.btProfileState}
         loop={props.btProfileState}
       />
       <Container id="main-panel-home" className="container-main-panel">
@@ -49,7 +49,9 @@ const MainPanel = (props) => {
         <Img src={panel} className="center" id="main-panel-image"/>
             <Button
               id="main-panel-profile-button"
-              className={`btn-jump-${props.btProfileState}`}>
+              className={`btn-jump-${props.btProfileState}`}
+              onClick={props.button2Action}
+              >
             {props.userInfo.info.profileImage &&
               <StorageImage className="image-profile-button-done" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
             }

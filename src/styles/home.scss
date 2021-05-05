@@ -126,8 +126,17 @@
 .main-panel-b{
   position: fixed;
   width: 11rem;
-  z-index: 1000;
+  z-index: 2000;
   display: inline;
+}
+
+.main-panel-c{
+  position: fixed;
+  width: 17rem;
+  z-index: 2000;
+  display: inline;
+  left: 300px;
+  bottom: 45px;
 }
 .e-settings{
   left:50%;
@@ -262,10 +271,10 @@
     }
 }
 
-.center-icons{
-  position: relative;
-  transform: translate(10px,-40px);
-  width: 30px;
+.center-icons-b{
+  position: absolute;
+  transform: translate(-41px,-1px);
+  width: 33px;
 }
 .center-icons-a{
   position: relative;
@@ -275,4 +284,10 @@
 
 .panel-button-img{
   width: 70px;
+}
+
+.bt-pixelapp{
+  width: 50px;
+  color: #fff;
+  margin-left: 1rem;
 }

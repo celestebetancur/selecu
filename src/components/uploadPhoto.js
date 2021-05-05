@@ -21,7 +21,6 @@ const UploadPhoto = (props) => {
 
   const startLoading = (val) => {
     setStart(val);
-    console.log(val);
   }
 
   useEffect(()=>{
@@ -39,10 +38,13 @@ const UploadPhoto = (props) => {
   return (
     <>
     {!done &&
-      <Button variant="info" onClick={() => setStart(true)} className="mr-3">Subir como imagen perfil</Button>
-    }
-    {done &&
-      <p>Foto de perfil cargada con éxito</p>
+      <Button
+        variant="warning"
+        onClick={() => setStart(true)}
+        className="ml-3"
+        style={{height:'2rem'}}
+      >Hacer foto de perfil
+      </Button>
     }
     </>
   );

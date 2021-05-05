@@ -16,7 +16,7 @@ const SobreNosotros = () => {
           <Card.Body>
             <Card.Title>Somos un grupo de idealistas</Card.Title>
             <Card.Text>
-              Creemos que nuestra sociedad puede elegir tener un mundo en armonía, y es necesario construirlo desde el presente. Creemos que la educación tiene un gran poder de transformador, y vemos necesario transformarla para que su poder reflorezca. Creemos que los niños y los jóvenes serán quienes construyan un mundo sostenible, nosotros queremos acompañarlos y darles herramientas útiles para ese camino.
+              Creemos que nuestra sociedad puede elegir tener un mundo en armonía, y es necesario construirlo desde el presente. Creemos que la educación tiene un gran poder transformador, y vemos necesario transformarla para que su poder reflorezca. Creemos que los niños y los jóvenes serán quienes construyan un mundo sostenible, nosotros queremos acompañarlos y darles herramientas útiles para ese camino.
             </Card.Text>
             <Card.Title>Aquí encontrarás una plataforma</Card.Title>
             <Card.Text>
