@@ -169,6 +169,7 @@ const NavPixel = (props) => {
       <span
         className="bt-active-true"
         onClick={()=> props.setReadyState(!props.readyState)}
+        setReadyState={props.setReadyState}
       >
         <Img src={button} className="bt-pixelapp"/>
         <IconContext.Provider
@@ -178,7 +179,6 @@ const NavPixel = (props) => {
           ?<IoArrowUndoOutline className="center-icons-b"/>
           :<FaStar className="center-icons-b"/>
         }
-
         </IconContext.Provider>
       </span>
 

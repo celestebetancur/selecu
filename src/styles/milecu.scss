@@ -1,5 +1,12 @@
 @import "mixins";
 
+.canvas-false{
+  display: none;
+}
+.canvas-true{
+  opacity:1;
+}
+
 #pixelapp-main-container{
   position:absolute;
   width:100%;
@@ -160,7 +167,8 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50px;
   width: 6rem;
   height: 6rem;
-  top: 20rem;
+  top: 4rem;
+  justify-content: flex-start;
 }
 
 .button-pixelapp{
@@ -173,24 +181,11 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-.one-color{
-  right: 41%;
-}
-.two-color{
-  right: 32%;
-}
-.three-color{
-  right: 23%;
-}
-.four-color{
-  right: 14%;
-}
-
 .bg-img-pixelapp{
   @include background-pos-top;
   top: 0px;
-  height: 540px;
-  padding: 4rem;
+  height: 38rem;
+  padding-top: 4rem;
   transform-origin: center;
   transform: scale(1);
 }

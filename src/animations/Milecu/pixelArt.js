@@ -28,6 +28,7 @@ class PixelArt extends React.Component {
     color:{},
     image: {},
     ready: false,
+    idReady: 0,
     url: '',
     drawing: false,
     upload: false,
@@ -112,9 +113,18 @@ class PixelArt extends React.Component {
       };
 
       sketch.draw = () => {
-        this.setState({ready:this.props.ready})
         if(!this.props.ready){
           this.setState({url:''})
+          this.setState({idReady:0})
+          // this.setState({drawing:false})
+        }
+        if(this.props.ready){
+          if(this.state.idReady === 0){
+            this.setState(state => ({
+              ready:true,
+              idReady:1
+            }));
+          }
         }
         sketch.background(255);
         sketch.image(captured, x, y, w, h);
@@ -177,13 +187,14 @@ class PixelArt extends React.Component {
       const createBlob = () => {
         if(this.state.ready){
           // captured = capture.get();
+          console.log("blob")
           url = cnv.canvas.toDataURL('image/jpeg', 1.0);
           cnv.canvas.toBlob((blob)=>{
             canvasFrame = blob;
             this.setState({image:blob});
-            this.setState({ready:false});
             this.setState({url:url});
-            this.setState({drawing:true});
+            this.setState({ready:false});
+            // this.setState({drawing:true});
           },'image/jpeg', 0.95);
         }
       }
@@ -266,76 +277,82 @@ class PixelArt extends React.Component {
   render(){
     return (
       <Container id="pixelapp-main-container" className="bg-img-pixelapp" fluid style={{backgroundImage: `url(${fondo})`}}>
-        <Container>
-          {this.state.url !== ''
-            ?
-            <>
-              <Container className="justify-content-center" style={{display:'flex'}}>
-                <Image id="preview-avatar" src={this.state.url} />
-                <UploadPhoto
-                  image={this.state.image}
+        <Row>
+          <Col className="justify-content-center" style={{display:'flex'}}>
+            <div id="divPixelArt" className={`canvas-${!this.props.ready}`}></div>
+          </Col>
+        {this.state.url !== ''
+          ?
+          <>
+            <Container className="justify-content-center" style={{display:'flex'}}>
+              <Image id="preview-avatar" src={this.state.url} />
+              <UploadPhoto
+                image={this.state.image}
+              />
+            </Container>
+          </>
+          :
+          <>
+            <Col>
+              <Row className="justify-content-center" style={{display:'flex'}}>
+                <ColorPicker
+                  setColor={this.setColor}
                 />
-              </Container>
-            </>
-            :
-            <>
-              <div className="savedColor one-color">
-                <button
-                  onDragOver={e => e.preventDefault()}
-                  onDrop={this.setButtonColor1}
-                  onClick={() => this.setColor(this.state.buttonColor1)}
-                  className='button-pixelapp one-color'
-                  style={{background:`rgba(${this.state.buttonColor1.r},${this.state.buttonColor1.g},${this.state.buttonColor1.b})`,opacity:`${this.state.buttonColor1.o/255.0}`}}>
-                </button>
-              </div>
-              <div className='savedColor two-color'>
-                <button
-                  onDragOver={e => e.preventDefault()}
-                  onDrop={this.setButtonColor2}
-                  onClick={() => this.setColor(this.state.buttonColor2)}
-                  className='button-pixelapp'
-                  style={{background:`rgba(${this.state.buttonColor2.r},${this.state.buttonColor2.g},${this.state.buttonColor2.b})`,opacity:`${this.state.buttonColor2.o/255.0}`}}>
-                </button>
-              </div>
-              <div className='savedColor three-color'>
-                <button
-                  onDragOver={e => e.preventDefault()}
-                  onDrop={this.setButtonColor3}
-                  onClick={() => this.setColor(this.state.buttonColor3)}
-                  className='button-pixelapp'
-                  style={{background:`rgba(${this.state.buttonColor3.r},${this.state.buttonColor3.g},${this.state.buttonColor3.b})`,opacity:`${this.state.buttonColor3.o/255.0}`}}>
-                </button>
-              </div>
-              <div className='savedColor four-color'>
-                <button
-                  onDragOver={e => e.preventDefault()}
-                  onDrop={this.setButtonColor4}
-                  onClick={() => this.setColor(this.state.buttonColor4)}
-                  className='button-pixelapp'
-                  style={{background:`rgba(${this.state.buttonColor4.r},${this.state.buttonColor4.g},${this.state.buttonColor4.b})`,opacity:`${this.state.buttonColor4.o/255.0}`}}>
-                </button>
-              </div>
-              <Row>
-                <Col className="justify-content-center" style={{display:'flex'}}>
-                  <div id="divPixelArt"></div>
+              </Row>
+              <Row className="justify-content-center" style={{display:'flex'}}>
+                <Col>
+                  <div className="savedColor one-color">
+                    <button
+                      onDragOver={e => e.preventDefault()}
+                      onDrop={this.setButtonColor1}
+                      onClick={() => this.setColor(this.state.buttonColor1)}
+                      className='button-pixelapp one-color'
+                      style={{background:`rgba(${this.state.buttonColor1.r},${this.state.buttonColor1.g},${this.state.buttonColor1.b})`,opacity:`${this.state.buttonColor1.o/255.0}`}}>
+                    </button>
+                  </div>
                 </Col>
-                <Col className="justify-content-center" style={{display:'flex'}}>
-                  <Row>
-                    <ColorPicker
-                      setColor={this.setColor}
-                    />
-                  </Row>
+                <Col>
+                  <div className='savedColor two-color'>
+                    <button
+                      onDragOver={e => e.preventDefault()}
+                      onDrop={this.setButtonColor2}
+                      onClick={() => this.setColor(this.state.buttonColor2)}
+                      className='button-pixelapp'
+                      style={{background:`rgba(${this.state.buttonColor2.r},${this.state.buttonColor2.g},${this.state.buttonColor2.b})`,opacity:`${this.state.buttonColor2.o/255.0}`}}>
+                    </button>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='savedColor three-color'>
+                    <button
+                      onDragOver={e => e.preventDefault()}
+                      onDrop={this.setButtonColor3}
+                      onClick={() => this.setColor(this.state.buttonColor3)}
+                      className='button-pixelapp'
+                      style={{background:`rgba(${this.state.buttonColor3.r},${this.state.buttonColor3.g},${this.state.buttonColor3.b})`,opacity:`${this.state.buttonColor3.o/255.0}`}}>
+                    </button>
+                  </div>
+                </Col>
+                <Col>
+                  <div className='savedColor four-color'>
+                    <button
+                      onDragOver={e => e.preventDefault()}
+                      onDrop={this.setButtonColor4}
+                      onClick={() => this.setColor(this.state.buttonColor4)}
+                      className='button-pixelapp'
+                      style={{background:`rgba(${this.state.buttonColor4.r},${this.state.buttonColor4.g},${this.state.buttonColor4.b})`,opacity:`${this.state.buttonColor4.o/255.0}`}}>
+                    </button>
+                  </div>
                 </Col>
               </Row>
-              <Row className="justify-content-center">
-            </Row>
-            </>
+            </Col>
+
+          </>
           }
-        </Container>
+        </Row>
       </Container>
     );
   }
 }
-
 
 export {PixelArt};

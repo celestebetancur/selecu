@@ -28,7 +28,7 @@ const MainPanel = (props) => {
     <Container>
       <ReactHowler
         src={bleep}
-        playing={!props.btProfileState}
+        playing={props.btProfileState}
         loop={props.btProfileState}
       />
       <Container id="main-panel-home" className="container-main-panel">
@@ -58,20 +58,20 @@ const MainPanel = (props) => {
             </Button>
             {props.children}
 
-            <Link to="home"
-              className={`main-panel-a c-settings bt-active-${props.bt2State}`}
-            >
-              <Img src={button} className="panel-button-img" />
-              <ReactSVG className="center-icons-a" src={props.button2}/>
-            </Link>
-
             <span
               onClick={props.bt1State ? props.button1Action : null}
               className={`main-panel-a k-settings bt-active-${props.bt1State}`}
             >
-              <Img src={button} className="panel-button-img"/>
-              <ReactSVG className="center-icons-a" src={props.button1}/>
+              <Img src={button} className="panel-button-img-sm"/>
+              <ReactSVG className="center-icons-sm" src={props.button1}/>
             </span>
+
+            <Link to="home"
+              className={`main-panel-a c-settings bt-active-${props.bt2State}`}
+            >
+              <Img src={button} className="panel-button-img-lg" />
+              <ReactSVG className="center-icons-lg" src={props.button2}/>
+            </Link>
 
         </Container>
       </Container>

@@ -118,10 +118,10 @@
 }
 
 .c-settings{
-  transform: translate(190px,-26px);
+  transform: translate(180px,-32px);
 }
 .k-settings{
-  transform: translate(100px,-26px);
+  transform: translate(80px,-24px);
 }
 .main-panel-b{
   position: fixed;
@@ -140,7 +140,7 @@
 }
 .e-settings{
   left:50%;
-  transform: translate(-290px,56px);
+  transform: translate(-275px,52px);
 }
 
 .energyBar{
@@ -282,8 +282,22 @@
   width: 50px;
 }
 
-.panel-button-img{
-  width: 70px;
+.center-icons-sm{
+  position: relative;
+  transform: translate(10px,-58px);
+  width: 46px;
+}
+.center-icons-lg{
+  position: relative;
+  transform: translate(12px,-68px);
+  width: 56px;
+}
+
+.panel-button-img-sm{
+  width: 65px;
+}
+.panel-button-img-lg{
+  width: 80px;
 }
 
 .bt-pixelapp{
