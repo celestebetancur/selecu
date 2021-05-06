@@ -8,6 +8,7 @@ import MainScreen from '../animations/MainScreen'
 import MainPanel from './MainPanel'
 import PixelApp from './PixelApp'
 import App from '../App'
+import MainProfile from './MainProfile'
 
 import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
@@ -36,10 +37,11 @@ import ContentLoader from './ContentLoader'
 import ContentDisplay from './ContentDisplay'
 
 const Home = (props) => {
-  const [commandForTarget, setCommandsForTarget] = useState(' ');
-  const [registry, setRegistry] = useState('');
-  const [contentActive, setSetContentActive] = useState(false);
-  const [appActive, setAppActive] = useState(false);
+  const [commandForTarget, setCommandsForTarget] = useState(' ')
+  const [registry, setRegistry] = useState('')
+  const [contentActive, setSetContentActive] = useState(false)
+  const [appActive, setAppActive] = useState(false)
+  const [index, setIndex] = useState(1)
 
   const [camaraState, setCamaraState] = useState(false)
   const [gridState, setGridState] = useState(true)
@@ -67,16 +69,25 @@ const Home = (props) => {
           <ContentDisplay />
         }
         {appActive &&
-          <PixelApp
-            commands={commandForTarget}
-            grid={gridState}
-            camara={camaraState}
-            ready={readyState}
-          />
+          <>
+          {index === 0 &&
+            <PixelApp
+              commands={commandForTarget}
+              grid={gridState}
+              camara={camaraState}
+              ready={readyState}
+            />
+          }
+          {index === 1 &&
+            <MainProfile
+
+            />
+          }
+          </>
         }
           <Row>
             <MainPanel
-              textFunction={appActive ? 'PIXELAPP CMD' : 'COORDENADAS'}
+              textFunction={appActive && index === 0 ? 'PIXELAPP CMD' : 'COORDENADAS'}
               commandForTarget={(val) => setCommandsForTarget(val)}
               button1={diagram}
               button2={tierra}
@@ -90,7 +101,7 @@ const Home = (props) => {
             {!appActive &&
               <Energy />
             }
-            {appActive &&
+            {appActive && index === 0 &&
               <NavPixel
                 camaraState={camaraState}
                 gridState={gridState}

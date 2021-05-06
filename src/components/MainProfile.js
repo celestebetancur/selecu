@@ -7,11 +7,9 @@ import fondo from '../assets/images/pixelapp/fondo-colors.png'
 
 const MainProfile = () => {
   return (
-    <Container fluid>
-      <Container className="justify-content-center container-center-flex">
-        <Img style={{width:"39rem",height:'38rem'}} src={fondo}/>
-        <Profile />
-      </Container>
+    <Container className="bg-img-pixelapp font-learners" fluid
+      style={{backgroundImage: `url(${fondo})`, paddingLeft:'8rem',position:'absolute',zIndex:'2000'}}>
+      <Profile />
     </Container>
   )
 }

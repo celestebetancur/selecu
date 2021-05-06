@@ -23,9 +23,6 @@ import Home from './components/home'
 import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
-import PixelApp from './components/PixelApp'
-import MainProfile from './components/MainProfile'
-
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
@@ -47,9 +44,7 @@ ReactDOM.render(
             <Route path ="/homegestores" component={Gestores}/>
 
             <Route path ="/home" component={Home} exact />
-            <Route path ="/perfilusuario" component={MainProfile} exact />
 
-            <Route path ="/pixelapp" component={PixelApp} exact />
           </Switch>
         </HashRouter>
       </Provider>

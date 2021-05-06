@@ -1,19 +1,22 @@
 .card-profile-primero{
   border: none;
   width: 36rem;
-  font-family: 'carter one';
-  position:absolute;
-  top:0rem;
+  font-family: 'learners';
   background: rgba(255,255,255,0);
   background-color: rgba(255,255,255,0);
-  margin-top:4rem;
+  font-size: 1.2rem;
 }
 
 .input-profile{
-  position:absolute;
+  // position:absolute;
   right:1rem;
-  width: 45%;
-  height: 1rem;
+  width: 55%;
+  height: 1.3rem;
+  background-color: rgba(255,255,255,0);
+  border: none;
+  display: block;
+  font-size: 1.6rem;
+  color: #666;
 }
 
 .container-buttons-center{
@@ -21,7 +24,7 @@
     left: 0;
     margin-top: 1rem;
     display: flex;
-    font-family: 'DINNextLTPro';
+    font-family: 'Learners';
 }
 
 .card-profile-gestores{

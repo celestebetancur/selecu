@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
@@ -72,63 +74,67 @@ const Profile = (props) => {
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
-        <Card className={`card-profile-${props.level}`}>
-        {profileImage &&
-          <StorageImage className="image-profile" storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfíl"/>
-        }
-          <Card.Body>
-            <Card.Title>Mi perfil</Card.Title>
-              <div className="mb-5 mt-5">
-                <p className="card-text">Actualiza tus datos</p>
-              </div>
-              <form>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Cómo me gusta que me digan</label>
-                  <input type="text" className="input-profile" value={nickname} required onChange={e => setNickName(e.target.value)}/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Mi nombre completo</label>
-                  <input type="text" className="input-profile" value={username} disabled/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Correo de mi responsable</label>
-                  <input type="text" className="input-profile" value={parentsEmail} disabled/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Mi grado</label>
-                  <input type="text" className="input-profile" value={level} disabled/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Mi colegio</label>
-                  <input type="text" className="input-profile" value={school} disabled/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Día favorito</label>
-                  <input type="text" className="input-profile" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">El animal que más me gusta</label>
-                  <input type="text" className="input-profile" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
-                </div>
-                <div style={{display:"block"}}>
-                  <label className="mb-2">Color que más me gusta</label>
-                  <input type="text" className="input-profile"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
-                </div>
-              </form>
-              <Container className="justify-content-center container-buttons-center">
-                <Button className="mr-2 login-button" variant="dark" onClick={writeInfo}>¡Actualizate!</Button>
-                {props.functionsAvailable &&
-                  <>
-                    <a href="#/home"><Button className="mr-2 login-button" variant="dark">Regresar al mapa</Button></a>
-                    <SignOut
-                      className='login-button'
-                      text="Salir"
-                     />
-                  </>
-                }
-              </Container>
-            </Card.Body>
-          </Card>
+        <Row>
+          <Col className="justify-content-center">
+            <Card className={`card-profile-${props.level} text-center`}>
+              <Card.Body>
+                <Card.Title as="h1">Mi perfil</Card.Title>
+                  {profileImage &&
+                    <StorageImage
+                      className="image-mainprofile"
+                      storagePath={"/users/"+props.userData.data.uid.slice(0,10)+'/picture/perfil.jpg'}
+                      style={{width:'60%'}}
+                      alt="Imagen de perfíl"/>
+                  }
+                <Card.Title as="h1">{nickname}</Card.Title>
+              </ Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className={`card-profile-${props.level}`}>
+              <Card.Body>
+                  <form>
+                    <div>
+                    <label className="mb-1">Cómo me gusta que me digan</label>
+                    <input type="text" className="input-profile" value={nickname} required onChange={e => setNickName(e.target.value)}/>
+                    </div>
+                    <label className="mb-1">Mi nombre completo</label>
+                    <input type="text" className="input-profile" value={username} disabled/>
+
+                    <label className="mb-1">Correo de mi responsable</label>
+                    <input type="text" className="input-profile" value={parentsEmail} disabled/>
+
+                    <label className="mb-1">Mi grado</label>
+                    <input type="text" className="input-profile" value={level} disabled/>
+
+                    <label className="mb-1">Mi colegio</label>
+                    <input type="text" className="input-profile" value={school} disabled/>
+
+                    <label className="mb-1">Día favorito</label>
+                    <input type="text" className="input-profile" value={favoriteDay} required onChange={e => setFavoriteDay(e.target.value)}/>
+
+                    <label className="mb-1">El animal que más me gusta</label>
+                    <input type="text" className="input-profile" value={favoriteAnimal} required onChange={e => setFavoriteAnimal(e.target.value)}/>
+
+                    <label className="mb-1">Color que más me gusta</label>
+                    <input type="text" className="input-profile"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
+                  </form>
+                  <Container className="justify-content-center container-buttons-center">
+                    {props.functionsAvailable &&
+                      <>
+                        <Button className="mr-2 login-button" variant="dark" onClick={writeInfo}>¡Actualizate!</Button>
+                        <a href="#/home"><Button className="mr-2 login-button" variant="dark">Regresar al mapa</Button></a>
+                        <SignOut
+                          className='login-button'
+                          text="Salir"
+                         />
+                      </>
+                    }
+                  </Container>
+                </Card.Body>
+              </Card>
+          </Col>
+        </Row>
       </AuthCheck>
     </Suspense>
   );
@@ -146,7 +152,7 @@ Profile.propTypes = {
 }
 
 Profile.defaultProps = {
-  functionsAvailable: true,
+  functionsAvailable: false,
   level: 'primero'
 }
 
