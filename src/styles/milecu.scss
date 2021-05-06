@@ -11,7 +11,7 @@
   position:absolute;
   width:100%;
   overflow: hidden;
-  z-index: 3000;
+  z-index: 1000;
 }
 
 #canvasPixelArt {
@@ -30,7 +30,6 @@
   background: #826b50;
   border: 10px ridge #d6a770;
   border-radius: 0.8rem;
-  z-index: 1000;
   margin-left: 5rem;
 }
 

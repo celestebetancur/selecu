@@ -40,7 +40,7 @@ const Landing = (props) => {
   return (
     <>
       <NavBar/>
-      <Container className="h-100 mh-100" fluid>
+      <Container className="h-100 mh-100" fluid style={{overflow:'hidden'}}>
         <Row className="pt-4">
           <Container className="bg-img" style={{backgroundImage:`url(${background})`}} fluid>
               <Row className="justify-content-center symbol-container" lg={7}>

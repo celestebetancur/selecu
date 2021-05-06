@@ -84,7 +84,8 @@ const Home = (props) => {
               button2Action={() => setAppActive(!appActive)}
               bt1State={props.userInfo.info.profileImage}
               bt2State={props.userInfo.info.profileImage}
-              btProfileState={!props.userInfo.info.profileImage}
+              btProfileState={props.userInfo.info.profileImage}
+              appActive={appActive}
             >
             {!appActive &&
               <Energy />

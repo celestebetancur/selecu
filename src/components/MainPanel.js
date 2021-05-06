@@ -28,8 +28,8 @@ const MainPanel = (props) => {
     <Container>
       <ReactHowler
         src={bleep}
-        playing={props.btProfileState}
-        loop={props.btProfileState}
+        playing={(!props.btProfileState && !props.appActive) ? true : false}
+        loop={!props.btProfileState && !props.appActive ? true : false}
       />
       <Container id="main-panel-home" className="container-main-panel">
         <div
@@ -49,7 +49,7 @@ const MainPanel = (props) => {
         <Img src={panel} className="center" id="main-panel-image"/>
             <Button
               id="main-panel-profile-button"
-              className={`btn-jump-${props.btProfileState}`}
+              className={`btn-jump-${!props.btProfileState}`}
               onClick={props.button2Action}
               >
             {props.userInfo.info.profileImage &&

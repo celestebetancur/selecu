@@ -256,6 +256,7 @@ class HomePuzzle extends React.Component {
                 }
               }
             }
+            return false;
           }
           if(sketch.mouseX < sketch.pmouseX){
             if(currentPos[activeCube] % width/stepSize !== 0){
@@ -306,6 +307,7 @@ class HomePuzzle extends React.Component {
             }
           }
         }
+        return false;
       }
 
       const cubeDrawImg = (png, pos, active) => {
