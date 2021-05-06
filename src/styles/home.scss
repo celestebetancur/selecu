@@ -152,7 +152,7 @@
   transform: translate(-18px,20px);
   background: rgb(0,164,255);
   background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
-  z-index: 2000;
+  z-index: 3000;
   display: inline;
   border-radius: 5px;
 }
@@ -170,7 +170,7 @@
  left:50%;
  background: rgba(0,0,0,0);
  transform: translate(-436px,82px);
- z-index: 100;
+ z-index: 4000;
  font-size: 0.7rem;
  font-family: 'Carter One';
  resize: none;
@@ -192,13 +192,13 @@
   font-size: 0.7rem;
   left:50%;
   transform: translate(-422px,60px);
-  z-index: 1000;
+  z-index: 4000;
 }
 
 .container-text-background{
   position: absolute;
   display: inline;
-  z-index: 3000;
+  z-index: 4000;
   top:1rem;
 }
 
