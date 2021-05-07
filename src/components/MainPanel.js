@@ -11,6 +11,9 @@ import panel from '../assets/images/mapa/panel-vacio.png'
 import toggle from '../assets/images/mapa/toggle.png'
 import button from '../assets/images/icons/fondo.png'
 
+import art from '../assets/images/icons/art.svg'
+import profileIcon from '../assets/images/icons/profile-user.svg'
+
 import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
 import Img from "react-cool-img";
@@ -23,6 +26,18 @@ import {loadUserData} from '../actions'
 const MainPanel = (props) => {
   const [mainPanelState, setMainPanelState] = useState(false)
   const [toggleMainPanel , setToggleMainPanel] = useState(false)
+  const [toggleSubMenu , setToggleSubMenu] = useState(false)
+
+  const setApp = (val) => {
+    props.setAppActive(true)
+    props.setIndex(val)
+  }
+
+  const toggleAppSubMenu = () => {
+    setToggleSubMenu(!toggleSubMenu)
+    props.setAppActive(!props.appActive)
+    props.setIndex(-1)
+  }
 
   return(
     <Container>
@@ -50,7 +65,7 @@ const MainPanel = (props) => {
             <Button
               id="main-panel-profile-button"
               className={`btn-jump-${!props.btProfileState}`}
-              onClick={props.button2Action}
+              onClick={() => toggleAppSubMenu()}
               >
             {props.userInfo.info.profileImage &&
               <StorageImage className="image-profile-button-done" storagePath={"/users/"+props.userInfo.access.UI.slice(0,10)+'/picture/perfil.jpg'} alt="Imagen de perfil"/>
@@ -73,7 +88,17 @@ const MainPanel = (props) => {
               <Img src={button} className="panel-button-img-lg" />
               <ReactSVG className="center-icons-lg" src={props.button2}/>
             </Link>
-
+            <span className={`main-panel-submenu ${toggleSubMenu}`}>
+              <ReactSVG
+                onClick={() => setApp(0)}
+                style={{filter:'drop-shadow(1px 1px 1px #284482'}}
+                className="center-icons-submenu-1" src={art}/>
+              <ReactSVG
+                onClick={() => setApp(1)}
+                style={{filter:'drop-shadow(1px 1px 1px #284482'}}
+                className="center-icons-submenu-2"
+                src={profileIcon}/>
+            </span>
         </Container>
       </Container>
     </Container>

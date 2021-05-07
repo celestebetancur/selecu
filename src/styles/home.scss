@@ -29,8 +29,21 @@
   transition: bottom 0.25s;
 }
 
+.main-panel-submenu{
+  position: fixed;
+  z-index: 3000;
+  background-color: #8ab6d5;
+  left:50%;
+  width: 60px;
+  height: 98px;
+  transform: translate(400px,61px);
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+
 .toggle-pos-true{
-  bottom: 146px;
+  bottom: 154px;
 }
 .toggle-pos-false{
   bottom: 0px;
@@ -45,7 +58,7 @@
 }
 .main-panel{
   position: fixed;
-  bottom: 0px;
+  bottom: 8px;
   width: 100%;
   height: 10rem;
   left: 50%;
@@ -78,7 +91,7 @@
   display: inline;
   clip-path: circle(50% at 50% 50%);
   width: 5.9rem;
-  transform: translate(-10px,-6px);
+  transform: translate(-10px,-2px);
 }
 
 .center{
@@ -93,13 +106,13 @@
   transform-origin: center;
   top: 50%;
   left: 50%;
-  transform: translate(338px,-20px);
+  transform: translate(338px,-24px);
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 104px;
+  height: 104px;
   background-color: rgba(255,180,0,1);
   border-color: rgba(255,180,0,0);
-  z-index: 3000;
+  z-index: 4000;
 }
 
 #main-panel-container{
@@ -117,6 +130,7 @@
   z-index: 3000;
   top: 50%;
   left:50%;
+  height: 0px;
 }
 
 .c-settings{
@@ -301,8 +315,25 @@
 }
 .center-icons-lg{
   position: relative;
-  transform: translate(12px,-68px);
+  transform: translate(12px,-70px);
   width: 56px;
+}
+.center-icons-submenu-1{
+  position: relative;
+  transform: translate(36px,0px);
+  width: 18px;
+  background-color: rgba(255,255,255,0);
+}
+.center-icons-submenu-1:hover{
+  cursor: pointer;
+}
+.center-icons-submenu-2:hover{
+  cursor: pointer;
+}
+.center-icons-submenu-2{
+  position: relative;
+  transform: translate(36px,44px);
+  width: 18px;
 }
 
 .panel-button-img-sm{
@@ -343,4 +374,8 @@
   top: 0px;
   left:0px;
   transform: translate(0px,250px);
+}
+
+.false{
+  display: none;
 }

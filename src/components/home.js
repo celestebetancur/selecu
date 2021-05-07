@@ -46,7 +46,7 @@ const Home = (props) => {
   const [registry, setRegistry] = useState('')
   const [contentActive, setSetContentActive] = useState(false)
   const [appActive, setAppActive] = useState(false)
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(-1)
 
   const [camaraState, setCamaraState] = useState(false)
   const [gridState, setGridState] = useState(true)
@@ -57,6 +57,7 @@ const Home = (props) => {
   useEffect(()=>{
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
     setRegistry(type)
+    console.log(index);
   })
 
   const setIndexUp = () => {
@@ -82,7 +83,7 @@ const Home = (props) => {
         {contentActive && !appActive &&
           <ContentDisplay />
         }
-        {appActive &&
+        {index >= 0 &&
           <>
           <BtnsNav
             setIndexUp={setIndexUp}
@@ -117,6 +118,7 @@ const Home = (props) => {
               bt2State={props.userInfo.info.profileImage}
               btProfileState={props.userInfo.info.profileImage}
               appActive={appActive}
+              setIndex={setIndex}
             >
             {!appActive &&
               <Energy />
