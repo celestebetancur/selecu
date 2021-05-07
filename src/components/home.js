@@ -26,12 +26,17 @@ import energy from '../assets/images/mapa/energia-bordes.png'
 import diagram from '../assets/images/icons/diagram.svg'
 import tierra from '../assets/images/icons/tierra.svg'
 
+import next from '../assets/images/icons/next.svg'
+import back from '../assets/images/icons/back.svg'
+import buttonImg from '../assets/images/icons/fondo.png'
+
 import { FiCamera, FiCameraOff } from "react-icons/fi";
 import { MdGridOff, MdGridOn } from "react-icons/md";
 import { FaStar} from "react-icons/fa";
 import { IoArrowUndoOutline } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { FaChild } from "react-icons/fa";
 
 import ContentLoader from './ContentLoader'
 import ContentDisplay from './ContentDisplay'
@@ -41,16 +46,25 @@ const Home = (props) => {
   const [registry, setRegistry] = useState('')
   const [contentActive, setSetContentActive] = useState(false)
   const [appActive, setAppActive] = useState(false)
-  const [index, setIndex] = useState(1)
+  const [index, setIndex] = useState(0)
 
   const [camaraState, setCamaraState] = useState(false)
   const [gridState, setGridState] = useState(true)
   const [readyState, setReadyState] = useState(false)
 
+  const [updateState, setUpdateState] = useState(false)
+
   useEffect(()=>{
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
     setRegistry(type)
   })
+
+  const setIndexUp = () => {
+    setIndex((index+1)%2)
+  }
+  const setIndexDown = () => {
+    setIndex((Math.abs(index-1))%2)
+  }
 
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
@@ -70,6 +84,10 @@ const Home = (props) => {
         }
         {appActive &&
           <>
+          <BtnsNav
+            setIndexUp={setIndexUp}
+            setIndexDown={setIndexDown}
+          />
           {index === 0 &&
             <PixelApp
               commands={commandForTarget}
@@ -80,7 +98,8 @@ const Home = (props) => {
           }
           {index === 1 &&
             <MainProfile
-
+              updateState={updateState}
+              setUpdateState={setUpdateState}
             />
           }
           </>
@@ -93,6 +112,7 @@ const Home = (props) => {
               button2={tierra}
               button1Action={() => setSetContentActive(!contentActive)}
               button2Action={() => setAppActive(!appActive)}
+              setAppActive={setAppActive}
               bt1State={props.userInfo.info.profileImage}
               bt2State={props.userInfo.info.profileImage}
               btProfileState={props.userInfo.info.profileImage}
@@ -109,6 +129,11 @@ const Home = (props) => {
                 setCamaraState={setCamaraState}
                 setGridState={setGridState}
                 setReadyState={setReadyState}
+              />
+            }
+            {appActive && index === 1 &&
+              <NavProfile
+                setUpdateState={setUpdateState}
               />
             }
             </ MainPanel>
@@ -185,16 +210,53 @@ const NavPixel = (props) => {
       >
         <Img src={button} className="bt-pixelapp"/>
         <IconContext.Provider
-          value={{ color: 'white', size: '50px' }}
+          value={{ color: 'white', size: '30px' }}
         >
         {props.readyState
           ?<IoArrowUndoOutline className="center-icons-b"/>
-          :<FaStar className="center-icons-b"/>
+        :<FaStar className="center-icons-c"/>
         }
         </IconContext.Provider>
       </span>
 
     </Container>
+  )
+}
+
+const NavProfile = (props) => {
+  return (
+    <Container className="main-panel-c">
+      <span
+        onClick={() => props.setUpdateState(true)}
+        className="bt-active-true"
+      >
+        <Img src={button} className="bt-pixelapp"/>
+        <IconContext.Provider
+          value={{ color: 'white', size: '30px' }}
+        >
+        <FaChild className="center-icons-c"/>
+        </IconContext.Provider>
+      </span>
+    </Container>
+  )
+}
+
+const BtnsNav = (props) => {
+  return(
+    <>
+      <span
+        onClick={()=>props.setIndexDown()}
+        className="bt-main-menu btn-back-main-menu">
+        <Img src={button} style={{width:'3rem'}}/>
+        <ReactSVG className="center-icons-tn" src={back}/>
+      </span>
+      <span
+        onClick={()=>props.setIndexUp()}
+        className="bt-main-menu btn-next-main-menu">
+        <Img src={button} className="panel-button-img-sm" style={{width:'3rem',display:'inline'}}/>
+        <ReactSVG className="center-icons-tn" src={next}/>
+      </span>
+    </>
   )
 }
 

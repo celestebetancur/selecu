@@ -51,6 +51,13 @@ const Profile = (props) => {
   }
 
   useEffect(()=>{
+    if(props.updateState){
+      writeInfo()
+      props.setUpdateState(false)
+    }
+  },[props.updateState])
+
+  useEffect(()=>{
     db.ref().child("/users/"+props.userData.data.uid.slice(0,10)).on(
       'value',(snapshot) => {
         let snap = snapshot.val();

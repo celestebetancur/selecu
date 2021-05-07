@@ -5,11 +5,14 @@ import Img from "react-cool-img";
 
 import fondo from '../assets/images/pixelapp/fondo-colors.png'
 
-const MainProfile = () => {
+const MainProfile = (props) => {
   return (
     <Container className="bg-img-pixelapp font-learners" fluid
-      style={{backgroundImage: `url(${fondo})`, paddingLeft:'8rem',position:'absolute',zIndex:'2000'}}>
-      <Profile />
+      style={{backgroundImage: `url(${fondo})`, paddingLeft:'8rem',position:'absolute'}}>
+      <Profile
+        updateState={props.updateState}
+        setUpdateState={props.setUpdateState}
+        />
     </Container>
   )
 }

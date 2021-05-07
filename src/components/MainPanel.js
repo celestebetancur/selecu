@@ -67,6 +67,7 @@ const MainPanel = (props) => {
             </span>
 
             <Link to="home"
+              onClick={() => props.setAppActive(false)}
               className={`main-panel-a c-settings bt-active-${props.bt2State}`}
             >
               <Img src={button} className="panel-button-img-lg" />
