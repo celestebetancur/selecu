@@ -148,12 +148,13 @@
 
 .main-panel-c{
   position: fixed;
-  width: 17rem;
+  width: 340px;
   z-index: 3000;
   display: inline;
   left: 300px;
   bottom: 45px;
 }
+
 .e-settings{
   left:50%;
   transform: translate(-275px,52px);
@@ -269,6 +270,7 @@
 
 .bt-active-true{
   cursor: pointer;
+  width: 0px;
 }
 .bt-active-false{
   cursor:default;
@@ -299,6 +301,10 @@
 }
 
 .center-icons-c{
+  position: relative;
+  transform: translate(-40px,0px);
+}
+.center-icons-f{
   position: relative;
   transform: translate(-40px,0px);
 }
@@ -346,7 +352,8 @@
 .bt-pixelapp{
   width: 50px;
   color: #fff;
-  margin-left: 1rem;
+  margin-left: 0.4rem;
+  display: inline
 }
 
 .bt-main-menu{

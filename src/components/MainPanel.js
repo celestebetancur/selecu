@@ -39,6 +39,11 @@ const MainPanel = (props) => {
     props.setIndex(-1)
   }
 
+  const returnHome = () => {
+    props.setIndex(-1)
+    props.setAppActive(false)
+  }
+
   return(
     <Container>
       <ReactHowler
@@ -82,7 +87,7 @@ const MainPanel = (props) => {
             </span>
 
             <Link to="home"
-              onClick={() => props.setAppActive(false)}
+              onClick={() => returnHome()}
               className={`main-panel-a c-settings bt-active-${props.bt2State}`}
             >
               <Img src={button} className="panel-button-img-lg" />

@@ -37,6 +37,7 @@ import { IoArrowUndoOutline } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
+import { FaFilm } from "react-icons/fa";
 
 import ContentLoader from './ContentLoader'
 import ContentDisplay from './ContentDisplay'
@@ -50,6 +51,7 @@ const Home = (props) => {
 
   const [camaraState, setCamaraState] = useState(false)
   const [gridState, setGridState] = useState(true)
+  const [paintState, setPaintState] = useState(false)
   const [readyState, setReadyState] = useState(false)
 
   const [updateState, setUpdateState] = useState(false)
@@ -95,6 +97,7 @@ const Home = (props) => {
               grid={gridState}
               camara={camaraState}
               ready={readyState}
+              paintState={paintState}
             />
           }
           {index === 1 &&
@@ -120,7 +123,7 @@ const Home = (props) => {
               appActive={appActive}
               setIndex={setIndex}
             >
-            {!appActive &&
+            {index < 0 &&
               <Energy />
             }
             {appActive && index === 0 &&
@@ -131,6 +134,8 @@ const Home = (props) => {
                 setCamaraState={setCamaraState}
                 setGridState={setGridState}
                 setReadyState={setReadyState}
+                setPaintState={setPaintState}
+                paintState={paintState}
               />
             }
             {appActive && index === 1 &&
@@ -203,8 +208,23 @@ const NavPixel = (props) => {
           }
           </IconContext.Provider>
         </span>
+
+        <span
+          className="bt-active-true"
+          onClick={()=> props.setPaintState(!props.paintState)}
+        >
+          <Img src={button} className="bt-pixelapp"/>
+          <IconContext.Provider
+            value={{ color: 'white', size: '30px' }}
+          >
+          {!props.readyState &&
+            <FaFilm className="center-icons-f"/>
+          }
+          </IconContext.Provider>
+        </span>
         </>
       }
+
       <span
         className="bt-active-true"
         onClick={()=> props.setReadyState(!props.readyState)}
@@ -215,8 +235,8 @@ const NavPixel = (props) => {
           value={{ color: 'white', size: '30px' }}
         >
         {props.readyState
-          ?<IoArrowUndoOutline className="center-icons-b"/>
-        :<FaStar className="center-icons-c"/>
+          ?<IoArrowUndoOutline className="center-icons-c"/>
+          :<FaStar className="center-icons-c"/>
         }
         </IconContext.Provider>
       </span>

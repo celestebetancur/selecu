@@ -31,6 +31,7 @@ const PixelApp = (props) => {
       grid={props.grid}
       camara={props.camara}
       ready={props.ready}
+      paintState={props.paintState}
     />
   );
 }

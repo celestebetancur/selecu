@@ -183,8 +183,9 @@ input[type=range]::-webkit-slider-thumb {
 .bg-img-pixelapp{
   @include background-pos-top;
   top: 0px;
-  height: 38rem;
+  height: 550px;
   padding-top: 4rem;
+  padding-left: 0px;
   transform-origin: center;
   transform: scale(1);
 }

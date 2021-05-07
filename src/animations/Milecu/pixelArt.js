@@ -113,6 +113,7 @@ class PixelArt extends React.Component {
       };
 
       sketch.draw = () => {
+        this.setState({usePhoto:this.props.paintState})
         if(!this.props.ready){
           this.setState({url:''})
           this.setState({idReady:0})
@@ -129,7 +130,9 @@ class PixelArt extends React.Component {
         sketch.background(255);
         sketch.image(captured, x, y, w, h);
         if(this.props.camara || this.props.commands[6] === 1){
-          captured = capture.get();
+          if(!this.state.usePhoto){
+            captured = capture.get();
+          }
         }
         if(!this.props.camara || this.props.commands[6] === 0){
           sketch.fill(255);
@@ -278,7 +281,7 @@ class PixelArt extends React.Component {
     return (
       <Container id="pixelapp-main-container" className="bg-img-pixelapp" fluid style={{backgroundImage: `url(${fondo})`}}>
         <Row>
-          <Col className="justify-content-center" style={{display:'flex'}}>
+          <Col className="justify-content-center" style={{display:'flex', padding:'0px',flexGrow: `${this.props.ready ? 0 : 1}`}}>
             <div id="divPixelArt" className={`canvas-${!this.props.ready}`}></div>
           </Col>
         {this.state.url !== ''
