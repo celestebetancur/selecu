@@ -188,3 +188,12 @@ input[type=range]::-webkit-slider-thumb {
   transform-origin: center;
   transform: scale(1);
 }
+
+.bg-img-profile{
+  @include background-pos-top;
+  top: 0px;
+  height: 38rem;
+  padding-top: 2rem;
+  transform-origin: center;
+  transform: scale(1);
+}

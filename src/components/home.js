@@ -246,7 +246,7 @@ const BtnsNav = (props) => {
     <>
       <span
         onClick={()=>props.setIndexDown()}
-        className="bt-main-menu btn-back-main-menu">
+        className="bt-main-menu-pos btn-back-main-menu">
         <Img src={button} style={{width:'3rem'}}/>
         <ReactSVG className="center-icons-tn" src={back}/>
       </span>

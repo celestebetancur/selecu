@@ -327,11 +327,20 @@
   left:50%;
 }
 
+.bt-main-menu-pos{
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50px;
+  z-index: 3000;
+}
+
 .btn-next-main-menu{
   top: 0px;
-  transform: translate(620px,250px);
+  left: 96%;
+  transform: translate(0px,250px);
 }
 .btn-back-main-menu{
   top: 0px;
-  transform: translate(-675px,250px);
+  left:0px;
+  transform: translate(0px,250px);
 }
