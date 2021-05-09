@@ -30,6 +30,8 @@ class PixelArt extends React.Component {
     ready: false,
     idReady: 0,
     url: '',
+    uploaded: false,
+    download:false,
     drawing: false,
     upload: false,
     buttonColor1: '',
@@ -80,28 +82,36 @@ class PixelArt extends React.Component {
   }
   usePhotoToDraw = () => {
     this.setState({usePhoto:true})
-    this.setState({camaraState:false});
+    this.setState({camaraState:false})
   }
 
   componentDidMount(){
 
     const code = (sketch) => {
 
-      let [width,height,w,h]  = [400,400,600,400];
-      let [x,y] = [-100,0];
-      let pixSize = 5;
-      let paintState = true;
-      let cnv;
-      let colorGrid = [];
+      let [width,height,w,h]  = [400,400,600,400]
+      let [x,y] = [-100,0]
+      let pixSize = 5
+      let paintState = true
+      let cnv
+      let colorGrid = []
 
-      let url;
-      let canvasFrame;
-      let capture;
-      let pix;
-      let captured = sketch.createImage(400,400);
-      let imageCaptured = false;
+      let url
+      let canvasFrame
+      let capture
+      let pix
+      let captured = sketch.createImage(400,400)
+      let imageCaptured = false
+
+      let input
+      let img
 
       sketch.setup = () => {
+        input = sketch.createFileInput(handleFile,'test')
+        input.position(388, 578)
+        input.style('z-index',4000)
+        input.style('position','fixed')
+        input.id('uploadImg')
         capture = sketch.createCapture(sketch.VIDEO, () => {
           fillColorGrid(pixSize);
         });
@@ -141,6 +151,9 @@ class PixelArt extends React.Component {
         if(this.state.usePhoto){
           sketch.image(captured, x, y, w, h);
         }
+        if(this.state.uploaded){
+          sketch.image(img, x, y, w, h);
+        }
         if(gridStep(this.props.commands[7]) !== pixSize){
           pixSize = gridStep(this.props.commands[7]);
           fillColorGrid(pixSize);
@@ -154,6 +167,12 @@ class PixelArt extends React.Component {
         if(this.state.drawing){
           sketch.fill(255);
           sketch.rect(0,0,400,400);
+        }
+        if(this.state.download){
+          this.setState(state => ({
+            download:false
+          }),captured.save(`myPixelArt-${new Date()}`, 'jpg'))
+
         }
       };
 
@@ -184,6 +203,16 @@ class PixelArt extends React.Component {
       sketch.keyReleased = () => {
         if(sketch.keyCode === sketch.SHIFT){
           paintState = true;
+        }
+      }
+
+      const handleFile = (file) => {
+        if (file.type === 'image') {
+          img = sketch.createImg(file.data, '');
+          img.hide()
+          this.setState({uploaded:true})
+        } else {
+          img = null
         }
       }
 
@@ -289,14 +318,21 @@ class PixelArt extends React.Component {
           <>
             <Container className="justify-content-center" style={{display:'flex'}}>
               <Image id="preview-avatar" src={this.state.url} />
-              <UploadPhoto
-                image={this.state.image}
-              />
+                <Col style={{display:'flex',flexDirection:'column', maxWidth:'16rem'}}>
+                  <UploadPhoto
+                    image={this.state.image}
+                  />
+                <Button
+                  onClick={() => this.setState({download:true})}
+                  variant="success"
+                  className='mt-2 ml-3'>
+                  Descargar foto</Button>
+              </Col>
             </Container>
           </>
           :
           <>
-            <Col>
+            <Col className={`canvas-${!this.props.ready}`}>
               <Row className="justify-content-center" style={{display:'flex'}}>
                 <ColorPicker
                   setColor={this.setColor}
