@@ -26,7 +26,8 @@ const Posts = (props) => {
         </Col>
       </Row>
       <hr />
-      <Row>
+      <Row className="justify-content-center">
+        <Card.Img src={props.imgProfile} style={{width:'300px'}}/>
         <Card.Body style={{paddingTop:'0.2rem'}}>
           {props.post}
         </Card.Body>
