@@ -107,10 +107,12 @@ class PixelArt extends React.Component {
       let img
 
       sketch.setup = () => {
-        input = sketch.createFileInput(handleFile,'test')
-        input.position(388, 578)
+        input = sketch.createFileInput(handleFile,false)
         input.style('z-index',4000)
         input.style('position','fixed')
+        input.style('bottom','4px')
+        input.style('left','50%')
+        input.style('transform','translateX(-254px)')
         input.id('uploadImg')
         capture = sketch.createCapture(sketch.VIDEO, () => {
           fillColorGrid(pixSize);

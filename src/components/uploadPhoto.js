@@ -11,26 +11,33 @@ import {connect} from 'react-redux'
 import {loadUserData} from '../actions'
 
 const UploadPhoto = (props) => {
-  const [done, setDone] = useState(false);
-  const [start, setStart] = useState(false);
+  const [done, setDone] = useState(false)
+  const [start, setStart] = useState(false)
 
-  const user = props.userData;
-  const firebase = useFirebaseApp();
-  const db = firebase.storage();
-  const data = firebase.database();
+  const user = props.userData
+  const userInfo = props.userInfo.info
+  const firebase = useFirebaseApp()
+  const db = firebase.storage()
+  const data = firebase.database()
 
   const startLoading = (val) => {
-    setStart(val);
+    setStart(val)
   }
 
   useEffect(()=>{
     if(start){
+      let time = new Date().getTime()
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').put(props.image).then((snapshot)=>{
         setDone(true);
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImage/').set(true);
-      });
+      })
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImageURL/').set(url);
+        data.ref('/community/general/'+time+'/').set({
+          name: userInfo.nick,
+          photo: url,
+          post: '¡He creado un nuevo Pixel Art!'
+        });
       })
     }
   },[start]);
@@ -51,7 +58,8 @@ const UploadPhoto = (props) => {
 }
 const mapStateToProps = (state) => {
   return {
-    userData: state.loadUserData
+    userData: state.loadUserData,
+    userInfo: state.loadUserInfo
   };
 }
 
