@@ -1,6 +1,6 @@
 import React,  {useState, Suspense, useEffect} from 'react'
 import { Redirect } from "react-router-dom"
-import {AuthCheck, StorageImage} from 'reactfire'
+import {AuthCheck} from 'reactfire'
 import { ReactSVG } from 'react-svg'
 import {map} from '../helpers'
 
