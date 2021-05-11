@@ -36,7 +36,8 @@ const UploadPhoto = (props) => {
         data.ref('/community/general/'+time+'/').set({
           name: userInfo.nick,
           photo: url,
-          post: '¡He creado un nuevo Pixel Art!'
+          post: '¡He creado un nuevo Pixel Art!',
+          type: 0
         });
       })
     }

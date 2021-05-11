@@ -16,11 +16,10 @@ const Community = (props) => {
         let snap = snapshot.val();
         let temp = []
         for (const [key] of Object.entries(snap)) {
-          temp.push([key,snap[key].name,snap[key].photo,snap[key].post])
+          temp.push([key,snap[key].name,snap[key].photo,snap[key].post,snap[key].type])
         }
         setPostHistory(temp.reverse())
         setDone(true)
-
       }
     );
   },[]);
@@ -32,6 +31,7 @@ const Community = (props) => {
         name={value[1]}
         imgProfile={value[2]}
         post={value[3]}
+        type={value[4]}
       />
     )
   })
