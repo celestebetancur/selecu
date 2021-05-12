@@ -9,6 +9,7 @@ import MainPanel from './MainPanel'
 import PixelApp from './PixelApp'
 import App from '../App'
 import MainProfile from './MainProfile'
+import ActivityDisplay from './ActivityDisplay'
 
 import '../styles/home.scss'
 import Container from 'react-bootstrap/Container'
@@ -56,11 +57,22 @@ const Home = (props) => {
 
   const [updateState, setUpdateState] = useState(false)
   const [time, setTime] = useState('')
+  const [place, setPlace] = useState('')
+  const [enterContent, setEnterContent] = useState(false)
 
   useEffect(()=>{
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
     setRegistry(type)
   })
+
+  useEffect(()=>{
+    if(place !== ''){
+      const timer = setTimeout(() => {
+        setEnterContent(true)
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  },[place])
 
   const setIndexUp = () => {
     setIndex((index+1)%2)
@@ -75,7 +87,16 @@ const Home = (props) => {
           <ContentLoader
             degree={registry.toLowerCase()}
           />
-        <Container className="home-canvas-container" fluid>
+        {enterContent &&
+          <Container className={`canvas-fade-${!enterContent}`} style={{height:'100%'}} fluid>
+            <Container className="justify-content-center">
+              <ActivityDisplay
+                index={index}
+                />
+            </Container>
+          </Container>
+        }
+        <Container className={`home-canvas-container canvas-fade-${enterContent}`} style={{overflow:`${enterContent ? 'hidden' : ''}`}} fluid>
           {props.userInfo.info.profileImage === false &&
             <div className="container-glass-full"></div>
           }
@@ -86,9 +107,12 @@ const Home = (props) => {
             commands={commandForTarget}
             userInfo={props.userInfo}
             setTime={setTime}
+            setPlace={setPlace}
           />
         {contentActive && !appActive &&
-          <ContentDisplay />
+          <ContentDisplay
+            setSetContentActive={setSetContentActive}
+             />
         }
         {index >= 0 &&
           <>
@@ -128,6 +152,7 @@ const Home = (props) => {
                 btProfileState={props.userInfo.info.profileImage}
                 appActive={appActive}
                 setIndex={setIndex}
+                place={place}
               >
               {index < 0 &&
                 <Energy />

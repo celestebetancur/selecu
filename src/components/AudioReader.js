@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useState} from 'react';
 import { IconContext } from "react-icons";
 
 import button from '../assets/images/icons/fondo.png'
@@ -10,9 +10,11 @@ import { BsFillVolumeUpFill } from "react-icons/bs";
 import Readalong from '../animations/readalong.js'
 
 const AudioReader = (props) => {
+  const [play, setPlay] = useState(false)
 
   return(
     <button
+      onClick={() => setPlay(!play)}
       className="button-pages btn-audioReader">
       <Img src={button} style={{width:'3rem',display:'inline'}}/>
       <IconContext.Provider
@@ -20,8 +22,11 @@ const AudioReader = (props) => {
       >
         <BsFillVolumeUpFill className="center-icons-c"/>
       </IconContext.Provider >
-      < Readalong
-        text="hola este texto es para probar hola este texto es para probar hola este texto es para probar hola este texto es para probar"
+      <Readalong
+        play={play}
+        text={props.text}
+        offsets={props.offsets}
+        audio={props.audio}
       />
     </button>
   )

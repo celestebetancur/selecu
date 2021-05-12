@@ -37,8 +37,8 @@ class MainScreen extends React.Component {
     y: 0,
     genX: 0,
     genY: 0,
-    commands: [],
-    current: 0
+    commands: []
+    // current: this.props.userInfo.progress.current
   };
 
   onClick = (value) => {
@@ -116,6 +116,10 @@ class MainScreen extends React.Component {
          house16 = sketch.loadImage(casa16)
          house17 = sketch.loadImage(casa17)
          house18 = sketch.loadImage(casa18)
+
+         // this.setState(state => ({
+         //   current: this.props.userInfo.progress.current
+         // }))
       }
 
       sketch.setup = () => {
@@ -155,12 +159,6 @@ class MainScreen extends React.Component {
       };
 
       sketch.draw = () => {
-        if(typeof this.props.userInfo !== 'undefined'){
-          console.log(typeof this.props.userInfo)
-          this.setState(state => ({
-            current: this.props.userInfo.progress.current
-          }))
-        }
 
         this.setState({commands:parser(this.props.commands)})
         tPosY = -sketch.map(this.state.commands[0],0,90,0,height/2) + sketch.map(this.state.commands[1],0,90,0,height/2) + (height/2)
@@ -170,7 +168,6 @@ class MainScreen extends React.Component {
         sketch.image(background,width/2,height/2,width,height)
         sketch.push()
         let time = sketch.timeGet()
-        console.log(time)
         this.props.setTime(time)
         if(time === 'day'){
           sketch.tint(255,255,255,255)
@@ -178,9 +175,18 @@ class MainScreen extends React.Component {
         if(time === 'night'){
           sketch.tint(10,10,10,255)
         }
-        sketch.image(map,(width/2),(height/2),width+150,height+100)
+        sketch.image(map,(width/2)+22,(height/2)-32,width+484,height+140)
         sketch.pop()
         sketch.image(target,tPosX,tPosY,70,70)
+        if(sketch.targetCheck(this.state.commands[3]-this.state.commands[2],this.state.commands[1]-this.state.commands[0])){
+          sketch.strokeWeight(4);
+          sketch.stroke(224,37,118)
+          sketch.line(0, tPosY, tPosX-34, tPosY)
+          sketch.line(tPosX+34, tPosY, width, tPosY)
+          sketch.line(tPosX, 0, tPosX,tPosY-34)
+          sketch.line(tPosX, tPosY+34, tPosX, height)
+          sketch.strokeWeight(1);
+        }
 
         sketch.push()
         sketch.tint(80,80,80,100)
@@ -281,6 +287,18 @@ class MainScreen extends React.Component {
           return 'night'
         }
         return 'day'
+      }
+
+      sketch.targetCheck = (x,y) => {
+        let places = [{x: 114, y: 1}]
+        for (let coor of places){
+          if(x === coor.x && y === coor.y){
+            this.props.setPlace('INDONESIA')
+            return true
+          }
+          this.props.setPlace('')
+          return false
+        }
       }
 
       sketch.mousePressed = () => {

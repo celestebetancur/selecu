@@ -13,6 +13,14 @@ body {
   padding: 0rem;
 }
 
+div {
+  overflow: hidden;
+}
+
+img {
+  overflow: hidden;
+}
+
 @font-face {
   font-family: 'DINNextLTPro';
   src: url('../assets/DINNextLTPro-Medium.ttf') format('woff2');

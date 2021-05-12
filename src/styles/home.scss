@@ -1,5 +1,13 @@
 @import "mixins";
 
+.canvas-fade-false{
+  opacity: 1;
+}
+.canvas-fade-true{
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
 #canvasP5home{
   @include padding-reset;
   overflow-x: hidden;
@@ -10,13 +18,18 @@
 }
 
 .container-glass-full{
+  margin: 0px;
+  padding: 0px;
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 0px;
+  left: 0px;
   z-index: 1000;
+  overflow: hidden;
   background: rgba( 255, 255, 255, 0.15 );
-  backdrop-filter: blur( 6.0px );
-  -webkit-backdrop-filter: blur( 6.0px );
+  backdrop-filter: blur( 10.0px );
+  -webkit-backdrop-filter: blur( 10.0px );
 }
 
 #main-panel-toggle{
@@ -41,9 +54,27 @@
   border-bottom-right-radius: 18px;
 }
 
+#p-main-place{
+  position: fixed;
+  z-index: 4000;
+  left:50%;
+  bottom: 50%;
+  font-size: 1.8rem;
+  transform: translate(-140px,184px);
+
+  width: 280px;
+  height: 3rem;
+  background: rgba(0,0,0,0);
+  font-family: 'Carter One';
+  resize: none;
+  text-align: center;
+  border: none;
+  color: rgb(255,255,255);
+  text-shadow: 1px 0 green, 0 1px green;
+}
 
 .toggle-pos-true{
-  bottom: 154px;
+  bottom: 146px;
 }
 .toggle-pos-false{
   bottom: 0px;
@@ -58,7 +89,7 @@
 }
 .main-panel{
   position: fixed;
-  bottom: 8px;
+  bottom: 0px;
   width: 100%;
   height: 10rem;
   left: 50%;
@@ -155,27 +186,24 @@
   bottom: 45px;
 }
 
-.e-settings{
-  left:50%;
-  transform: translate(-275px,52px);
-}
-
 .energyBar{
   position: fixed;
   left:50%;
   height: 36px;
-  transform: translate(-18px,20px);
+  transform: translate(-185px,69px);
   background: rgb(0,164,255);
   background: linear-gradient(0deg, rgba(0,164,255,1) 0%, rgba(255,255,255,1) 100%);
-  z-index: 3000;
+  z-index: 4000;
   display: inline;
   border-radius: 5px;
 }
 .img-energy-container{
+  left:50%;
   display: inline;
   position: fixed;
   width: 250px;
-  z-index: 3000;
+  z-index: 4000;
+  transform: translate(-240px,50px);
 }
 
 .command-textarea {
@@ -234,11 +262,10 @@
   font-size: 2.5rem;
   text-align: center;
   top: 2rem;
-  width: 48%;
+  width: 44%;
   height: 50vh;
-  left:25%;
+  left:27%;
   padding: 1rem;
-  // background-color: red;
 }
 
 .input-content-enter{
@@ -420,5 +447,8 @@
 }
 
 .btn-audioReader{
-  top:348px;
+  position: fixed;
+  top:350px;
+  left: 610px;
+  z-index: 6000;
 }

@@ -56,6 +56,7 @@ const MainPanel = (props) => {
           onClick={() => setToggleMainPanel(!toggleMainPanel)}
           style={{cursor:'pointer'}}
           >
+            <p id='p-main-place'>{props.place}</p>
             <Img src={toggle} className={`toggle-pos-${toggleMainPanel}`} id="main-panel-toggle"/>
         </div>
         <Container className={`main-panel panel-display-${toggleMainPanel}`}>

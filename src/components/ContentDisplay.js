@@ -13,6 +13,8 @@ import next from '../assets/images/icons/next.svg'
 import back from '../assets/images/icons/back.svg'
 import button from '../assets/images/icons/fondo.png'
 
+import andre from '../assets/audio/andre.mp3'
+
 const ContentDisplay = (props) => {
   const [index, setIndex] = useState(0)
   const [inputText, setInputText] = useState('')
@@ -53,6 +55,12 @@ const ContentDisplay = (props) => {
     return () => clearTimeout(timer);
   },[inputText])
 
+  useEffect(()=>{
+    if(index > props.contentToDiplay['structure']['intro']){
+      props.setSetContentActive(false)
+    }
+  })
+
   const guide = guideMap.map((val,i) => {
       if(i !== index-1){
         return(
@@ -78,6 +86,8 @@ const ContentDisplay = (props) => {
           <ContainerBack>
             <TxtAlone
               text={props.contentToDiplay[index].mainText}
+              offsets={[108.844, 402.721, 653.061, 783.673, 968.707, 1676.19, 2427.21, 2927.89, 3700.68, 4146.94, 4255.78, 4321.09, 4408.16, 4549.66, 4723.81, 5344.22]}
+              audio={andre}
               index={index}
               setIndexUp={setIndexUp}
               setIndexDown={setIndexDown}
@@ -121,8 +131,12 @@ const Intro = (props) => {
 const TxtAlone = (props) => {
   return(
     <>
-    <div className="p-content-main">
-      {props.text}
+    <div className="p-content-main" id="main-container-text">
+      <AudioReader
+        text={props.text}
+        offsets={props.offsets}
+        audio={props.audio}
+        />
     </div>
       {props.index > 1 &&
         <button
@@ -138,7 +152,6 @@ const TxtAlone = (props) => {
         <Img src={button} style={{width:'3rem',display:'inline'}}/>
         <ReactSVG className="center-icons-tn" src={next}/>
       </button>
-      <AudioReader />
     </>
   )
 }
