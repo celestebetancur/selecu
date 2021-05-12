@@ -211,14 +211,15 @@
 }
 
 .container-text-background{
-  position: absolute;
+  position: fixed;
   display: inline;
+  width: 100%;
   z-index: 4000;
   top:1rem;
 }
 
 .img-text-background{
-  width: 100vh;
+  width: 620px;
 }
 
 .centerX{
@@ -230,11 +231,14 @@
   position: absolute;
   z-index: 4000;
   font-family: 'Learners';
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
   top: 2rem;
-  width: 90%;
-  left:55%
+  width: 48%;
+  height: 50vh;
+  left:25%;
+  padding: 1rem;
+  // background-color: red;
 }
 
 .input-content-enter{
@@ -244,8 +248,9 @@
   font-size: 2.5rem;
   text-align: center;
   color: #fecc44;
-  top:17rem;
-  left:75%;
+  top:15rem;
+  left:50%;
+  transform: translate(-50%,0);
   border-radius: 1.5rem;
   border: #fecc44 outset 5px;
   background: rgb(148,94,40);
@@ -260,12 +265,12 @@
 }
 
 .bt-back{
-  top:11rem;
-  left:20rem;
+  top:176px;
+  left:296px;
 }
 .bt-next{
-  top:11rem;
-  left:60rem;
+  top:176px;
+  left:890px;
 }
 
 .bt-active-true{
@@ -385,4 +390,35 @@
 
 .false{
   display: none;
+}
+
+.container-btn-guide{
+  display: inline;
+  position:fixed;
+  // transform: translate(50%,320px);
+  z-index:8000;
+}
+
+.btn-guide-content{
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #e88b12;
+  border-style: inset;
+}
+
+.btn-guide-content-active{
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #30cfff;
+  border-style: inset;
+}
+
+.btn-audioReader{
+  top:348px;
 }

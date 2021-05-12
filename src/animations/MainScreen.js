@@ -37,7 +37,8 @@ class MainScreen extends React.Component {
     y: 0,
     genX: 0,
     genY: 0,
-    commands: []
+    commands: [],
+    current: 0
   };
 
   onClick = (value) => {
@@ -154,6 +155,13 @@ class MainScreen extends React.Component {
       };
 
       sketch.draw = () => {
+        if(typeof this.props.userInfo !== 'undefined'){
+          console.log(typeof this.props.userInfo)
+          this.setState(state => ({
+            current: this.props.userInfo.progress.current
+          }))
+        }
+
         this.setState({commands:parser(this.props.commands)})
         tPosY = -sketch.map(this.state.commands[0],0,90,0,height/2) + sketch.map(this.state.commands[1],0,90,0,height/2) + (height/2)
         tPosX = -sketch.map(this.state.commands[2],0,180,0,width/2) + sketch.map(this.state.commands[3],0,180,0,width/2) + (width/2)
@@ -162,6 +170,8 @@ class MainScreen extends React.Component {
         sketch.image(background,width/2,height/2,width,height)
         sketch.push()
         let time = sketch.timeGet()
+        console.log(time)
+        this.props.setTime(time)
         if(time === 'day'){
           sketch.tint(255,255,255,255)
         }
@@ -237,7 +247,9 @@ class MainScreen extends React.Component {
         sketch.image(house16,width*0.83,height*0.57,width*0.041,height*0.065)
         sketch.pop()
         sketch.push()
-        sketch.tint(80,80,80,100)
+        if(this.state.current !== 1){
+          sketch.tint(80,80,80,100)
+        }
         sketch.image(house17,width*0.75,height*0.56,width*0.041,height*0.085)
         sketch.pop()
         sketch.push()

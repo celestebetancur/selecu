@@ -55,11 +55,11 @@ const Home = (props) => {
   const [readyState, setReadyState] = useState(false)
 
   const [updateState, setUpdateState] = useState(false)
+  const [time, setTime] = useState('')
 
   useEffect(()=>{
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
     setRegistry(type)
-    console.log(index);
   })
 
   const setIndexUp = () => {
@@ -79,8 +79,13 @@ const Home = (props) => {
           {props.userInfo.info.profileImage === false &&
             <div className="container-glass-full"></div>
           }
+          {contentActive &&
+            <div className="container-glass-full"></div>
+          }
           <MainScreen
             commands={commandForTarget}
+            userInfo={props.userInfo}
+            setTime={setTime}
           />
         {contentActive && !appActive &&
           <ContentDisplay />
@@ -109,41 +114,43 @@ const Home = (props) => {
           </>
         }
           <Row>
-            <MainPanel
-              textFunction={appActive && index === 0 ? 'PIXELAPP CMD' : 'COORDENADAS'}
-              commandForTarget={(val) => setCommandsForTarget(val)}
-              button1={diagram}
-              button2={tierra}
-              button1Action={() => setSetContentActive(!contentActive)}
-              button2Action={() => setAppActive(!appActive)}
-              setAppActive={setAppActive}
-              bt1State={props.userInfo.info.profileImage}
-              bt2State={props.userInfo.info.profileImage}
-              btProfileState={props.userInfo.info.profileImage}
-              appActive={appActive}
-              setIndex={setIndex}
-            >
-            {index < 0 &&
-              <Energy />
+            {time !== 'night' &&
+              <MainPanel
+                textFunction={appActive && index === 0 ? 'PIXELAPP CMD' : 'COORDENADAS'}
+                commandForTarget={(val) => setCommandsForTarget(val)}
+                button1={diagram}
+                button2={tierra}
+                button1Action={() => setSetContentActive(!contentActive)}
+                button2Action={() => setAppActive(!appActive)}
+                setAppActive={setAppActive}
+                bt1State={props.userInfo.info.profileImage}
+                bt2State={props.userInfo.info.profileImage}
+                btProfileState={props.userInfo.info.profileImage}
+                appActive={appActive}
+                setIndex={setIndex}
+              >
+              {index < 0 &&
+                <Energy />
+              }
+              {appActive && index === 0 &&
+                <NavPixel
+                  camaraState={camaraState}
+                  gridState={gridState}
+                  readyState={readyState}
+                  setCamaraState={setCamaraState}
+                  setGridState={setGridState}
+                  setReadyState={setReadyState}
+                  setPaintState={setPaintState}
+                  paintState={paintState}
+                />
+              }
+              {appActive && index === 1 &&
+                <NavProfile
+                  setUpdateState={setUpdateState}
+                />
+              }
+              </ MainPanel>
             }
-            {appActive && index === 0 &&
-              <NavPixel
-                camaraState={camaraState}
-                gridState={gridState}
-                readyState={readyState}
-                setCamaraState={setCamaraState}
-                setGridState={setGridState}
-                setReadyState={setReadyState}
-                setPaintState={setPaintState}
-                paintState={paintState}
-              />
-            }
-            {appActive && index === 1 &&
-              <NavProfile
-                setUpdateState={setUpdateState}
-              />
-            }
-            </ MainPanel>
           </Row>
         </Container>
       </AuthCheck>
@@ -156,7 +163,7 @@ const Energy = () => {
 
   useEffect(()=>{
     let tempTime = new Date().getHours()
-    let normalizedTime = tempTime >= 6 && tempTime < 20 ? tempTime : -1
+    let normalizedTime = tempTime >= 6 && tempTime < 20 ? tempTime : 20
     let widthEnergy = map(normalizedTime,6,20,181,0)
     setTime(widthEnergy)
   })

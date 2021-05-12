@@ -30,6 +30,7 @@ const UploadPhoto = (props) => {
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').put(props.image).then((snapshot)=>{
         setDone(true);
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImage/').set(true);
+        // data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(true);
       })
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImageURL/').set(url);
